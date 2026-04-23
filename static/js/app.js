@@ -92,7 +92,7 @@ if (window.lucide) window.lucide.createIcons();
   const indicator = document.getElementById("nav-indicator");
   if (!links.length) return;
 
-  const sections = ["wyklady", "laboratoria", "zespol", "efekty", "literatura"]
+  const sections = ["wyklady", "laboratoria", "co-poznasz", "zespol", "efekty", "literatura"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
