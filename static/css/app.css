@@ -1,4 +1,20 @@
 /* ================================================================ */
+/* SECTION SNAP SCROLL                                              */
+/* ================================================================ */
+html {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 80px;
+}
+main > section,
+footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; }
+}
+
+/* ================================================================ */
 /* SCROLLBAR                                                        */
 /* ================================================================ */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
