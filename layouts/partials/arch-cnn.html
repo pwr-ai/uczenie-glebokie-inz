@@ -9,82 +9,88 @@
     </marker>
   </defs>
 
-  {{/* digit "3" 7×7 */}}
-  {{ $digit := slice
-      (slice 0 1 1 1 1 1 0)
-      (slice 1 0 0 0 0 1 0)
-      (slice 0 0 0 0 1 0 0)
-      (slice 0 0 1 1 0 0 0)
-      (slice 0 0 0 0 1 0 0)
-      (slice 1 0 0 0 0 1 0)
-      (slice 0 1 1 1 1 0 0) }}
+  {{/* Fashion-MNIST T-shirt silhouette 8×8 */}}
+  {{ $img := slice
+      (slice 0 1 1 0 0 1 1 0)
+      (slice 1 1 1 1 1 1 1 1)
+      (slice 1 1 1 1 1 1 1 1)
+      (slice 0 0 1 1 1 1 0 0)
+      (slice 0 0 1 1 1 1 0 0)
+      (slice 0 0 1 1 1 1 0 0)
+      (slice 0 0 1 1 1 1 0 0)
+      (slice 0 0 1 1 1 1 0 0) }}
 
-  {{/* ===== INPUT 7×7 ===== */}}
-  <g transform="translate(50,60)">
-    <rect width="196" height="196" rx="8" fill="rgba(113,113,122,0.06)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
-    {{ range $y, $row := $digit }}{{ range $x, $v := $row }}
+  {{/* ===== INPUT 8×8 ===== */}}
+  <g transform="translate(50,50)">
+    <rect width="200" height="200" rx="8" fill="rgba(113,113,122,0.06)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
+    {{ range $y, $row := $img }}{{ range $x, $v := $row }}
       {{ $fill := "transparent" }}
       {{ if eq $v 1 }}{{ $fill = "#f4f4f5" }}{{ end }}
-      <rect x="{{ add 2 (mul $x 28) }}" y="{{ add 2 (mul $y 28) }}" width="24" height="24" rx="3" fill="{{ $fill }}"/>
+      <rect x="{{ add 4 (mul $x 24) }}" y="{{ add 4 (mul $y 24) }}" width="20" height="20" rx="2" fill="{{ $fill }}"/>
     {{ end }}{{ end }}
-    <text x="98" y="-12" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">obraz wejściowy 7×7</text>
+    <text x="100" y="-12" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">obraz 8×8 — T-shirt</text>
   </g>
 
-  {{/* ===== KERNEL 3×3 (Sobel-X) raster scan: 5×5 = 25 positions over 6s ===== */}}
+  {{/* ===== KERNEL 3×3 raster scan: 6×6 = 36 pozycji / 6s ===== */}}
+  {{ $kpos := slice }}
+  {{ range $r := (seq 0 5) }}{{ range $c := (seq 0 5) }}
+    {{ $kpos = $kpos | append (printf "%d,%d" (add 54 (mul $c 24)) (add 54 (mul $r 24))) }}
+  {{ end }}{{ end }}
   <g>
-    <rect x="0" y="0" width="84" height="84" rx="5"
+    <rect width="72" height="72" rx="5"
           fill="rgba(167,139,250,0.18)" stroke="#a78bfa" stroke-width="2">
       <animateTransform attributeName="transform" type="translate"
         dur="6s" repeatCount="indefinite" calcMode="discrete"
-        keyTimes="0;0.04;0.08;0.12;0.16;0.2;0.24;0.28;0.32;0.36;0.4;0.44;0.48;0.52;0.56;0.6;0.64;0.68;0.72;0.76;0.8;0.84;0.88;0.92;0.96;1"
-        values="50,60; 78,60; 106,60; 134,60; 162,60; 50,88; 78,88; 106,88; 134,88; 162,88; 50,116; 78,116; 106,116; 134,116; 162,116; 50,144; 78,144; 106,144; 134,144; 162,144; 50,172; 78,172; 106,172; 134,172; 162,172; 50,60"/>
+        values="{{ delimit $kpos "; " }}"/>
     </rect>
   </g>
 
-  {{/* arrow */}}
+  {{/* arrow → feature map */}}
   <g>
-    <path d="M 270 158 L 330 158" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
-    <text x="300" y="148" text-anchor="middle" font-size="12" fill="#a78bfa">filtr 3×3</text>
-    <text x="300" y="175" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.55">Sobel-X</text>
+    <path d="M 270 150 L 330 150" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
+    <text x="300" y="140" text-anchor="middle" font-size="12" fill="#a78bfa">filtr 3×3</text>
+    <text x="300" y="167" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.55">konwolucja</text>
   </g>
 
-  {{/* ===== FEATURE MAP 5×5 — cells fill in raster order ===== */}}
-  <g transform="translate(340,80)">
-    <rect width="160" height="160" rx="6" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
-    {{ range $y := (seq 0 4) }}{{ range $x := (seq 0 4) }}
-      {{ $idx := add (mul $y 5) $x }}
-      {{ $begin := mul $idx 0.24 }}
-      <rect x="{{ add 2 (mul $x 32) }}" y="{{ add 2 (mul $y 32) }}" width="28" height="28" rx="3" fill="url(#acnn-active)" opacity="0">
+  {{/* ===== FEATURE MAP 6×6 — komórki zapalają się w kolejności rastra ===== */}}
+  <g transform="translate(340,70)">
+    <rect width="168" height="168" rx="6" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
+    {{ range $y := (seq 0 5) }}{{ range $x := (seq 0 5) }}
+      {{ $idx := add (mul $y 6) $x }}
+      {{ $t := div $idx 36.0 }}
+      <rect x="{{ add 6 (mul $x 27) }}" y="{{ add 6 (mul $y 27) }}" width="24" height="24" rx="3" fill="url(#acnn-active)" opacity="0">
         <animate attributeName="opacity"
-          values="0;0;1;1;0"
-          keyTimes="0;{{ div $begin 6.0 }};{{ div (add $begin 0.15) 6.0 }};0.98;1"
+          calcMode="discrete"
+          values="0;1;0"
+          keyTimes="0;{{ printf "%.4f" $t }};1"
           dur="6s" repeatCount="indefinite"/>
       </rect>
     {{ end }}{{ end }}
-    <text x="80" y="-12" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">mapa cech 5×5</text>
+    <text x="84" y="-12" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">mapa cech 6×6</text>
   </g>
 
   {{/* arrow → classifier */}}
   <g>
-    <path d="M 512 158 L 565 158" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
-    <text x="538" y="148" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">pool + fc</text>
+    <path d="M 520 150 L 565 150" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
+    <text x="542" y="140" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">pool + fc</text>
   </g>
 
-  {{/* ===== CLASSIFIER (static softmax bars for digits 0-9) ===== */}}
-  {{ $finals := slice 0.02 0.04 0.02 0.82 0.02 0.03 0.01 0.02 0.01 0.01 }}
-  <g transform="translate(580,60)">
-    <rect x="-8" y="-8" width="190" height="200" rx="6" fill="rgba(113,113,122,0.06)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
-    <text x="87" y="-16" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">softmax — cyfra</text>
-    {{ range $i, $c := (slice "0" "1" "2" "3" "4" "5" "6" "7" "8" "9") }}
-      {{ $is3 := eq $i 3 }}
+  {{/* ===== CLASSIFIER — softmax po 10 klasach Fashion-MNIST ===== */}}
+  {{ $classes := slice "T-shirt" "Spodnie" "Sweter" "Sukienka" "Płaszcz" "Sandały" "Koszula" "Trampki" "Torba" "Kozaki" }}
+  {{ $probs := slice 0.87 0.01 0.02 0.01 0.01 0.00 0.07 0.00 0.01 0.00 }}
+  <g transform="translate(580,50)">
+    <rect x="-8" y="-8" width="200" height="208" rx="6" fill="rgba(113,113,122,0.06)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
+    <text x="92" y="-14" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.6">softmax — kategoria</text>
+    {{ range $i, $c := $classes }}
+      {{ $isWin := eq $i 0 }}
       {{ $barColor := "rgba(113,113,122,0.35)" }}
       {{ $strokeColor := "#52525b" }}
       {{ $labelColor := "#71717a" }}
-      {{ if $is3 }}{{ $barColor = "rgba(34,197,94,0.85)" }}{{ $strokeColor = "#22c55e" }}{{ $labelColor = "#22c55e" }}{{ end }}
+      {{ if $isWin }}{{ $barColor = "rgba(34,197,94,0.85)" }}{{ $strokeColor = "#22c55e" }}{{ $labelColor = "#22c55e" }}{{ end }}
       <g transform="translate(0,{{ mul $i 18 }})">
-        <text x="4" y="9" font-size="11" font-weight="{{ if $is3 }}bold{{ else }}normal{{ end }}" fill="{{ $labelColor }}">{{ $c }}</text>
-        <rect x="20" y="2" width="140" height="10" rx="2" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.25)"/>
-        <rect x="20" y="2" width="{{ mul (index $finals $i) 140 }}" height="10" rx="2" fill="{{ $barColor }}" stroke="{{ $strokeColor }}" stroke-width="0.8"/>
+        <text x="0" y="9" font-size="10" font-weight="{{ if $isWin }}bold{{ else }}normal{{ end }}" fill="{{ $labelColor }}">{{ $c }}</text>
+        <rect x="58" y="2" width="120" height="10" rx="2" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.25)"/>
+        <rect x="58" y="2" width="{{ mul (index $probs $i) 120 }}" height="10" rx="2" fill="{{ $barColor }}" stroke="{{ $strokeColor }}" stroke-width="0.8"/>
       </g>
     {{ end }}
   </g>
