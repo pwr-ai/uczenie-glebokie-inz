@@ -1,0 +1,27 @@
+<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-zinc-950/70 border-b border-zinc-800/50">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <a href="#top" class="group flex items-center gap-2.5">
+      <div class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-lg shadow-violet-500/30 transition-transform group-hover:scale-105">
+        <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="6" r="2" /><circle cx="6" cy="18" r="2" /><circle cx="18" cy="12" r="2" />
+          <path d="M8 6h8M8 18h8M6 8v8" />
+        </svg>
+      </div>
+      <span class="text-sm font-semibold tracking-tight">Uczenie Głębokie</span>
+      <span class="hidden sm:inline-flex items-center gap-1 rounded-md border border-zinc-700/60 bg-zinc-900/60 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400">
+        {{ partial "pwr-crest.html" (dict "class" "h-3 w-3 text-violet-300" "id" "nav") }}
+        PWr
+      </span>
+    </a>
+    <div class="hidden items-center gap-1 md:flex">
+      <a href="#wyklady" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Wykłady</a>
+      <a href="#laboratoria" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Laboratoria</a>
+      <a href="#zespol" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Zespół</a>
+      <a href="#informacje" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Informacje</a>
+    </div>
+    <a href="{{ .Site.Params.github }}" class="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">
+      <i data-lucide="github" class="h-4 w-4"></i>
+      <span class="hidden sm:inline">Repozytorium</span>
+    </a>
+  </nav>
+</header>

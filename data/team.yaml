@@ -1,0 +1,40 @@
+members:
+  - name: prof. dr hab. inż. Urszula Markowska-Kaczmar
+    role: Wykład · Laboratoria
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus: Deep learning, interpretowalność sieci neuronowych, zastosowania w obrazowaniu medycznym. Autorka ponad 130 publikacji.
+    email: urszula.markowska-kaczmar@pwr.edu.pl
+    initials: UMK
+    accent: violet
+    photo: images/team/urszula-markowska-kaczmar.jpg
+    link: https://ai.pwr.edu.pl/author/urszula-markowska-kaczmar/
+
+  - name: mgr inż. Jan Jakubik
+    role: Laboratoria
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus: Zastosowania ML do analizy muzyki i dźwięku, uczenie słabo nadzorowane, NLP.
+    email: jan.jakubik@pwr.edu.pl
+    initials: JJ
+    accent: sky
+    photo: images/team/jan-jakubik.jpg
+    link: https://ai.pwr.edu.pl/author/jan-jakubik/
+
+  - name: dr inż. Kamil Tagowski
+    role: Laboratoria
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus: Graph representation learning, polski NLP, systemy dialogowe i Question-Answering.
+    email: kamil.tagowski@pwr.edu.pl
+    initials: KT
+    accent: sky
+    photo: images/team/kamil-tagowski.jpg
+    link: https://ai.pwr.edu.pl/author/kamil-tagowski/
+
+  - name: dr inż. Piotr Zieliński
+    role: Laboratoria
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus: Representation learning w widzeniu komputerowym, multi-object representation, deep reinforcement learning.
+    email: p.zielinski@pwr.edu.pl
+    initials: PZ
+    accent: sky
+    photo: images/team/piotr-zielinski.jpg
+    link: https://ai.pwr.edu.pl/author/piotr-zielinski/

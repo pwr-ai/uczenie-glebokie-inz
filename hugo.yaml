@@ -1,0 +1,13 @@
+baseURL: https://example.github.io/uczenie-glebokie-inz/
+languageCode: pl-PL
+title: Uczenie Głębokie
+disableKinds: [taxonomy, term, RSS, sitemap, robotsTXT]
+
+module:
+  hugoVersion:
+    extended: true
+    min: "0.120.0"
+
+params:
+  description: Kurs inżynierski „Uczenie Głębokie" — Politechnika Wrocławska
+  github: https://github.com/

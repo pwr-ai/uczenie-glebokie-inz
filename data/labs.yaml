@@ -1,0 +1,93 @@
+blocks:
+  - id: narzedzia
+    roman: I
+    title: Podstawy i narzędzia
+    range: Lab 1–4
+    accent: violet
+    icon: code-2
+    items:
+      - nr: "1"
+        topic: NumPy — operacje macierzowe
+        details: Operacje na macierzach, broadcasting, wektoryzacja
+      - nr: "2"
+        topic: Wprowadzenie NN (NumPy)
+        details: Implementacja forward/backward pass od zera
+      - nr: "3"
+        topic: NN w NumPy — cd.
+        details: Regularyzacja, dropout, inicjalizacja wag
+      - nr: "4"
+        topic: NN w PyTorch
+        details: Ten sam model — autograd, DataLoader
+
+  - id: cnn-gen
+    roman: II
+    title: CNN i modele generatywne
+    range: Lab 5–7
+    accent: sky
+    icon: image
+    items:
+      - nr: "5"
+        topic: Sieci konwolucyjne
+        details: Wizualizacje filtrów, splot 2D i 3D, aktywacje
+      - nr: "6"
+        topic: CNN + regularyzacja
+        details: Data Augmentation, Transfer Learning, early stopping
+      - nr: "7"
+        topic: Autokoder, VAE, GAN
+        details: Modele generatywne — implementacja i porównanie
+
+  - id: sekwencyjne
+    roman: III
+    title: Sekwencje i Transformery
+    range: Lab 8–10
+    accent: fuchsia
+    icon: message-square
+    items:
+      - nr: "8"
+        topic: Sieci rekurencyjne
+        details: RNN, LSTM, GRU — implementacja i zastosowania
+      - nr: "9"
+        topic: Mechanizm uwagi
+        details: Self-attention, cross-attention, wizualizacja wag
+      - nr: "10"
+        topic: Transformery
+        details: Architektura, positional encoding, implementacja
+
+  - id: rl
+    roman: IV
+    title: Deep Reinforcement Learning
+    range: Lab 11–12
+    accent: emerald
+    icon: zap
+    items:
+      - nr: "11"
+        topic: Deep RL — podstawy
+        details: Policy gradient, DQN
+      - nr: "12"
+        topic: Deep RL — cd.
+        details: Actor-Critic, zastosowania
+
+  - id: xai
+    roman: V
+    title: Wyjaśnialność i bezpieczeństwo
+    range: Lab 13–14
+    accent: amber
+    icon: shield-check
+    items:
+      - nr: "13"
+        topic: Wyjaśnialność i bezpieczeństwo
+        details: 'XAI: Grad-CAM, SHAP, LIME. Bezpieczeństwo modeli.'
+      - nr: "14"
+        topic: Ataki adwersarialne
+        details: FGSM, PGD, obrona przed atakami
+
+  - id: produkcja
+    roman: VI
+    title: Produkcja i podsumowanie
+    range: Lab 15
+    accent: rose
+    icon: line-chart
+    items:
+      - nr: "15"
+        topic: Best practices
+        details: Tracking (WandB/MLflow), porównywanie eksperymentów, reprodukowalność

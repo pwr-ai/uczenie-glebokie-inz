@@ -1,0 +1,48 @@
+/* Reveal-on-scroll animation baseline */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Gradient text animation already defined in Tailwind config */
+
+/* Phase-driven pulse visibility on the hero network */
+#net-svg .net-forward,
+#net-svg .net-backward,
+#net-svg .net-step {
+  transition: opacity 0.35s ease;
+}
+#net-svg[data-phase="forward"] .net-forward { opacity: 1; }
+#net-svg[data-phase="forward"] .net-backward { opacity: 0; }
+#net-svg[data-phase="forward"] .net-step { opacity: 0; }
+
+#net-svg[data-phase="backward"] .net-forward { opacity: 0.12; }
+#net-svg[data-phase="backward"] .net-backward { opacity: 1; }
+#net-svg[data-phase="backward"] .net-step { opacity: 0; }
+
+#net-svg[data-phase="step"] .net-forward { opacity: 0.1; }
+#net-svg[data-phase="step"] .net-backward { opacity: 0.1; }
+#net-svg[data-phase="step"] .net-step { opacity: 1; }

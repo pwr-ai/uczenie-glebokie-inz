@@ -1,0 +1,73 @@
+blocks:
+  - id: podstawy
+    roman: I
+    title: Podstawy sieci neuronowych
+    hours: 8
+    accent: violet
+    icon: brain-circuit
+    summary: Od pojedynczego neuronu do w pełni połączonych MLP. Propagacja wsteczna w ujęciu macierzowym, regularyzacja, optymalizacja i strojenie hiperparametrów.
+    items:
+      - nr: "1"
+        topic: Płytka sieć typu MLP. Uczenie sieci neuronowej metodą propagacji wstecznej
+        hours: 2
+      - nr: "2"
+        topic: Algorytm propagacji wstecznej w ujęciu macierzowym
+        hours: 2
+      - nr: "3–4"
+        topic: Techniki poprawiające uczenie sieci i zdolności uogólniania (regularyzacja, optymalizacja, hiperparametry)
+        hours: 4
+    tags: [MLP, Backprop, SGD, Adam, Dropout, BatchNorm]
+
+  - id: cnn-gen
+    roman: II
+    title: Sieci konwolucyjne i modele generatywne
+    hours: 6
+    accent: sky
+    icon: image
+    summary: Architektury CNN, transfer learning i wprowadzenie do modeli generatywnych — autokoderów, VAE i GAN.
+    items:
+      - nr: "5"
+        topic: Sieci konwolucyjne — architektura, transfer wiedzy, znane sieci konwolucyjne
+        hours: 2
+      - nr: "6"
+        topic: Autokoder, reprezentacja ukryta wzorców, uczenie nienadzorowane
+        hours: 2
+      - nr: "7"
+        topic: Wprowadzenie do sieci generatywnych (VAE, GAN)
+        hours: 2
+    tags: [CNN, ResNet, Transfer Learning, Autoencoder, VAE, GAN]
+
+  - id: transformery
+    roman: III
+    title: Sekwencje, uwaga i Transformery
+    hours: 4
+    accent: fuchsia
+    icon: message-square
+    summary: RNN, LSTM, GRU, seq2seq, aż po mechanizm uwagi i pełną architekturę Transformera.
+    items:
+      - nr: "8"
+        topic: Sieci rekurencyjne (NLP, mowa). LSTM, GRU. Sieci dwukierunkowe, seq2seq.
+        hours: 2
+      - nr: "9–10"
+        topic: Mechanizm uwagi — rodzaje i zastosowania. Transformer — architektura, zasada działania, kodowanie kolejności
+        hours: 4
+    tags: [RNN, LSTM, Attention, Self-Attention, Transformer, BERT, GPT]
+
+  - id: zaawansowane
+    roman: IV
+    title: Tematy zaawansowane
+    hours: 12
+    accent: emerald
+    icon: sparkles
+    summary: Uczenie ze wzmocnieniem z sieciami głębokimi, metody interpretacji modeli, detekcja i segmentacja obrazu.
+    items:
+      - nr: "11–12"
+        topic: Uczenie ze wzmocnieniem z zastosowaniem sieci głębokich
+        hours: 4
+      - nr: "13"
+        topic: Metody interpretacji sieci neuronowych
+        hours: 2
+      - nr: "14–15"
+        topic: Zastosowania sieci głębokich konwolucyjnych — detekcja i segmentacja
+        hours: 4
+    tags: [Deep RL, DQN, Policy Gradient, Grad-CAM, YOLO, U-Net]
