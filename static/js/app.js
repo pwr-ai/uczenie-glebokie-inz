@@ -15,36 +15,81 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 // ===== Lucide icons =====
 if (window.lucide) window.lucide.createIcons();
 
-// ===== Tooltips (data-tip="...") =====
+// ===== Tooltips (data-tip="...") — anchored to element, with arrow =====
 (function tooltips() {
   const tip = document.getElementById("tip");
   if (!tip) return;
+  const body = tip.querySelector(".tip-body");
+  const arrow = tip.querySelector(".tip-arrow");
+  if (!body || !arrow) return;
 
-  function position(e) {
-    const pad = 12;
+  let currentEl = null;
+
+  function show(el) {
+    if (currentEl === el) return;
+    currentEl = el;
+    body.textContent = el.getAttribute("data-tip");
+    // measure after content set
+    requestAnimationFrame(() => place(el));
+  }
+
+  function hide() {
+    currentEl = null;
+    tip.classList.remove("is-visible");
+  }
+
+  function place(el) {
+    const anchor = el.getBoundingClientRect();
+    // ensure tip is momentarily measurable
+    tip.style.left = "0px";
+    tip.style.top = "0px";
     const r = tip.getBoundingClientRect();
-    let x = e.clientX + pad;
-    let y = e.clientY + pad;
-    if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - pad;
-    if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - pad;
-    tip.style.transform = `translate(${x}px, ${y}px)`;
+
+    const GAP = 10;
+    const spaceAbove = anchor.top;
+    const spaceBelow = window.innerHeight - anchor.bottom;
+    const placement = spaceBelow >= r.height + GAP + 8 || spaceBelow >= spaceAbove
+      ? "bottom"
+      : "top";
+    tip.dataset.placement = placement;
+
+    let top = placement === "bottom"
+      ? anchor.bottom + GAP
+      : anchor.top - r.height - GAP;
+    let left = anchor.left + anchor.width / 2 - r.width / 2;
+
+    const margin = 8;
+    left = Math.max(margin, Math.min(left, window.innerWidth - r.width - margin));
+
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+
+    // arrow horizontal position (centered over the anchor, clamped to tip body)
+    const arrowX = Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, r.width - 12));
+    arrow.style.left = arrowX - 4.5 + "px";
+
+    tip.classList.add("is-visible");
   }
 
   document.addEventListener("mouseover", (e) => {
     const el = e.target.closest("[data-tip]");
     if (!el) return;
-    tip.textContent = el.getAttribute("data-tip");
-    tip.classList.add("tip-visible");
-    position(e);
+    show(el);
   });
   document.addEventListener("mouseout", (e) => {
     const el = e.target.closest("[data-tip]");
     if (!el) return;
-    tip.classList.remove("tip-visible");
+    const next = e.relatedTarget;
+    if (next && el.contains(next)) return;
+    hide();
   });
-  document.addEventListener("mousemove", (e) => {
-    if (tip.classList.contains("tip-visible")) position(e);
+  document.addEventListener("focusin", (e) => {
+    const el = e.target.closest && e.target.closest("[data-tip]");
+    if (el) show(el);
   });
+  document.addEventListener("focusout", hide);
+  window.addEventListener("scroll", hide, { passive: true });
+  window.addEventListener("resize", hide);
 })();
 
 // ===== Theme toggle =====
@@ -216,8 +261,12 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
     currentArch = next;
     netStack.dataset.arch = next;
     archTabs.forEach((t) => t.classList.toggle("is-active", t.dataset.archTab === next));
+    // Toggle `hidden` on slides: SMIL animations halt under display:none, saving GPU.
+    document.querySelectorAll(".net-slide").forEach((el) => {
+      el.hidden = !el.classList.contains("net-slide-" + next);
+    });
     resetTraining();
-    if (manual) lastManualSwitch = epoch; // absolute epoch counter at manual click
+    if (manual) lastManualSwitch = epoch;
   }
 
   archTabs.forEach((tab) => {

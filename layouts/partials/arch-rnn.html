@@ -1,68 +1,49 @@
 <svg viewBox="0 0 340 140" class="h-full w-full">
   <defs>
-    <radialGradient id="rnn-cell-active" cx="0.5" cy="0.5">
-      <stop offset="0" stop-color="#a78bfa" stop-opacity="1"/>
-      <stop offset="1" stop-color="#7c3aed" stop-opacity="0.6"/>
+    <radialGradient id="arnn-cell" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0.3"/>
     </radialGradient>
-    <marker id="rnn-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <marker id="arnn-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0,0 L10,5 L0,10 Z" fill="#71717a"/>
     </marker>
   </defs>
 
-  {{/* Column centres: 40, 100, 160, 220, 280. Duration 5s = 1s per timestep */}}
   {{ $tokens := slice "The" "quick" "brown" "fox" "jumps" }}
   {{ $outs := slice "DET" "ADJ" "ADJ" "NOUN" "VERB" }}
 
-  {{/* Recurrent (horizontal) arrows between cells */}}
+  {{/* recurrent horizontal arrows */}}
   {{ range $i := (seq 0 3) }}
-    <path d="M {{ mul $i 60 | add 50 }} 70 L {{ mul $i 60 | add 92 }} 70" stroke="#52525b" stroke-width="1.2" marker-end="url(#rnn-arr)"/>
+    <path d="M {{ mul $i 60 | add 50 }} 70 L {{ mul $i 60 | add 92 }} 70" stroke="#52525b" stroke-width="1.2" marker-end="url(#arnn-arr)"/>
   {{ end }}
 
-  {{/* Cells, inputs, outputs per timestep */}}
+  {{/* per-timestep (all populated statically) */}}
   {{ range $t := (seq 0 4) }}
     {{ $cx := mul $t 60 | add 40 }}
-    {{ $begin := mul $t 1.0 }}
 
-    {{/* vertical input→cell arrow */}}
-    <path d="M {{ $cx }} 100 L {{ $cx }} 80" stroke="#52525b" stroke-width="1.2" marker-end="url(#rnn-arr)"/>
-    {{/* vertical cell→output arrow */}}
-    <path d="M {{ $cx }} 58 L {{ $cx }} 38" stroke="#52525b" stroke-width="1.2" marker-end="url(#rnn-arr)"/>
+    <path d="M {{ $cx }} 100 L {{ $cx }} 80" stroke="#52525b" stroke-width="1.2" marker-end="url(#arnn-arr)"/>
+    <path d="M {{ $cx }} 58 L {{ $cx }} 38" stroke="#52525b" stroke-width="1.2" marker-end="url(#arnn-arr)"/>
 
-    {{/* INPUT token (bottom) */}}
-    <g>
-      <rect x="{{ sub $cx 18 }}" y="105" width="36" height="20" rx="4" fill="#18181b" stroke="#52525b" stroke-width="1"/>
-      <rect x="{{ sub $cx 18 }}" y="105" width="36" height="20" rx="4" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="1.5" opacity="0">
-        <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;{{ div $begin 5.0 }};{{ div (add $begin 0.25) 5.0 }};{{ div (add $begin 0.9) 5.0 }}" dur="5s" repeatCount="indefinite"/>
-      </rect>
-      <text x="{{ $cx }}" y="119" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#a1a1aa">{{ index $tokens $t }}</text>
-    </g>
+    {{/* INPUT */}}
+    <rect x="{{ sub $cx 18 }}" y="105" width="36" height="20" rx="4" fill="rgba(56,189,248,0.18)" stroke="#38bdf8" stroke-width="1"/>
+    <text x="{{ $cx }}" y="119" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#e4e4e7">{{ index $tokens $t }}</text>
 
-    {{/* CELL (middle) */}}
-    <g>
-      <rect x="{{ sub $cx 14 }}" y="58" width="28" height="24" rx="5" fill="#27272a" stroke="#52525b" stroke-width="1"/>
-      <rect x="{{ sub $cx 14 }}" y="58" width="28" height="24" rx="5" fill="url(#rnn-cell-active)" opacity="0">
-        <animate attributeName="opacity" values="0;0;1;0.3;0" keyTimes="0;{{ div (add $begin 0.2) 5.0 }};{{ div (add $begin 0.4) 5.0 }};{{ div (add $begin 0.7) 5.0 }};{{ div (add $begin 0.95) 5.0 }}" dur="5s" repeatCount="indefinite"/>
-      </rect>
-      <text x="{{ $cx }}" y="74" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#e4e4e7">h<tspan font-size="6" dy="2">{{ $t }}</tspan></text>
-    </g>
+    {{/* CELL */}}
+    <rect x="{{ sub $cx 14 }}" y="58" width="28" height="24" rx="5" fill="url(#arnn-cell)" stroke="#52525b" stroke-width="1"/>
+    <text x="{{ $cx }}" y="74" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">h<tspan font-size="6" dy="2">{{ $t }}</tspan></text>
 
-    {{/* OUTPUT (top) */}}
-    <g>
-      <rect x="{{ sub $cx 16 }}" y="16" width="32" height="20" rx="4" fill="#18181b" stroke="#52525b" stroke-width="1"/>
-      <rect x="{{ sub $cx 16 }}" y="16" width="32" height="20" rx="4" fill="rgba(34,197,94,0.18)" stroke="#22c55e" stroke-width="1.5" opacity="0">
-        <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;{{ div (add $begin 0.5) 5.0 }};{{ div (add $begin 0.7) 5.0 }};{{ div (add $begin 0.95) 5.0 }}" dur="5s" repeatCount="indefinite"/>
-      </rect>
-      <text x="{{ $cx }}" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa">{{ index $outs $t }}</text>
-    </g>
+    {{/* OUTPUT */}}
+    <rect x="{{ sub $cx 16 }}" y="16" width="32" height="20" rx="4" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1"/>
+    <text x="{{ $cx }}" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#d4d4d8">{{ index $outs $t }}</text>
   {{ end }}
 
-  {{/* Labels */}}
-  <text x="8" y="26" font-family="JetBrains Mono, monospace" font-size="8" fill="#71717a">y</text>
-  <text x="8" y="74" font-family="JetBrains Mono, monospace" font-size="8" fill="#71717a">h</text>
-  <text x="8" y="119" font-family="JetBrains Mono, monospace" font-size="8" fill="#71717a">x</text>
+  {{/* row labels */}}
+  <g font-family="JetBrains Mono, monospace" font-size="8" fill="#71717a">
+    <text x="8" y="26">y</text>
+    <text x="8" y="74">h</text>
+    <text x="8" y="119">x</text>
+  </g>
 
-  {{/* Recurrent loop indicator */}}
-  <path d="M 40 52 C 40 30, 80 30, 100 52" stroke="#fbbf24" stroke-width="1" fill="none" stroke-dasharray="3,2" opacity="0.4">
-    <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
-  </path>
+  {{/* recurrent loop indicator (static dashed) */}}
+  <path d="M 40 52 C 40 30, 80 30, 100 52" stroke="#fbbf24" stroke-width="1" fill="none" stroke-dasharray="3,2" opacity="0.5"/>
 </svg>

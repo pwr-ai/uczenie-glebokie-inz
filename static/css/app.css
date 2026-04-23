@@ -11,21 +11,11 @@
   transform: translateY(0);
 }
 
-/* Smooth scrollbar (dark default) */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #f4f4f5;
-}
-::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
-}
+/* Scrollbar theming */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f4f4f5; }
+::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
 html.dark ::-webkit-scrollbar-track { background: #09090b; }
 html.dark ::-webkit-scrollbar-thumb { background: #27272a; }
 html.dark ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
@@ -36,60 +26,138 @@ html.dark ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
 html.dark .theme-icon-light { display: none; }
 html.dark .theme-icon-dark { display: inline-block; }
 
-/* Gradient text animation already defined in Tailwind config */
+/* ================================================================ */
+/* TOOLTIP                                                          */
+/* ================================================================ */
+.tip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  max-width: 22rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.625rem;
+  background: rgba(24, 24, 27, 0.96);
+  color: #e4e4e7;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  box-shadow:
+    0 12px 30px -10px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(82, 82, 91, 0.4);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  transition:
+    opacity 0.16s ease-out,
+    transform 0.2s cubic-bezier(0.2, 0.9, 0.25, 1);
+  pointer-events: none;
+  z-index: 100;
+  will-change: opacity, transform;
+}
+html:not(.dark) .tip {
+  background: rgba(255, 255, 255, 0.98);
+  color: #27272a;
+  box-shadow:
+    0 12px 30px -10px rgba(24, 24, 27, 0.18),
+    0 0 0 1px rgba(228, 228, 231, 1);
+}
+.tip.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.tip[data-placement="top"]    { transform: translateY(-6px) scale(0.97); }
+.tip[data-placement="top"].is-visible    { transform: translateY(0) scale(1); }
+.tip[data-placement="bottom"] { transform: translateY(6px)  scale(0.97); }
+.tip[data-placement="bottom"].is-visible { transform: translateY(0) scale(1); }
 
-/* Tooltip visibility + SVG hover hit-area */
-#tip.tip-visible { opacity: 1; }
+/* arrow — rotated square matching tooltip background */
+.tip-arrow {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: inherit;
+  box-shadow: 0 0 0 1px rgba(82, 82, 91, 0.4);
+  transform: rotate(45deg);
+}
+html:not(.dark) .tip-arrow { box-shadow: 0 0 0 1px rgba(228, 228, 231, 1); }
+.tip[data-placement="bottom"] .tip-arrow {
+  top: -4px;
+  clip-path: polygon(-50% -50%, 150% -50%, 150% 50%, 50% 50%, -50% 50%);
+}
+.tip[data-placement="top"] .tip-arrow {
+  bottom: -4px;
+  clip-path: polygon(-50% 50%, 50% 50%, 150% 50%, 150% 150%, -50% 150%);
+}
+
+.tip-body { display: block; }
+
 [data-tip] { cursor: help; }
-/* SVG groups: make whole bounding box catch hover even if only text inside */
 svg [data-tip] { pointer-events: bounding-box; }
 
-/* Architecture segment control */
+/* ================================================================ */
+/* ARCH SEGMENT CONTROL                                             */
+/* ================================================================ */
 .arch-tab {
   color: #71717a;
 }
 html.dark .arch-tab { color: #a1a1aa; }
-
-#net-stack[data-arch="mlp"] ~ * .arch-tab[data-arch-tab="mlp"],
-#net-stack[data-arch="cnn"] ~ * .arch-tab[data-arch-tab="cnn"],
-#net-stack[data-arch="rnn"] ~ * .arch-tab[data-arch-tab="rnn"] {
-  /* unused — siblings only. Handled via JS .is-active class below. */
-}
 .arch-tab.is-active {
   background: linear-gradient(135deg, #8b5cf6, #d946ef);
   color: white;
   box-shadow: 0 2px 8px -2px rgba(139, 92, 246, 0.4);
 }
 
-/* Hero architecture switcher — cross-fade between MLP/CNN/RNN */
+/* ================================================================ */
+/* HERO ARCH SWITCHER — display:none when hidden so SMIL halts      */
+/* ================================================================ */
 .net-slide {
-  opacity: 0;
-  transform: scale(0.985);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
-#net-stack[data-arch="mlp"] .net-slide-mlp,
-#net-stack[data-arch="cnn"] .net-slide-cnn,
-#net-stack[data-arch="rnn"] .net-slide-rnn {
+.net-slide[hidden] {
+  display: none !important; /* belt-and-braces — stops SMIL animations */
+}
+.net-slide:not([hidden]) {
   opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
 }
 
-/* Phase-driven pulse visibility on the hero network */
+/* ================================================================ */
+/* NETWORK PHASE PULSES (MLP)                                       */
+/* ================================================================ */
 #net-svg .net-forward,
 #net-svg .net-backward,
 #net-svg .net-step {
   transition: opacity 0.35s ease;
 }
-#net-svg[data-phase="forward"] .net-forward { opacity: 1; }
-#net-svg[data-phase="forward"] .net-backward { opacity: 0; }
-#net-svg[data-phase="forward"] .net-step { opacity: 0; }
-
-#net-svg[data-phase="backward"] .net-forward { opacity: 0.12; }
+#net-svg[data-phase="forward"]  .net-forward  { opacity: 1; }
+#net-svg[data-phase="forward"]  .net-backward { opacity: 0; }
+#net-svg[data-phase="forward"]  .net-step     { opacity: 0; }
+#net-svg[data-phase="backward"] .net-forward  { opacity: 0.12; }
 #net-svg[data-phase="backward"] .net-backward { opacity: 1; }
-#net-svg[data-phase="backward"] .net-step { opacity: 0; }
+#net-svg[data-phase="backward"] .net-step     { opacity: 0; }
+#net-svg[data-phase="step"]     .net-forward  { opacity: 0.1; }
+#net-svg[data-phase="step"]     .net-backward { opacity: 0.1; }
+#net-svg[data-phase="step"]     .net-step     { opacity: 1; }
 
-#net-svg[data-phase="step"] .net-forward { opacity: 0.1; }
-#net-svg[data-phase="step"] .net-backward { opacity: 0.1; }
-#net-svg[data-phase="step"] .net-step { opacity: 1; }
+/* ================================================================ */
+/* REDUCED MOTION                                                    */
+/* ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .animate-gradient-x,
+  .animate-float,
+  .animate-ping,
+  .animate-shimmer {
+    animation: none !important;
+  }
+  /* Pause all SMIL animations in hero SVGs */
+  #net-svg animateMotion,
+  #net-svg animate,
+  #net-svg animateTransform,
+  .net-slide svg animateMotion,
+  .net-slide svg animate,
+  .net-slide svg animateTransform {
+    animation-play-state: paused;
+  }
+  .tip { transition: opacity 0.1s linear; transform: none !important; }
+}
