@@ -8,6 +8,12 @@ module:
     extended: true
     min: "0.120.0"
 
+# Disable HTML minification. The minifier self-closes <script> tags
+# ("<script/>") which is invalid in HTML5 and swallows the rest of the
+# document as script content. CSS/JS minification stays enabled.
+minify:
+  disableHTML: true
+
 params:
   description: Kurs inżynierski „Uczenie Głębokie" — Politechnika Wrocławska
   github: https://github.com/
