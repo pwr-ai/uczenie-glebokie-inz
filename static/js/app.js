@@ -124,40 +124,24 @@ if (window.lucide) window.lucide.createIcons();
     indicator.style.opacity = "1";
   }
 
-  const navHeight = 72;
-  const io = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((e) => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) setActive(visible[0].target.id);
-    },
-    {
-      rootMargin: `-${navHeight}px 0px -55% 0px`,
-      threshold: [0, 0.15, 0.35, 0.6, 1],
+  // Scroll-position driven: active section = the last one whose top has
+  // crossed the detection line (100 px below viewport top, just under the
+  // sticky nav). Reliable for tall sections (Architektury is 260 vh).
+  const DETECT_Y = 100;
+  function onScroll() {
+    if (window.scrollY < 60) {
+      setActive(null);
+      return;
     }
-  );
-  sections.forEach((s) => io.observe(s));
-
-  window.addEventListener("resize", () => {
-    if (current) {
-      const link = linkMap.get(current);
-      if (link && indicator) {
-        const parent = link.parentElement.getBoundingClientRect();
-        const rect = link.getBoundingClientRect();
-        indicator.style.width = rect.width + "px";
-        indicator.style.transform = `translateX(${rect.left - parent.left}px)`;
-      }
+    let active = null;
+    for (const s of sections) {
+      if (s.getBoundingClientRect().top <= DETECT_Y) active = s.id;
     }
-  });
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (window.scrollY < 100) setActive(null);
-    },
-    { passive: true }
-  );
+    setActive(active);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
 })();
 
 // ===== Architektury: block tabs + scroll-advance =====

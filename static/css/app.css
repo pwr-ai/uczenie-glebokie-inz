@@ -1,17 +1,14 @@
 /* ================================================================ */
-/* SECTION SNAP SCROLL                                              */
+/* ANCHOR-SCROLL PADDING                                            */
 /* ================================================================ */
+/* Sticky nav is ~72 px tall — give hash jumps enough top offset so the
+   section heading doesn't slip underneath it. */
 html {
-  scroll-snap-type: y proximity;
   scroll-padding-top: 80px;
-}
-main > section,
-footer {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-snap-type: none; }
+  html { scroll-behavior: auto; }
 }
 
 /* ================================================================ */
