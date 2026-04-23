@@ -66,7 +66,6 @@
 
 {{/* ============ ARCHITEKTURY ============ */}}
 <section id="architektury" class="relative scroll-mt-20">
-  {{/* scroll-advance host — 4 blocks × ~60vh of scroll */}}
   <div class="arch-scroll-host relative" style="height: 260vh;">
     <div class="sticky top-20 flex h-[calc(100vh-5rem)] flex-col justify-center py-6">
       <div class="mx-auto w-full max-w-7xl px-6">
@@ -82,7 +81,7 @@
               <i data-lucide="git-fork" class="h-4 w-4"></i> Blok 1: Podstawy
             </button>
             <button type="button" role="tab" data-block="2" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="image" class="h-4 w-4"></i> Blok 2: Sieci konwolucyjne i modele generatywne
+              <i data-lucide="image" class="h-4 w-4"></i> Blok 2: CNN
             </button>
             <button type="button" role="tab" data-block="3" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
               <i data-lucide="message-square" class="h-4 w-4"></i> Blok 3: Sekwencje
@@ -98,7 +97,7 @@
                   "caption" "Wielowarstwowy perceptron (MLP) z dwiema warstwami ukrytymi estymujący ryzyko choroby serca na podstawie czterech cech pacjenta."
                   "partial" "arch-mlp.html")
             (dict "n" "2" "num" "2" "accent" "fuchsia" "title" "Sieci konwolucyjne i modele generatywne"
-                  "caption" "Sieć konwolucyjna (CNN) w zadaniu klasyfikacji obrazu odzieży (Fashion-MNIST). Filtr 3×3 przesuwa się po obrazie wejściowym, wyznaczając lokalne cechy, a klasyfikator końcowy rozpoznaje kategorię."
+                  "caption" "Sieć konwolucyjna (CNN) z filtrem 3×3 w zadaniu klasyfikacji obrazów odzieży (Fashion-MNIST)."
                   "partial" "arch-cnn.html")
             (dict "n" "3" "num" "3" "accent" "sky" "title" "Sekwencje, uwaga i Transformery"
                   "caption" "Mechanizm uwagi w Transformerze. Każdy token dynamicznie waży pozostałe tokeny w sekwencji, ucząc się kontekstowych zależności."

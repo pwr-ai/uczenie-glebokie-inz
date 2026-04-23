@@ -125,23 +125,19 @@ html.dark .block-tab:hover {
 }
 
 /* ================================================================ */
-/* ARCHITEKTURY — PANELS: transition on tab switch                  */
+/* ARCHITEKTURY — PANELS: simple opacity fade on tab switch         */
 /* ================================================================ */
-/* Hidden panels use display:none (halts their SMIL = GPU relief).
-   Active panel animates in with opacity + slide. Only transform and
-   opacity are animated so Safari / WebKit stays smooth (no filter). */
 .arch-panel { display: none; }
 #arch-card[data-active-block="1"] .arch-panel[data-block="1"],
 #arch-card[data-active-block="2"] .arch-panel[data-block="2"],
 #arch-card[data-active-block="3"] .arch-panel[data-block="3"],
 #arch-card[data-active-block="4"] .arch-panel[data-block="4"] {
   display: block;
-  animation: panel-in 0.42s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
-  will-change: opacity, transform;
+  animation: panel-in 0.22s ease-out;
 }
 @keyframes panel-in {
-  from { opacity: 0; transform: translateX(18px); }
-  to   { opacity: 1; transform: translateX(0);    }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* ================================================================ */
