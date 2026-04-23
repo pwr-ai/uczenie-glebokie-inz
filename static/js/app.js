@@ -160,18 +160,57 @@ if (window.lucide) window.lucide.createIcons();
   );
 })();
 
-// ===== Architektury: block tabs (Blok I–IV) =====
+// ===== Architektury: block tabs + scroll-advance =====
 (function blockTabs() {
   const card = document.getElementById("arch-card");
   if (!card) return;
   const tabs = card.querySelectorAll(".block-tab");
+  const host = document.querySelector(".arch-scroll-host");
+  const progressBar = document.getElementById("arch-progress");
+  const progressLabel = document.getElementById("arch-progress-label");
+  const MAX = 4;
+  let current = 1;
 
-  function setActive(n) {
+  function setActive(n, fromScroll) {
+    n = Math.max(1, Math.min(MAX, parseInt(n, 10) || 1));
+    current = n;
     card.dataset.activeBlock = String(n);
     tabs.forEach((t) => t.classList.toggle("is-active", t.dataset.block === String(n)));
+    if (progressBar) progressBar.style.width = (n / MAX) * 100 + "%";
+    if (progressLabel) progressLabel.textContent = String(n);
+
+    if (!fromScroll && host) {
+      // manual click → jump the page scroll into the corresponding "slot" of the host
+      const start = window.scrollY + host.getBoundingClientRect().top;
+      const span = host.offsetHeight - window.innerHeight;
+      const targetProgress = (n - 1) / (MAX - 1) * 0.995 + 0.0025;
+      window.scrollTo({ top: start + span * targetProgress, behavior: "smooth" });
+    }
   }
 
-  tabs.forEach((tab) => tab.addEventListener("click", () => setActive(tab.dataset.block)));
-  // prime initial state based on markup (data-active-block="1")
-  setActive(card.dataset.activeBlock || "1");
+  tabs.forEach((tab) =>
+    tab.addEventListener("click", () => setActive(tab.dataset.block, false))
+  );
+
+  if (host) {
+    // Scroll-advance: while the sticky host is in view, pick the panel
+    // based on how far we've scrolled through the host's padded height.
+    function onScroll() {
+      const rect = host.getBoundingClientRect();
+      const hostHeight = host.offsetHeight;
+      const viewport = window.innerHeight;
+      const start = -rect.top;
+      const span = hostHeight - viewport;
+      if (span <= 0) return;
+      const progress = Math.max(0, Math.min(1, start / span));
+      // Map to 1..4, with equal-width bands
+      const n = Math.min(MAX, Math.floor(progress * MAX) + 1);
+      if (n !== current) setActive(n, true);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+  } else {
+    setActive(card.dataset.activeBlock || "1", true);
+  }
 })();

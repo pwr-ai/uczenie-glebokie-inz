@@ -3,104 +3,130 @@
 
 {{/* ============ HERO ============ */}}
 <section class="relative mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-20 sm:pb-24">
-  <div class="mx-auto max-w-3xl text-center">
-    <div class="flex flex-wrap items-center justify-center gap-2">
-      <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 backdrop-blur transition-colors hover:border-violet-500/40">
-        {{ partial "pwr-crest.html" (dict "class" "h-4 w-4 text-violet-700 dark:text-violet-300" "id" "hero") }}
-        <span>Politechnika Wrocławska</span>
-        <i data-lucide="external-link" class="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5"></i>
-      </a>
-      <span class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
-        <i data-lucide="graduation-cap" class="h-3.5 w-3.5 text-fuchsia-700 dark:text-fuchsia-300"></i>
-        W4N · Informatyka i Telekomunikacja
-      </span>
-      <span class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
-        <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-        Semestr zimowy · studia inż.
-      </span>
+  <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+    <div>
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 backdrop-blur transition-colors hover:border-violet-500/40">
+          {{ partial "pwr-crest.html" (dict "class" "h-4 w-4 text-violet-700 dark:text-violet-300" "id" "hero") }}
+          <span>Politechnika Wrocławska</span>
+          <i data-lucide="external-link" class="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5"></i>
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
+          <i data-lucide="graduation-cap" class="h-3.5 w-3.5 text-fuchsia-700 dark:text-fuchsia-300"></i>
+          W4N · Informatyka i Telekomunikacja
+        </span>
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          Semestr zimowy · studia inż.
+        </span>
+      </div>
+
+      <h1 class="mt-6 text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+        <span class="block text-zinc-900 dark:text-zinc-100">Uczenie</span>
+        <span class="block bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600 dark:from-violet-400 dark:via-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">Głębokie</span>
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+        Architektury, matematyka, eksperymenty. Sieci MLP i konwolucyjne, Transformery, modele generatywne, Deep RL oraz wyjaśnialność i bezpieczeństwo modeli.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="#architektury" class="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-zinc-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-zinc-950 shadow-lg shadow-violet-500/10 transition-all hover:shadow-violet-500/30">
+          Zobacz architektury
+          <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5"></i>
+        </a>
+        <a href="#wyklady" class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-5 py-2.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 backdrop-blur transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
+          <i data-lucide="book-open" class="h-4 w-4"></i>
+          Program wykładów
+        </a>
+      </div>
+
+      <dl class="mt-10 grid max-w-lg grid-cols-3 gap-4">
+        {{ range (slice (dict "k" "30h" "v" "wykładów" "c" "violet") (dict "k" "15" "v" "laboratoriów" "c" "fuchsia") (dict "k" "4" "v" "bloki tematyczne" "c" "sky")) }}
+          <div class="rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-4 backdrop-blur-sm">
+            <dt class="bg-gradient-to-br from-{{ .c }}-500 to-{{ .c }}-700 dark:from-{{ .c }}-300 dark:to-{{ .c }}-500 bg-clip-text text-3xl font-bold text-transparent">{{ .k }}</dt>
+            <dd class="mt-1 text-xs text-zinc-500 dark:text-zinc-500">{{ .v }}</dd>
+          </div>
+        {{ end }}
+      </dl>
     </div>
 
-    <h1 class="mt-6 text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-      <span class="inline-block text-zinc-900 dark:text-zinc-100">Uczenie</span>
-      <span class="inline-block bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600 dark:from-violet-400 dark:via-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">Głębokie</span>
-    </h1>
-
-    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-      Architektury, matematyka, eksperymenty. Sieci MLP i konwolucyjne, Transformery, modele generatywne, Deep RL oraz wyjaśnialność i bezpieczeństwo modeli.
-    </p>
-
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <a href="#architektury" class="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-zinc-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-zinc-950 shadow-lg shadow-violet-500/10 transition-all hover:shadow-violet-500/30">
-        Zobacz architektury
-        <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5"></i>
-      </a>
-      <a href="#wyklady" class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-5 py-2.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 backdrop-blur transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
-        <i data-lucide="book-open" class="h-4 w-4"></i>
-        Program wykładów
-      </a>
+    {{/* right column — static decorative neural net illustration */}}
+    <div class="relative hidden lg:block">
+      <div class="aspect-square w-full">
+        {{ partial "hero-illustration.html" . }}
+      </div>
     </div>
-
-    <dl class="mx-auto mt-10 grid max-w-lg grid-cols-3 gap-4">
-      {{ range (slice (dict "k" "30h" "v" "wykładów" "c" "violet") (dict "k" "15" "v" "laboratoriów" "c" "fuchsia") (dict "k" "4" "v" "bloki tematyczne" "c" "sky")) }}
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-4 backdrop-blur-sm">
-          <dt class="bg-gradient-to-br from-{{ .c }}-500 to-{{ .c }}-700 dark:from-{{ .c }}-300 dark:to-{{ .c }}-500 bg-clip-text text-3xl font-bold text-transparent">{{ .k }}</dt>
-          <dd class="mt-1 text-xs text-zinc-500 dark:text-zinc-500">{{ .v }}</dd>
-        </div>
-      {{ end }}
-    </dl>
   </div>
 </section>
 
 {{/* ============ ARCHITEKTURY ============ */}}
-<section id="architektury" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
-  <div class="mx-auto max-w-2xl text-center">
-    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Architektury <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">sieci głębokich</span></h2>
-    <p class="mt-4 text-zinc-600 dark:text-zinc-400">Cztery idee, które stoją za kolejnymi blokami kursu. Kliknij zakładkę, aby zobaczyć, jak dana rodzina sieci działa.</p>
-  </div>
+<section id="architektury" class="relative scroll-mt-20">
+  {{/* scroll-advance host — 4 blocks × ~60vh of scroll */}}
+  <div class="arch-scroll-host relative" style="height: 260vh;">
+    <div class="sticky top-0 flex h-screen flex-col justify-center py-8">
+      <div class="mx-auto w-full max-w-7xl px-6">
 
-  <div id="arch-card" data-active-block="1" class="mx-auto mt-12 max-w-6xl rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-xl shadow-zinc-900/5 dark:shadow-none p-4 sm:p-6 overflow-hidden">
-    {{/* ===== block tabs ===== */}}
-    <div role="tablist" class="block-tabs grid grid-cols-2 sm:grid-cols-4 gap-1 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-950/50 p-1">
-      <button type="button" role="tab" data-block="1" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
-        <i data-lucide="git-fork" class="h-4 w-4"></i> Blok I
-      </button>
-      <button type="button" role="tab" data-block="2" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
-        <i data-lucide="image" class="h-4 w-4"></i> Blok II
-      </button>
-      <button type="button" role="tab" data-block="3" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
-        <i data-lucide="message-square" class="h-4 w-4"></i> Blok III
-      </button>
-      <button type="button" role="tab" data-block="4" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
-        <i data-lucide="scan-search" class="h-4 w-4"></i> Blok IV
-      </button>
-    </div>
-
-    {{/* ===== panels ===== */}}
-    {{ $blocks := slice
-      (dict "n" "1" "roman" "I" "accent" "violet" "title" "MLP — fundament"
-            "desc" "Fundament całej dziedziny. Sieć neuronowa uczy się przekształcać liczby wejściowe w oczekiwany wynik, stopniowo dopasowując wagi połączeń między neuronami. Wszystkie nowoczesne architektury zaczynają się tutaj."
-            "partial" "arch-mlp.html")
-      (dict "n" "2" "roman" "II" "accent" "fuchsia" "title" "CNN — widzenie maszynowe"
-            "desc" "Sieci widzące lokalnie. Filtry przesuwane po obrazie budują coraz bardziej abstrakcyjne rozumienie: najpierw krawędzie, potem kształty, wreszcie całe obiekty. Ten sam pomysł napędza rozpoznawanie twarzy, obrazowanie medyczne i widzenie samochodów autonomicznych."
-            "partial" "arch-cnn.html")
-      (dict "n" "3" "roman" "III" "accent" "sky" "title" "RNN — dane sekwencyjne"
-            "desc" "Sieci pamiętające kontekst. Przetwarzają tekst, mowę czy szeregi czasowe element po elemencie, przekazując pamięć z poprzedniego kroku do kolejnego. Ta sama rodzina modeli stoi za wieloma zastosowaniami w NLP i rozumieniu mowy."
-            "partial" "arch-rnn.html")
-      (dict "n" "4" "roman" "IV" "accent" "emerald" "title" "Wyjaśnialność"
-            "desc" "Rozumieć, dlaczego sieć odpowiada tak, a nie inaczej. Rodzina metod wyjaśnialności (np. Grad-CAM) pokazuje, które elementy wejścia wpłynęły na decyzję modelu — kluczowe, gdy sieć wspiera ważne decyzje."
-            "partial" "arch-gradcam.html") }}
-    {{ range $b := $blocks }}
-      <div class="arch-panel mt-6" data-block="{{ $b.n }}">
-        <header class="max-w-2xl">
-          <span class="font-mono text-[11px] uppercase tracking-wider text-{{ $b.accent }}-700 dark:text-{{ $b.accent }}-300">Blok {{ $b.roman }}</span>
-          <h3 class="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">{{ $b.title }}</h3>
-          <p class="mt-3 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">{{ $b.desc }}</p>
-        </header>
-        <div class="mt-6 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-950/60 p-3 sm:p-4 aspect-[2/1] sm:aspect-[5/2] w-full overflow-hidden">
-          {{ partial $b.partial . }}
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Architektury <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">sieci głębokich</span></h2>
+          <p class="mt-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">Cztery bloki kursu — cztery idee, które stoją za nowoczesną sztuczną inteligencją.</p>
         </div>
+
+        <div id="arch-card" data-active-block="1" class="mx-auto mt-8 w-full max-w-6xl rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-xl shadow-zinc-900/5 dark:shadow-none p-4 sm:p-6 overflow-hidden">
+          {{/* ===== block tabs ===== */}}
+          <div role="tablist" class="block-tabs grid grid-cols-2 sm:grid-cols-4 gap-1 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-950/50 p-1">
+            <button type="button" role="tab" data-block="1" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
+              <i data-lucide="git-fork" class="h-4 w-4"></i> Podstawy
+            </button>
+            <button type="button" role="tab" data-block="2" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
+              <i data-lucide="image" class="h-4 w-4"></i> CNN
+            </button>
+            <button type="button" role="tab" data-block="3" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
+              <i data-lucide="message-square" class="h-4 w-4"></i> Sekwencje
+            </button>
+            <button type="button" role="tab" data-block="4" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
+              <i data-lucide="scan-search" class="h-4 w-4"></i> Zaawansowane
+            </button>
+          </div>
+
+          {{/* ===== panels ===== */}}
+          {{ $blocks := slice
+            (dict "n" "1" "num" "1" "accent" "violet" "title" "Podstawy sieci neuronowych"
+                  "desc" "Fundament całej dziedziny: pojedynczy neuron, wielowarstwowy perceptron (MLP) i algorytm propagacji wstecznej. Jak sieć uczy się na błędach — oraz techniki, które sprawiają, że uczenie jest stabilne: regularyzacja, optymalizatory (Adam, SGD z momentum), strojenie hiperparametrów."
+                  "partial" "arch-mlp.html")
+            (dict "n" "2" "num" "2" "accent" "fuchsia" "title" "Sieci konwolucyjne i modele generatywne"
+                  "desc" "Sieci konwolucyjne rozpoznające obrazy, transfer learning z modeli pretrenowanych oraz modele generatywne — autokodery, VAE i GAN — uczące się tworzyć nowe dane podobne do treningowych."
+                  "partial" "arch-cnn.html")
+            (dict "n" "3" "num" "3" "accent" "sky" "title" "Sekwencje, uwaga i Transformery"
+                  "desc" "Sieci rekurencyjne (RNN, LSTM, GRU) do danych sekwencyjnych, a następnie mechanizm uwagi i architektura Transformer — fundament nowoczesnych modeli językowych i tłumaczenia maszynowego."
+                  "partial" "arch-rnn.html")
+            (dict "n" "4" "num" "4" "accent" "emerald" "title" "Tematy zaawansowane"
+                  "desc" "Uczenie ze wzmocnieniem z sieciami głębokimi (agenci uczący się przez próby), metody wyjaśnialności (XAI, np. Grad-CAM), a także zaawansowane zastosowania CNN: detekcja i segmentacja obiektów w obrazach."
+                  "partial" "arch-gradcam.html") }}
+          {{ range $b := $blocks }}
+            <div class="arch-panel mt-5 sm:mt-6" data-block="{{ $b.n }}">
+              <header class="max-w-3xl">
+                <span class="font-mono text-[11px] uppercase tracking-wider text-{{ $b.accent }}-700 dark:text-{{ $b.accent }}-300">Blok {{ $b.num }}</span>
+                <h3 class="mt-1 text-xl font-bold tracking-tight sm:text-2xl">{{ $b.title }}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{{ $b.desc }}</p>
+              </header>
+              <div class="mt-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-950/60 p-3 sm:p-4 aspect-[12/5] w-full overflow-hidden">
+                {{ partial $b.partial . }}
+              </div>
+            </div>
+          {{ end }}
+        </div>
+
+        {{/* scroll progress indicator */}}
+        <div class="mx-auto mt-4 flex max-w-6xl items-center gap-2">
+          <div class="h-1 flex-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
+            <div id="arch-progress" class="h-full w-1/4 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-sky-500 transition-all duration-300"></div>
+          </div>
+          <span class="font-mono text-xs text-zinc-500 dark:text-zinc-500"><span id="arch-progress-label">1</span>/4</span>
+        </div>
+
       </div>
-    {{ end }}
+    </div>
   </div>
 </section>
 
