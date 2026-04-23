@@ -141,11 +141,41 @@ html.dark .block-tab:hover {
 }
 
 /* ================================================================ */
+/* WYKŁADY — scroll-host with one block visible at a time           */
+/* ================================================================ */
+.wyk-block { display: none; }
+#wyk-stack[data-active-block="1"] .wyk-block[data-block="1"],
+#wyk-stack[data-active-block="2"] .wyk-block[data-block="2"],
+#wyk-stack[data-active-block="3"] .wyk-block[data-block="3"],
+#wyk-stack[data-active-block="4"] .wyk-block[data-block="4"] {
+  display: block;
+  animation: wyk-in 0.24s ease-out;
+}
+@keyframes wyk-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* tab pills (progress) */
+.wyk-tab {
+  color: #71717a;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+html.dark .wyk-tab { color: #a1a1aa; }
+.wyk-tab.is-active {
+  background: linear-gradient(135deg, #8b5cf6, #d946ef);
+  color: white;
+  border-color: transparent;
+}
+.wyk-tab.is-active:hover { color: white; }
+
+/* ================================================================ */
 /* REDUCED MOTION                                                   */
 /* ================================================================ */
 @media (prefers-reduced-motion: reduce) {
   .tip { transition: opacity 0.1s linear; transform: none !important; }
   .arch-panel { animation: none !important; }
+  .wyk-block { opacity: 1 !important; transform: none !important; transition: none !important; }
   svg animate,
   svg animateMotion,
   svg animateTransform {

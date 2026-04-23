@@ -17,29 +17,30 @@
     </marker>
   </defs>
 
-  {{/* Fashion-MNIST T-shirt silhouette 8×8 */}}
+  {{/* Realna próbka Fashion-MNIST (test idx=19, klasa 0 = T-shirt)
+       oryginał 28×28 → downsampling avg-pool 3×3 z centralnego 24×24 */}}
   {{ $img := slice
-      (slice 0 1 1 0 0 1 1 0)
-      (slice 1 1 1 1 1 1 1 1)
-      (slice 1 1 1 1 1 1 1 1)
-      (slice 0 0 1 1 1 1 0 0)
-      (slice 0 0 1 1 1 1 0 0)
-      (slice 0 0 1 1 1 1 0 0)
-      (slice 0 0 1 1 1 1 0 0)
-      (slice 0 0 1 1 1 1 0 0) }}
+      (slice 0.02 0.68 0.74 0.75 0.75 0.73 0.67 0.02)
+      (slice 0.31 0.81 0.76 0.75 0.79 0.77 0.74 0.24)
+      (slice 0.21 0.69 0.76 0.78 0.77 0.77 0.65 0.17)
+      (slice 0.00 0.29 0.77 0.76 0.78 0.88 0.25 0.00)
+      (slice 0.00 0.28 0.78 0.78 0.78 0.76 0.24 0.00)
+      (slice 0.00 0.28 0.79 0.79 0.79 0.77 0.25 0.00)
+      (slice 0.00 0.29 0.78 0.79 0.79 0.77 0.26 0.00)
+      (slice 0.00 0.26 0.77 0.77 0.77 0.77 0.26 0.00) }}
 
   {{/* ===== INPUT 8×8 ===== */}}
   <g transform="translate(20,60)">
     <rect width="160" height="160" rx="8" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
     {{ range $y, $row := $img }}{{ range $x, $v := $row }}
-      {{ if eq $v 1 }}
-        <rect x="{{ add 8 (mul $x 18) }}" y="{{ add 8 (mul $y 18) }}" width="16" height="16" rx="2" fill="currentColor" fill-opacity="0.88"/>
+      {{ if gt $v 0.0 }}
+        <rect x="{{ add 8 (mul $x 18) }}" y="{{ add 8 (mul $y 18) }}" width="16" height="16" rx="2" fill="currentColor" fill-opacity="{{ printf "%.2f" $v }}"/>
       {{ end }}
     {{ end }}{{ end }}
-    <text x="80" y="-10" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">obraz 8×8 — T-shirt</text>
+    <text x="80" y="-10" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">obraz 8×8 — T-shirt (FMNIST)</text>
   </g>
 
-  {{/* ===== KERNEL 3×3 raster scan: 36 pozycji / 6s, z wartościami Sobel-X ===== */}}
+  {{/* ===== KERNEL 3×3 z Sobel-X, raster scan: 36 pozycji / 6s ===== */}}
   {{ $kpos := slice }}
   {{ range $r := (seq 0 5) }}{{ range $c := (seq 0 5) }}
     {{ $kpos = $kpos | append (printf "%d,%d" (add 28 (mul $c 18)) (add 68 (mul $r 18))) }}
@@ -63,7 +64,7 @@
   {{/* arrow → feature map */}}
   <g>
     <path d="M 180 140 L 216 140" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
-    <text x="198" y="130" text-anchor="middle" font-size="10" fill="#a78bfa">filtr 3×3</text>
+    <text x="198" y="130" text-anchor="middle" font-size="10" fill="#a78bfa">splot 3×3</text>
     <text x="198" y="155" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">Sobel-X</text>
   </g>
 
@@ -98,43 +99,71 @@
     <text x="358" y="155" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">2×2</text>
   </g>
 
-  {{/* ===== POOLED 3×3 (max-pool 2×2 wyniku) ===== */}}
+  {{/* ===== POOLED 3×3 ===== */}}
   {{ $pool := slice
       (slice 0.95 0.70 0.95)
       (slice 0.75 0.45 0.75)
       (slice 0.55 0.15 0.55) }}
   <g transform="translate(380,98)">
-    <rect width="84" height="84" rx="6" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
+    <rect width="80" height="80" rx="6" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
     {{ range $y, $row := $pool }}{{ range $x, $val := $row }}
-      <rect x="{{ add 6 (mul $x 24) }}" y="{{ add 6 (mul $y 24) }}" width="22" height="22" rx="3" fill="url(#acnn-pool)" fill-opacity="{{ printf "%.2f" $val }}"/>
+      <rect x="{{ add 6 (mul $x 23) }}" y="{{ add 6 (mul $y 23) }}" width="21" height="21" rx="3" fill="url(#acnn-pool)" fill-opacity="{{ printf "%.2f" $val }}"/>
     {{ end }}{{ end }}
-    <text x="42" y="-10" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">po pooling 3×3</text>
+    <text x="40" y="-10" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">pool 3×3</text>
   </g>
 
-  {{/* arrow → hidden */}}
+  {{/* arrow → flatten */}}
   <g>
-    <path d="M 464 140 L 498 140" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
-    <text x="481" y="130" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">flatten + FC</text>
+    <path d="M 460 140 L 486 140" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
+    <text x="473" y="130" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">flatten</text>
   </g>
 
-  {{/* ===== HIDDEN LAYER (5 neuronów, dense) ===== */}}
+  {{/* ===== FLATTEN — wektor 9×1 ===== */}}
+  {{ $flat := slice 0.95 0.70 0.95 0.75 0.45 0.75 0.55 0.15 0.55 }}
+  <g transform="translate(490,66)">
+    <rect width="22" height="188" rx="4" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
+    {{ range $i, $v := $flat }}
+      <rect x="3" y="{{ add 4 (mul $i 20) }}" width="16" height="16" rx="2" fill="url(#acnn-pool)" fill-opacity="{{ printf "%.2f" $v }}"/>
+    {{ end }}
+    <text x="11" y="-8" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">9×1</text>
+  </g>
+
+  {{/* arrow → hidden (FC) */}}
+  <g>
+    <path d="M 514 140 L 538 140" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
+    <text x="526" y="130" text-anchor="middle" font-size="10" fill="#7c3aed">FC</text>
+    <text x="526" y="155" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.55">+ ReLU</text>
+  </g>
+
+  {{/* edges flatten → hidden (pełne połączenie) */}}
+  <g stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.22">
+    {{ range $i, $v := $flat }}
+      {{ $yF := add 74 (mul $i 20) }}
+      {{ range $j := (seq 0 4) }}
+        {{ $yH := add 90 (mul $j 28) }}
+        <line x1="509" y1="{{ $yF }}" x2="550" y2="{{ $yH }}" />
+      {{ end }}
+    {{ end }}
+  </g>
+
+  {{/* ===== HIDDEN LAYER (5 neuronów) ===== */}}
   {{ $hidden := slice 0.85 0.45 0.70 0.30 0.60 }}
   <g>
     {{ range $i, $a := $hidden }}
-      {{ $yPos := add 70 (mul $i 30) }}
-      <circle cx="515" cy="{{ $yPos }}" r="10" fill="url(#acnn-hidden)" fill-opacity="{{ printf "%.2f" $a }}" stroke="#7c3aed" stroke-width="0.8"/>
+      {{ $yPos := add 90 (mul $i 28) }}
+      <circle cx="558" cy="{{ $yPos }}" r="10" fill="url(#acnn-hidden)" fill-opacity="{{ printf "%.2f" $a }}" stroke="#7c3aed" stroke-width="0.8"/>
     {{ end }}
-    <text x="515" y="230" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">warstwa</text>
-    <text x="515" y="244" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">gęsta</text>
+    <text x="558" y="245" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">warstwa</text>
+    <text x="558" y="258" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">ukryta</text>
   </g>
 
-  {{/* edges hidden → classifier bars (first few) */}}
-  <g stroke="#7c3aed" stroke-width="0.6" stroke-opacity="0.25">
+  {{/* edges hidden → classifier (dekoracyjne) */}}
+  <g stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.2">
     {{ range $i, $a := $hidden }}
-      {{ $yH := add 70 (mul $i 30) }}
+      {{ $yH := add 90 (mul $i 28) }}
       {{ range $j := (seq 0 9) }}
         {{ $yB := add 72 (mul $j 18) }}
-        <line x1="525" y1="{{ $yH }}" x2="570" y2="{{ $yB }}" />
+        <line x1="568" y1="{{ $yH }}" x2="600" y2="{{ $yB }}" />
       {{ end }}
     {{ end }}
   </g>
@@ -142,9 +171,9 @@
   {{/* ===== CLASSIFIER — softmax po 10 klasach Fashion-MNIST ===== */}}
   {{ $classes := slice "T-shirt" "Spodnie" "Sweter" "Sukienka" "Płaszcz" "Sandały" "Koszula" "Trampki" "Torba" "Kozaki" }}
   {{ $probs := slice 0.87 0.01 0.02 0.01 0.01 0.00 0.07 0.00 0.01 0.00 }}
-  <g transform="translate(572,60)">
-    <rect x="-4" y="-4" width="218" height="210" rx="6" fill="rgba(113,113,122,0.06)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
-    <text x="105" y="-10" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">softmax — kategoria</text>
+  <g transform="translate(602,60)">
+    <rect x="-4" y="-4" width="200" height="210" rx="6" fill="rgba(113,113,122,0.06)" stroke="rgba(113,113,122,0.35)" stroke-width="1"/>
+    <text x="96" y="-10" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">softmax — kategoria</text>
     {{ range $i, $c := $classes }}
       {{ $isWin := eq $i 0 }}
       {{ $barColor := "rgba(113,113,122,0.35)" }}
@@ -153,8 +182,8 @@
       {{ if $isWin }}{{ $barColor = "rgba(34,197,94,0.85)" }}{{ $strokeColor = "#22c55e" }}{{ $labelColor = "#22c55e" }}{{ end }}
       <g transform="translate(0,{{ mul $i 18 }})">
         <text x="0" y="9" font-size="10" font-weight="{{ if $isWin }}bold{{ else }}normal{{ end }}" fill="{{ $labelColor }}">{{ $c }}</text>
-        <rect x="58" y="2" width="148" height="10" rx="2" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.25)"/>
-        <rect x="58" y="2" width="{{ mul (index $probs $i) 148 }}" height="10" rx="2" fill="{{ $barColor }}" stroke="{{ $strokeColor }}" stroke-width="0.8"/>
+        <rect x="54" y="2" width="138" height="10" rx="2" fill="rgba(113,113,122,0.08)" stroke="rgba(113,113,122,0.25)"/>
+        <rect x="54" y="2" width="{{ mul (index $probs $i) 138 }}" height="10" rx="2" fill="{{ $barColor }}" stroke="{{ $strokeColor }}" stroke-width="0.8"/>
       </g>
     {{ end }}
   </g>
