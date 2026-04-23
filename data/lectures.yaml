@@ -5,7 +5,7 @@ blocks:
     hours: 8
     accent: violet
     icon: brain-circuit
-    summary: Od pojedynczego neuronu do w pełni połączonych MLP. Propagacja wsteczna w ujęciu macierzowym, regularyzacja, optymalizacja i strojenie hiperparametrów.
+    summary: Fundament dziedziny — perceptron, wielowarstwowe sieci gęste i macierzowy zapis propagacji wstecznej. Regularyzacja L1/L2, dropout, batch normalization, nowoczesne optymalizatory (Adam, SGD z momentum) i świadome strojenie hiperparametrów.
     items:
       - nr: "1"
         topic: Płytka sieć typu MLP. Uczenie sieci neuronowej metodą propagacji wstecznej
@@ -24,7 +24,7 @@ blocks:
     hours: 6
     accent: sky
     icon: image
-    summary: Architektury CNN, transfer learning i wprowadzenie do modeli generatywnych — autokoderów, VAE i GAN.
+    summary: Operacja splotu i klasyczne architektury konwolucyjne (LeNet, VGG, ResNet, EfficientNet). Transfer learning i fine-tuning modeli pretrenowanych. Uczenie reprezentacji w autokoderach oraz generowanie danych z wykorzystaniem VAE i GAN.
     items:
       - nr: "5"
         topic: Sieci konwolucyjne — architektura, transfer wiedzy, znane sieci konwolucyjne
@@ -43,7 +43,7 @@ blocks:
     hours: 4
     accent: fuchsia
     icon: message-square
-    summary: RNN, LSTM, GRU, seq2seq, aż po mechanizm uwagi i pełną architekturę Transformera.
+    summary: Modelowanie danych sekwencyjnych — RNN, LSTM, GRU, sieci dwukierunkowe i architektura seq2seq. Mechanizm uwagi (scaled dot-product, multi-head, self- i cross-attention) oraz pełny Transformer wraz z positional encoding.
     items:
       - nr: "8"
         topic: Sieci rekurencyjne (NLP, mowa). LSTM, GRU. Sieci dwukierunkowe, seq2seq.
@@ -59,7 +59,7 @@ blocks:
     hours: 12
     accent: emerald
     icon: sparkles
-    summary: Uczenie ze wzmocnieniem z sieciami głębokimi, metody interpretacji modeli, detekcja i segmentacja obrazu.
+    summary: Deep RL — metody wartościowe (DQN) i policy-gradient (REINFORCE, Actor-Critic, PPO). Interpretowalność modeli (Grad-CAM, SHAP, LIME). Widzenie komputerowe poza klasyfikacją — detekcja (YOLO, DETR) i segmentacja (U-Net, Mask R-CNN).
     items:
       - nr: "11–12"
         topic: Uczenie ze wzmocnieniem z zastosowaniem sieci głębokich

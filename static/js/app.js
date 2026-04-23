@@ -15,6 +15,18 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 // ===== Lucide icons =====
 if (window.lucide) window.lucide.createIcons();
 
+// ===== Theme toggle =====
+(function themeToggle() {
+  const btn = document.getElementById("theme-toggle");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    try {
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    } catch (_) {}
+  });
+})();
+
 // ===== Scroll-spy nav highlight =====
 (function scrollSpy() {
   const links = document.querySelectorAll(".nav-link");

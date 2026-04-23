@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-zinc-950/70 border-b border-zinc-800/50">
+<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200/50 dark:border-zinc-800/50">
   <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
     <a href="#top" class="group flex items-center gap-2.5">
       <div class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-lg shadow-violet-500/30 transition-transform group-hover:scale-105">
@@ -8,21 +8,28 @@
         </svg>
       </div>
       <span class="text-sm font-semibold tracking-tight">Uczenie Głębokie</span>
-      <span class="hidden sm:inline-flex items-center gap-1 rounded-md border border-zinc-700/60 bg-zinc-900/60 px-1.5 py-0.5 font-mono text-[10px] text-zinc-400">
+      <span class="hidden sm:inline-flex items-center gap-1 rounded-md border border-zinc-300/60 dark:border-zinc-700/60 bg-white/70 dark:bg-zinc-900/60 px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 dark:text-zinc-400">
         {{ partial "pwr-crest.html" (dict "class" "h-3 w-3 text-violet-300" "id" "nav") }}
         PWr
       </span>
     </a>
     <div id="nav-links" class="relative hidden items-center gap-1 md:flex">
-      <a href="#wyklady" data-nav="wyklady" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Wykłady</a>
-      <a href="#laboratoria" data-nav="laboratoria" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Laboratoria</a>
-      <a href="#zespol" data-nav="zespol" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Zespół</a>
-      <a href="#informacje" data-nav="informacje" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Informacje</a>
-      <span id="nav-indicator" class="pointer-events-none absolute bottom-0 left-0 h-7 rounded-lg bg-zinc-800/80 ring-1 ring-zinc-700/60 transition-all duration-300 ease-out opacity-0 -z-10"></span>
+      <a href="#wyklady" data-nav="wyklady" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Wykłady</a>
+      <a href="#laboratoria" data-nav="laboratoria" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Laboratoria</a>
+      <a href="#zespol" data-nav="zespol" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Zespół</a>
+      <a href="#informacje" data-nav="informacje" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Informacje</a>
+      <span id="nav-indicator" class="pointer-events-none absolute bottom-0 left-0 h-7 rounded-lg bg-zinc-200 dark:bg-zinc-800/80 ring-1 ring-zinc-300/60 dark:ring-zinc-700/60 transition-all duration-300 ease-out opacity-0 -z-10"></span>
     </div>
-    <a href="{{ .Site.Params.github }}" class="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">
-      <i data-lucide="github" class="h-4 w-4"></i>
-      <span class="hidden sm:inline">Repozytorium</span>
-    </a>
+    <div class="flex items-center gap-2">
+      <button id="theme-toggle" type="button" aria-label="Przełącz motyw"
+        class="group inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300 transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
+        <i data-lucide="sun" class="theme-icon-light h-4 w-4"></i>
+        <i data-lucide="moon" class="theme-icon-dark h-4 w-4"></i>
+      </button>
+      <a href="{{ .Site.Params.github }}" class="group inline-flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/50 px-3 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white">
+        <i data-lucide="github" class="h-4 w-4"></i>
+        <span class="hidden sm:inline">Repozytorium</span>
+      </a>
+    </div>
   </nav>
 </header>

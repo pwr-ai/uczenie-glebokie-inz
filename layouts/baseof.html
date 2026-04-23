@@ -1,13 +1,24 @@
 <!doctype html>
-<html lang="pl" class="dark scroll-smooth">
+<html lang="pl" class="scroll-smooth">
   <head>
     {{ partial "head.html" . }}
   </head>
-  <body class="min-h-screen bg-zinc-950 text-zinc-100 antialiased selection:bg-violet-500/30 selection:text-white">
+  <body class="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased selection:bg-violet-500/30 selection:text-white">
     <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div class="absolute -top-40 left-1/2 h-[600px] w-[1200px] -translate-x-1/2 rounded-full bg-gradient-to-br from-violet-600/30 via-fuchsia-500/20 to-sky-500/20 blur-[120px]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#09090b_80%)]"></div>
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.07] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
+      <div class="absolute -top-40 left-1/2 h-[600px] w-[1200px] -translate-x-1/2 rounded-full bg-gradient-to-br from-violet-500/20 via-fuchsia-400/20 to-sky-400/20 dark:from-violet-600/30 dark:via-fuchsia-500/20 dark:to-sky-500/20 blur-[120px]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#ffffff_80%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,#09090b_80%)]"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#a1a1aa_1px,transparent_1px),linear-gradient(to_bottom,#a1a1aa_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.07] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"></div>
+    </div>
+
+    {{/* Under-construction strip */}}
+    <div class="relative z-40 overflow-hidden border-b border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-amber-500/10">
+      <div class="mx-auto flex max-w-7xl items-center gap-3 px-6 py-2 text-xs">
+        <span class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-amber-500/20 text-amber-500 dark:text-amber-300">
+          <i data-lucide="construction" class="h-3.5 w-3.5"></i>
+        </span>
+        <span class="text-amber-700 dark:text-amber-200 font-medium">Strona w budowie</span>
+        <span class="hidden sm:inline text-amber-600/80 dark:text-amber-300/80">· treści kursu mogą się jeszcze zmieniać · finalna wersja przed początkiem semestru zimowego</span>
+      </div>
     </div>
 
     {{ partial "nav.html" . }}

@@ -2,7 +2,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{{ .Site.Title }} — Kurs inżynierski · PWr</title>
 <meta name="description" content="{{ .Site.Params.description }}" />
-<meta name="color-scheme" content="dark" />
+<meta name="color-scheme" content="light dark" />
+
+<script>
+  // Set theme before first paint to avoid flash of wrong theme
+  (function () {
+    try {
+      var saved = localStorage.getItem("theme");
+      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    } catch (_) {}
+  })();
+</script>
 
 <meta property="og:title" content="{{ .Site.Title }} — PWr" />
 <meta property="og:description" content="{{ .Site.Params.description }}" />

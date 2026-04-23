@@ -11,21 +11,30 @@
   transform: translateY(0);
 }
 
-/* Smooth scrollbar */
+/* Smooth scrollbar (dark default) */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #f4f4f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #d4d4d8;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #a1a1aa;
 }
+html.dark ::-webkit-scrollbar-track { background: #09090b; }
+html.dark ::-webkit-scrollbar-thumb { background: #27272a; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+/* Theme toggle icon visibility */
+.theme-icon-light { display: inline-block; }
+.theme-icon-dark { display: none; }
+html.dark .theme-icon-light { display: none; }
+html.dark .theme-icon-dark { display: inline-block; }
 
 /* Gradient text animation already defined in Tailwind config */
 
