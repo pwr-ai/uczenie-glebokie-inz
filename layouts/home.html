@@ -67,38 +67,38 @@
                 <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                 <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
               </span>
-              <span id="t-phase" class="text-emerald-600 dark:text-emerald-400">FORWARD</span>
+              <span id="t-phase" data-tip="Każdy krok uczenia składa się z trzech etapów: sieć liczy odpowiedź (FORWARD), sprawdza, jak bardzo się pomyliła (BACKWARD), a potem lekko poprawia swoje wagi (STEP)." class="text-emerald-600 dark:text-emerald-400">FORWARD</span>
             </div>
-            <span class="flex items-center gap-1 text-zinc-600 dark:text-zinc-400">
+            <span data-tip="Obliczenia wykonują się na karcie graficznej. GPU jest znacznie szybsze od zwykłego procesora przy uczeniu sieci neuronowych." class="flex items-center gap-1 text-zinc-600 dark:text-zinc-400">
               <i data-lucide="cpu" class="h-3 w-3"></i> cuda:0
             </span>
-            <span>lr <span id="t-lr" class="text-zinc-700 dark:text-zinc-300">3e-4</span></span>
+            <span data-tip="„Tempo uczenia“ — jak duże poprawki sieć robi w wagach po każdym błędzie. Zbyt duże rozchwiewa trening, zbyt małe sprawia, że uczy się za wolno.">lr <span id="t-lr" class="text-zinc-700 dark:text-zinc-300">3e-4</span></span>
           </div>
 
           {{/* ===== ARCHITECTURE TABS (kliknij by przełączyć) ===== */}}
           <div id="arch-tabs" class="mt-2 grid grid-cols-3 gap-1 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-950/50 p-1">
-            <button type="button" data-arch-tab="mlp" class="arch-tab group inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-mono font-semibold transition-all">
+            <button type="button" data-arch-tab="mlp" data-tip="Multilayer Perceptron — najprostsza sieć głęboka. Warstwy gęsto połączonych neuronów operujących na wektorze liczb." class="arch-tab group inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-mono font-semibold transition-all">
               <i data-lucide="git-fork" class="h-3.5 w-3.5"></i> MLP
             </button>
-            <button type="button" data-arch-tab="cnn" class="arch-tab group inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-mono font-semibold transition-all">
+            <button type="button" data-arch-tab="cnn" data-tip="Convolutional Neural Network — sieć specjalizująca się w obrazach. Używa filtrów przesuwających się po obrazie, żeby wykrywać kształty i wzorce." class="arch-tab group inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-mono font-semibold transition-all">
               <i data-lucide="image" class="h-3.5 w-3.5"></i> CNN
             </button>
-            <button type="button" data-arch-tab="rnn" class="arch-tab group inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-mono font-semibold transition-all">
+            <button type="button" data-arch-tab="rnn" data-tip="Recurrent Neural Network — sieć dla danych sekwencyjnych (tekst, mowa). Analizuje wejście krok po kroku i „pamięta“ kontekst." class="arch-tab group inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-mono font-semibold transition-all">
               <i data-lucide="message-square" class="h-3.5 w-3.5"></i> RNN
             </button>
           </div>
 
           {{/* epoch + loss big */}}
           <div class="mt-2 grid grid-cols-3 gap-2 text-center">
-            <div class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-1.5">
+            <div data-tip="Jedna epoka = jedno przejście sieci przez cały zbiór treningowy. Typowo trenuje się przez kilkadziesiąt do kilkuset epok." class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-1.5">
               <div class="text-[9px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">epoch</div>
               <div class="font-mono text-xl font-semibold"><span id="t-epoch">1</span><span class="text-zinc-400 dark:text-zinc-600 text-base">/100</span></div>
             </div>
-            <div class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-1.5">
+            <div data-tip="Miara pomyłek sieci — im mniejsza, tym lepsza sieć. Podczas treningu powinna spadać z epoki na epokę." class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-1.5">
               <div class="text-[9px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">loss</div>
               <div class="font-mono text-xl font-semibold text-rose-700 dark:text-rose-300" id="t-loss">1.523</div>
             </div>
-            <div class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-1.5">
+            <div data-tip="Accuracy — procent poprawnie sklasyfikowanych przykładów. Rośnie wraz ze spadkiem straty." class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-1.5">
               <div class="text-[9px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">acc</div>
               <div class="font-mono text-xl font-semibold text-emerald-700 dark:text-emerald-300" id="t-acc">12.3%</div>
             </div>
@@ -112,7 +112,7 @@
           </div>
 
           {{/* loss sparkline */}}
-          <div class="mt-2 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-3 py-2">
+          <div data-tip="Wykres straty w czasie — pokazuje, jak sieć poprawia się epoka po epoce. Spadający wykres oznacza, że trening działa." class="mt-2 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-3 py-2">
             <div class="mb-1 flex items-center justify-between text-[9px] font-mono text-zinc-500 dark:text-zinc-500">
               <span class="flex items-center gap-1"><i data-lucide="activity" class="h-3 w-3"></i> train loss</span>
               <span id="t-best" class="text-zinc-400 dark:text-zinc-600">best 1.523</span>

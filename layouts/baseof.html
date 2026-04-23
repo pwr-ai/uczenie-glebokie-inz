@@ -29,6 +29,8 @@
 
     {{ partial "footer.html" . }}
 
+    <div id="tip" class="pointer-events-none fixed left-0 top-0 z-[100] max-w-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-xs leading-relaxed text-zinc-700 dark:text-zinc-200 shadow-xl shadow-zinc-900/10 opacity-0 transition-opacity duration-150"></div>
+
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="{{ "js/app.js" | relURL }}" defer></script>
   </body>

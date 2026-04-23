@@ -38,6 +38,12 @@ html.dark .theme-icon-dark { display: inline-block; }
 
 /* Gradient text animation already defined in Tailwind config */
 
+/* Tooltip visibility + SVG hover hit-area */
+#tip.tip-visible { opacity: 1; }
+[data-tip] { cursor: help; }
+/* SVG groups: make whole bounding box catch hover even if only text inside */
+svg [data-tip] { pointer-events: bounding-box; }
+
 /* Architecture segment control */
 .arch-tab {
   color: #71717a;

@@ -25,16 +25,10 @@
       <a href="#informacje" data-nav="informacje" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Informacje</a>
       <span id="nav-indicator" class="pointer-events-none absolute bottom-0 left-0 h-7 rounded-lg bg-zinc-200 dark:bg-zinc-800/80 ring-1 ring-zinc-300/60 dark:ring-zinc-700/60 transition-all duration-300 ease-out opacity-0 -z-10"></span>
     </div>
-    <div class="flex items-center gap-2">
-      <button id="theme-toggle" type="button" aria-label="Przełącz motyw"
-        class="group inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300 transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
-        <i data-lucide="sun" class="theme-icon-light h-4 w-4"></i>
-        <i data-lucide="moon" class="theme-icon-dark h-4 w-4"></i>
-      </button>
-      <a href="{{ .Site.Params.github }}" class="group inline-flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/50 px-3 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white">
-        <i data-lucide="github" class="h-4 w-4"></i>
-        <span class="hidden sm:inline">Repozytorium</span>
-      </a>
-    </div>
+    <button id="theme-toggle" type="button" aria-label="Przełącz motyw"
+      class="group inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300 transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
+      <i data-lucide="sun" class="theme-icon-light h-4 w-4"></i>
+      <i data-lucide="moon" class="theme-icon-dark h-4 w-4"></i>
+    </button>
   </nav>
 </header>

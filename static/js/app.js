@@ -15,6 +15,38 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 // ===== Lucide icons =====
 if (window.lucide) window.lucide.createIcons();
 
+// ===== Tooltips (data-tip="...") =====
+(function tooltips() {
+  const tip = document.getElementById("tip");
+  if (!tip) return;
+
+  function position(e) {
+    const pad = 12;
+    const r = tip.getBoundingClientRect();
+    let x = e.clientX + pad;
+    let y = e.clientY + pad;
+    if (x + r.width > window.innerWidth - 8) x = e.clientX - r.width - pad;
+    if (y + r.height > window.innerHeight - 8) y = e.clientY - r.height - pad;
+    tip.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  document.addEventListener("mouseover", (e) => {
+    const el = e.target.closest("[data-tip]");
+    if (!el) return;
+    tip.textContent = el.getAttribute("data-tip");
+    tip.classList.add("tip-visible");
+    position(e);
+  });
+  document.addEventListener("mouseout", (e) => {
+    const el = e.target.closest("[data-tip]");
+    if (!el) return;
+    tip.classList.remove("tip-visible");
+  });
+  document.addEventListener("mousemove", (e) => {
+    if (tip.classList.contains("tip-visible")) position(e);
+  });
+})();
+
 // ===== Theme toggle =====
 (function themeToggle() {
   const btn = document.getElementById("theme-toggle");
