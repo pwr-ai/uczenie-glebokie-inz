@@ -17,22 +17,23 @@
       (dict "name" "ciśnienie"    "val" "145 mmHg"    "bar" 0.73)
       (dict "name" "tętno (max)"  "val" "162 /min"    "bar" 0.85) }}
   <g>
-    <rect x="20" y="40" width="200" height="240" rx="12"
+    <rect x="20" y="40" width="200" height="270" rx="12"
           fill="rgba(167,139,250,0.05)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
     <text x="120" y="28" text-anchor="middle" font-size="13" font-weight="600"
           fill="currentColor" opacity="0.75">dane pacjenta</text>
     <text x="120" y="43" text-anchor="middle" font-size="10"
           fill="currentColor" opacity="0.5">4 cechy tabelaryczne</text>
     {{ range $i, $f := $feats }}
-      {{ $y := add 78 (mul $i 52) }}
-      <text x="36" y="{{ add $y 2 }}" font-size="12" font-weight="600"
+      {{ $y := add 78 (mul $i 56) }}
+      <text x="36" y="{{ add $y 4 }}" font-size="12" font-weight="600"
             fill="currentColor" opacity="0.85">{{ $f.name }}</text>
-      <rect x="36" y="{{ add $y 10 }}" width="148" height="9" rx="3"
-            fill="rgba(113,113,122,0.15)" stroke="rgba(113,113,122,0.3)" stroke-width="0.8"/>
-      <rect x="36" y="{{ add $y 10 }}" width="{{ mul $f.bar 148 }}" height="9" rx="3"
-            fill="#a78bfa" opacity="0.85"/>
-      <text x="36" y="{{ add $y 32 }}" font-family="JetBrains Mono, monospace"
+      <text x="184" y="{{ add $y 4 }}" text-anchor="end"
+            font-family="JetBrains Mono, monospace"
             font-size="10" fill="currentColor" opacity="0.55">{{ $f.val }}</text>
+      <rect x="36" y="{{ add $y 14 }}" width="148" height="9" rx="3"
+            fill="rgba(113,113,122,0.15)" stroke="rgba(113,113,122,0.3)" stroke-width="0.8"/>
+      <rect x="36" y="{{ add $y 14 }}" width="{{ mul $f.bar 148 }}" height="9" rx="3"
+            fill="#a78bfa" opacity="0.85"/>
     {{ end }}
   </g>
 
