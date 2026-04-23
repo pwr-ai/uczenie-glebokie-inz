@@ -33,7 +33,7 @@ if (window.lucide) window.lucide.createIcons();
   const indicator = document.getElementById("nav-indicator");
   if (!links.length) return;
 
-  const sections = ["wyklady", "laboratoria", "zespol", "informacje"]
+  const sections = ["wyklady", "architektury", "laboratoria", "zespol", "informacje"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 

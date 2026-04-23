@@ -175,6 +175,88 @@
   </div>
 </section>
 
+{{/* ============ ARCHITEKTURY W AKCJI ============ */}}
+<section id="architektury" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
+  <div class="reveal mx-auto max-w-2xl text-center">
+    <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-300">
+      <i data-lucide="play" class="h-3.5 w-3.5"></i> Interaktywnie
+    </span>
+    <h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Architektury <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">w akcji</span></h2>
+    <p class="mt-4 text-zinc-600 dark:text-zinc-400">Trzy rodziny sieci, trzy różne mechanizmy obliczeniowe. Poniżej mini-wizualizacje tego, co dzieje się pod spodem — odświeżają się na żywo.</p>
+  </div>
+
+  <div class="mt-14 grid gap-5 lg:grid-cols-3">
+    {{/* CNN */}}
+    <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-fuchsia-500/40">
+      <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-fuchsia-500/10 blur-3xl"></div>
+      <div class="relative">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300">
+              <i data-lucide="image" class="h-5 w-5"></i>
+            </div>
+            <div>
+              <span class="font-mono text-[10px] text-zinc-500">Blok II</span>
+              <h3 class="text-base font-semibold leading-tight">CNN — splot 2D</h3>
+            </div>
+          </div>
+          <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-0.5 font-mono text-[10px] text-zinc-500">conv3×3</span>
+        </div>
+        <div class="mt-4 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3 aspect-[17/7] overflow-hidden">
+          {{ partial "arch-cnn.html" . }}
+        </div>
+        <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Kernel skanuje wejście, wyznaczając dla każdej pozycji iloczyn skalarny wag z lokalnym wycinkiem obrazu. Po przejściu całego obrazu powstaje mapa cech przekazywana dalej.</p>
+      </div>
+    </article>
+
+    {{/* RNN */}}
+    <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-violet-500/40">
+      <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-violet-500/10 blur-3xl"></div>
+      <div class="relative">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-violet-500/30 bg-violet-500/10 text-violet-700 dark:text-violet-300">
+              <i data-lucide="message-square" class="h-5 w-5"></i>
+            </div>
+            <div>
+              <span class="font-mono text-[10px] text-zinc-500">Blok III</span>
+              <h3 class="text-base font-semibold leading-tight">RNN — krok po kroku</h3>
+            </div>
+          </div>
+          <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-0.5 font-mono text-[10px] text-zinc-500">h<sub>t</sub> → h<sub>t+1</sub></span>
+        </div>
+        <div class="mt-4 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3 aspect-[17/7] overflow-hidden">
+          {{ partial "arch-rnn.html" . }}
+        </div>
+        <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Sekwencja tokenów przetwarzana jest jeden krok na raz. Ukryty stan <span class="font-mono">h<sub>t</sub></span> niesie kontekst do kolejnego kroku — ta sama komórka rekurencyjnie, zawsze z tymi samymi wagami.</p>
+      </div>
+    </article>
+
+    {{/* Transformer */}}
+    <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/40">
+      <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-sky-500/10 blur-3xl"></div>
+      <div class="relative">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-700 dark:text-sky-300">
+              <i data-lucide="network" class="h-5 w-5"></i>
+            </div>
+            <div>
+              <span class="font-mono text-[10px] text-zinc-500">Blok III</span>
+              <h3 class="text-base font-semibold leading-tight">Transformer — uwaga</h3>
+            </div>
+          </div>
+          <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-0.5 font-mono text-[10px] text-zinc-500">softmax(QK<sup>T</sup>)</span>
+        </div>
+        <div class="mt-4 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3 aspect-[17/7] overflow-hidden">
+          {{ partial "arch-transformer.html" . }}
+        </div>
+        <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Każdy token kalkuluje ważoną sumę <em>wszystkich</em> innych — bez rekurencji. Wagi uwagi są liczone dynamicznie z zapytań i kluczy, dzięki czemu kontekst przepływa równolegle.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 {{/* ============ LABORATORIA ============ */}}
 <section id="laboratoria" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
   <div class="reveal mx-auto max-w-2xl text-center">
