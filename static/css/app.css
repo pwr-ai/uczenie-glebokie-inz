@@ -156,16 +156,33 @@ html.dark .block-tab:hover {
   to   { opacity: 1; }
 }
 
-/* tab pills (progress) */
-.wyk-tab {
-  color: #71717a;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+/* vertical stepper — connecting line + clickable step circles */
+.wyk-steps::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 1.75rem;
+  bottom: 1.75rem;
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(139, 92, 246, 0.4) 0%,
+    rgba(217, 70, 239, 0.4) 50%,
+    rgba(14, 165, 233, 0.4) 100%
+  );
+  border-radius: 1px;
 }
-html.dark .wyk-tab { color: #a1a1aa; }
+.wyk-tab {
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.wyk-tab:hover { transform: scale(1.05); }
 .wyk-tab.is-active {
   background: linear-gradient(135deg, #8b5cf6, #d946ef);
   color: white;
   border-color: transparent;
+  box-shadow: 0 4px 14px -4px rgba(139, 92, 246, 0.55);
+  transform: scale(1.1);
 }
 .wyk-tab.is-active:hover { color: white; }
 

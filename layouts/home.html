@@ -74,19 +74,19 @@
           <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Program <span class="bg-gradient-to-r from-violet-600 to-fuchsia-600 dark:from-violet-400 dark:to-fuchsia-400 bg-clip-text text-transparent">wykładów</span></h2>
         </div>
 
-        <div id="wyk-stack" data-active-block="1" class="mx-auto mt-6">
-          {{/* block-progress tabs (clickable) */}}
-          <div class="mx-auto mb-5 flex w-full max-w-md items-center gap-2">
+        <div id="wyk-stack" data-active-block="1" class="mx-auto mt-6 grid grid-cols-[auto_1fr] gap-6 sm:gap-8">
+          {{/* vertical stepper — top-to-bottom */}}
+          <div class="wyk-steps relative flex flex-col items-center gap-6 pt-6">
             {{ range $i, $b := .Site.Data.lectures.blocks }}
               <button type="button" data-wyk-block="{{ add $i 1 }}"
-                class="wyk-tab group flex-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/50 px-2 py-1 text-[11px] font-mono font-semibold text-zinc-600 dark:text-zinc-400 transition-all hover:border-{{ $b.accent }}-500/40">
-                Blok {{ $b.roman }}
+                class="wyk-tab group relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all hover:border-{{ $b.accent }}-500">
+                {{ $b.roman }}
               </button>
             {{ end }}
           </div>
 
           {{ range $i, $b := .Site.Data.lectures.blocks }}
-            <article class="wyk-block" data-block="{{ add $i 1 }}">
+            <article class="wyk-block col-start-2" data-block="{{ add $i 1 }}">
               <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-lg shadow-zinc-900/5 dark:shadow-none p-6 sm:p-8 backdrop-blur-sm">
                 <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl"></div>
                 <div class="relative">
