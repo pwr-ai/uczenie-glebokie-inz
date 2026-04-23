@@ -1,0 +1,65 @@
+<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet" class="h-full w-full">
+  <defs>
+    <radialGradient id="hcnn-act" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#e879f9" stop-opacity="1"/>
+      <stop offset="1" stop-color="#c026d3" stop-opacity="0.3"/>
+    </radialGradient>
+    <marker id="hcnn-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#71717a"/>
+    </marker>
+    <filter id="hcnn-glow">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  {{/* ========= INPUT 7x7 at (30,55) — cell 20 ========= */}}
+  <g>
+    <rect x="30" y="55" width="140" height="140" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+    {{ range $y := (seq 0 6) }}{{ range $x := (seq 0 6) }}
+      <rect x="{{ add 31 (mul $x 20) }}" y="{{ add 56 (mul $y 20) }}" width="18" height="18" rx="2"
+        fill="rgba({{ mod (add (mul $x 31) (mul $y 17)) 120 | add 80 }},{{ mod (add (mul $x 23) (mul $y 41)) 100 | add 90 }},{{ mod (add (mul $x 13) (mul $y 53)) 130 | add 100 }},0.75)"/>
+    {{ end }}{{ end }}
+    <text x="100" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">input 7×7</text>
+  </g>
+
+  {{/* ========= KERNEL 3x3 (60x60) raster-scan 25 positions ========= */}}
+  <g filter="url(#hcnn-glow)">
+    <rect x="0" y="0" width="60" height="60" rx="4"
+          fill="rgba(167,139,250,0.22)" stroke="#a78bfa" stroke-width="2">
+      <animateTransform attributeName="transform" type="translate"
+        dur="5s" repeatCount="indefinite" calcMode="discrete"
+        keyTimes="0;0.04;0.08;0.12;0.16;0.2;0.24;0.28;0.32;0.36;0.4;0.44;0.48;0.52;0.56;0.6;0.64;0.68;0.72;0.76;0.8;0.84;0.88;0.92;0.96;1"
+        values="30,55; 50,55; 70,55; 90,55; 110,55; 30,75; 50,75; 70,75; 90,75; 110,75; 30,95; 50,95; 70,95; 90,95; 110,95; 30,115; 50,115; 70,115; 90,115; 110,115; 30,135; 50,135; 70,135; 90,135; 110,135; 30,55"/>
+    </rect>
+  </g>
+
+  {{/* ========= ARROW ========= */}}
+  <g>
+    <path d="M 185 125 L 230 125" stroke="#71717a" stroke-width="1.4" marker-end="url(#hcnn-arr)"/>
+    <text x="207" y="115" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#a1a1aa">conv 3×3</text>
+    <text x="207" y="142" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#52525b">stride 1</text>
+  </g>
+
+  {{/* ========= FEATURE MAP 5x5 at (240,75) — cell 20 ========= */}}
+  <g>
+    <rect x="240" y="75" width="100" height="100" rx="6" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+    {{ range $y := (seq 0 4) }}{{ range $x := (seq 0 4) }}
+      {{ $idx := add (mul $y 5) $x }}
+      {{ $begin := mul $idx 0.2 }}
+      <rect x="{{ add 241 (mul $x 20) }}" y="{{ add 76 (mul $y 20) }}" width="18" height="18" rx="2" fill="url(#hcnn-act)" opacity="0">
+        <animate attributeName="opacity"
+          values="0;0;1;1;0"
+          keyTimes="0; {{ div $begin 5.0 }}; {{ div (add $begin 0.12) 5.0 }}; 0.97; 1"
+          dur="5s" repeatCount="indefinite"/>
+      </rect>
+    {{ end }}{{ end }}
+    <text x="290" y="65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">feature map 5×5</text>
+  </g>
+
+  {{/* ========= FOOTER LABEL ========= */}}
+  <g font-family="JetBrains Mono, monospace" font-size="9" fill="#71717a">
+    <text x="200" y="220" text-anchor="middle">conv2d · padding 0 · bias true</text>
+    <text x="200" y="235" text-anchor="middle" fill="#52525b">out = (in − k + 2p)/s + 1 = 5</text>
+  </g>
+</svg>

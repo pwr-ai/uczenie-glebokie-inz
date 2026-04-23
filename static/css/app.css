@@ -38,6 +38,21 @@ html.dark .theme-icon-dark { display: inline-block; }
 
 /* Gradient text animation already defined in Tailwind config */
 
+/* Hero architecture switcher — cross-fade between MLP/CNN/RNN */
+.net-slide {
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+#net-stack[data-arch="mlp"] .net-slide-mlp,
+#net-stack[data-arch="cnn"] .net-slide-cnn,
+#net-stack[data-arch="rnn"] .net-slide-rnn {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
 /* Phase-driven pulse visibility on the hero network */
 #net-svg .net-forward,
 #net-svg .net-backward,

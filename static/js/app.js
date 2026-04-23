@@ -139,6 +139,14 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
     { name: "STEP", color: "text-violet-400", dot: "#a78bfa" },
   ];
 
+  // Architecture carousel — switch hero net every N epochs
+  const netStack = document.getElementById("net-stack");
+  const modelLabel = document.getElementById("t-model");
+  const ARCHS = ["mlp", "cnn", "rnn"];
+  const ARCH_LABELS = { mlp: "MLP", cnn: "CNN", rnn: "RNN" };
+  let archIdx = 0;
+  const ARCH_SWITCH_EVERY = 12; // epochs
+
   // Realistic-looking loss curve: exponential decay with plateaus and noise
   function computeLoss(e) {
     const base = 1.5 * Math.exp(-e / 22) + 0.04;
@@ -215,6 +223,14 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
           history.length = 0;
           progEl.style.width = "0%";
         }, 800);
+      }
+
+      // cycle architecture every N epochs
+      if (netStack && epoch > 1 && (epoch - 1) % ARCH_SWITCH_EVERY === 0) {
+        archIdx = (archIdx + 1) % ARCHS.length;
+        const next = ARCHS[archIdx];
+        netStack.dataset.arch = next;
+        if (modelLabel) modelLabel.textContent = ARCH_LABELS[next];
       }
     }
 

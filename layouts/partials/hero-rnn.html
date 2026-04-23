@@ -1,0 +1,89 @@
+<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet" class="h-full w-full">
+  <defs>
+    <radialGradient id="hrnn-cell" cx="0.5" cy="0.5">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="1"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0.5"/>
+    </radialGradient>
+    <marker id="hrnn-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#71717a"/>
+    </marker>
+    <filter id="hrnn-glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  {{ $tokens := slice "The" "quick" "brown" "fox" "jumps" }}
+  {{ $outs := slice "DET" "ADJ" "ADJ" "NOUN" "VERB" }}
+  {{/* column centres: 56, 136, 216, 296, 376, separation 80 */}}
+
+  {{/* ========= RECURRENT ARROWS (middle row, between cells) ========= */}}
+  {{ range $i := (seq 0 3) }}
+    {{ $x1 := add 56 (mul $i 80) | add 22 }}
+    {{ $x2 := add 56 (mul (add $i 1) 80) | sub 22 }}
+    <path d="M {{ $x1 }} 135 L {{ $x2 }} 135" stroke="#52525b" stroke-width="1.4" marker-end="url(#hrnn-arr)"/>
+  {{ end }}
+
+  {{/* ========= TIMESTEP CURSOR (highlight column) ========= */}}
+  <rect x="0" y="30" width="72" height="200" rx="6" fill="rgba(251,191,36,0.07)" opacity="0">
+    <animate attributeName="opacity" values="0;0.8;0.8;0;0" keyTimes="0;0.05;0.15;0.2;1" dur="5s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate"
+      dur="5s" repeatCount="indefinite" calcMode="discrete"
+      keyTimes="0;0.2;0.4;0.6;0.8;1"
+      values="20,0; 100,0; 180,0; 260,0; 340,0; 20,0"/>
+  </rect>
+
+  {{/* ========= PER-TIMESTEP GROUPS ========= */}}
+  {{ range $t := (seq 0 4) }}
+    {{ $cx := add 56 (mul $t 80) }}
+    {{ $begin := mul $t 1.0 }}
+
+    {{/* vertical arrows */}}
+    <path d="M {{ $cx }} 210 L {{ $cx }} 160" stroke="#52525b" stroke-width="1.2" marker-end="url(#hrnn-arr)"/>
+    <path d="M {{ $cx }} 112 L {{ $cx }} 62" stroke="#52525b" stroke-width="1.2" marker-end="url(#hrnn-arr)"/>
+
+    {{/* INPUT x_t (bottom) */}}
+    <g>
+      <rect x="{{ sub $cx 26 }}" y="215" width="52" height="26" rx="5" fill="#18181b" stroke="#52525b" stroke-width="1"/>
+      <rect x="{{ sub $cx 26 }}" y="215" width="52" height="26" rx="5"
+            fill="rgba(56,189,248,0.25)" stroke="#38bdf8" stroke-width="1.6" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;0"
+          keyTimes="0;{{ div $begin 5.0 }};{{ div (add $begin 0.25) 5.0 }};{{ div (add $begin 0.9) 5.0 }}"
+          dur="5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="{{ $cx }}" y="233" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#d4d4d8">{{ index $tokens $t }}</text>
+    </g>
+
+    {{/* HIDDEN CELL (middle) */}}
+    <g filter="url(#hrnn-glow)">
+      <rect x="{{ sub $cx 22 }}" y="112" width="44" height="48" rx="7" fill="#27272a" stroke="#52525b" stroke-width="1"/>
+      <rect x="{{ sub $cx 22 }}" y="112" width="44" height="48" rx="7" fill="url(#hrnn-cell)" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;0.3;0"
+          keyTimes="0;{{ div (add $begin 0.15) 5.0 }};{{ div (add $begin 0.35) 5.0 }};{{ div (add $begin 0.7) 5.0 }};{{ div (add $begin 0.95) 5.0 }}"
+          dur="5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="{{ $cx }}" y="138" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#e4e4e7">h<tspan font-size="8" dy="3">{{ $t }}</tspan></text>
+    </g>
+
+    {{/* OUTPUT y_t (top) */}}
+    <g>
+      <rect x="{{ sub $cx 24 }}" y="30" width="48" height="26" rx="5" fill="#18181b" stroke="#52525b" stroke-width="1"/>
+      <rect x="{{ sub $cx 24 }}" y="30" width="48" height="26" rx="5"
+            fill="rgba(34,197,94,0.2)" stroke="#22c55e" stroke-width="1.6" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;0"
+          keyTimes="0;{{ div (add $begin 0.45) 5.0 }};{{ div (add $begin 0.65) 5.0 }};{{ div (add $begin 0.95) 5.0 }}"
+          dur="5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="{{ $cx }}" y="48" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">{{ index $outs $t }}</text>
+    </g>
+  {{ end }}
+
+  {{/* ========= LABELS ========= */}}
+  <g font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">
+    <text x="12" y="46">y</text>
+    <text x="12" y="142">h</text>
+    <text x="12" y="232">x</text>
+  </g>
+
+  {{/* ========= RECURRENT LOOP HINT (dashed) ========= */}}
+  <path d="M 60 106 C 60 80, 140 80, 160 106" stroke="#fbbf24" stroke-width="1.2" fill="none" stroke-dasharray="4,3" opacity="0.5">
+    <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.2s" repeatCount="indefinite"/>
+  </path>
+</svg>
