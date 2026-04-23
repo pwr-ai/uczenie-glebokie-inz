@@ -1,45 +1,74 @@
 <svg viewBox="0 0 480 480" class="h-full w-full" preserveAspectRatio="xMidYMid meet">
   <defs>
-    <radialGradient id="hi-blob-v" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0"   stop-color="#a78bfa" stop-opacity="1"/>
-      <stop offset="0.7" stop-color="#7c3aed" stop-opacity="0.35"/>
-      <stop offset="1"   stop-color="#7c3aed" stop-opacity="0"/>
+    <radialGradient id="hidn-halo" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0"    stop-color="#a78bfa" stop-opacity="0.35"/>
+      <stop offset="0.55" stop-color="#d946ef" stop-opacity="0.18"/>
+      <stop offset="1"    stop-color="#38bdf8" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="hi-blob-f" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0"   stop-color="#f0abfc" stop-opacity="1"/>
-      <stop offset="0.7" stop-color="#d946ef" stop-opacity="0.35"/>
-      <stop offset="1"   stop-color="#d946ef" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="hi-blob-s" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0"   stop-color="#7dd3fc" stop-opacity="1"/>
-      <stop offset="0.7" stop-color="#0284c7" stop-opacity="0.35"/>
-      <stop offset="1"   stop-color="#0284c7" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="hi-blur" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="28"/>
+    <linearGradient id="hidn-edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"    stop-color="#a78bfa" stop-opacity="0.35"/>
+      <stop offset="0.5"  stop-color="#e879f9" stop-opacity="0.55"/>
+      <stop offset="1"    stop-color="#38bdf8" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="hidn-n1" cx="0.3" cy="0.3"><stop offset="0" stop-color="#e9d5ff"/><stop offset="1" stop-color="#7c3aed"/></radialGradient>
+    <radialGradient id="hidn-n2" cx="0.3" cy="0.3"><stop offset="0" stop-color="#f0abfc"/><stop offset="1" stop-color="#c026d3"/></radialGradient>
+    <radialGradient id="hidn-n3" cx="0.3" cy="0.3"><stop offset="0" stop-color="#fbcfe8"/><stop offset="1" stop-color="#d946ef"/></radialGradient>
+    <radialGradient id="hidn-n4" cx="0.3" cy="0.3"><stop offset="0" stop-color="#f5d0fe"/><stop offset="1" stop-color="#a855f7"/></radialGradient>
+    <radialGradient id="hidn-n5" cx="0.3" cy="0.3"><stop offset="0" stop-color="#bae6fd"/><stop offset="1" stop-color="#0ea5e9"/></radialGradient>
+    <radialGradient id="hidn-n6" cx="0.3" cy="0.3"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#0284c7"/></radialGradient>
+    <filter id="hidn-bloom" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22"/>
     </filter>
-    <filter id="hi-grain" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="3"/>
-      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0"/>
-      <feComposite in2="SourceGraphic" operator="in"/>
+    <filter id="hidn-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
 
-  {{/* Aurora-style blended blobs */}}
-  <g filter="url(#hi-blur)">
-    <circle cx="180" cy="170" r="130" fill="url(#hi-blob-v)"/>
-    <circle cx="300" cy="240" r="150" fill="url(#hi-blob-f)"/>
-    <circle cx="230" cy="340" r="130" fill="url(#hi-blob-s)"/>
-    <circle cx="350" cy="140" r="80"  fill="url(#hi-blob-f)" opacity="0.8"/>
-    <circle cx="130" cy="320" r="70"  fill="url(#hi-blob-v)" opacity="0.7"/>
+  {{/* ambient bloom */}}
+  <circle cx="240" cy="240" r="210" fill="url(#hidn-halo)" filter="url(#hidn-bloom)"/>
+
+  {{/* layer positions (x-coords) and node y-coords */}}
+  {{ $xs := slice 60 140 220 300 380 440 }}
+  {{ $l1 := slice 130 210 290 370 }}
+  {{ $l2 := slice 100 180 240 300 380 }}
+  {{ $l3 := slice 100 180 240 300 380 }}
+  {{ $l4 := slice 150 230 310 }}
+  {{ $l5 := slice 180 280 }}
+  {{ $l6 := slice 240 }}
+  {{ $gradients := slice "url(#hidn-n1)" "url(#hidn-n2)" "url(#hidn-n3)" "url(#hidn-n4)" "url(#hidn-n5)" "url(#hidn-n6)" }}
+
+  {{/* edges */}}
+  <g stroke="url(#hidn-edge)" stroke-width="1" opacity="0.5">
+    {{ range $y1 := $l1 }}{{ range $y2 := $l2 }}<line x1="60"  y1="{{ $y1 }}" x2="140" y2="{{ $y2 }}"/>{{ end }}{{ end }}
+    {{ range $y1 := $l2 }}{{ range $y2 := $l3 }}<line x1="140" y1="{{ $y1 }}" x2="220" y2="{{ $y2 }}"/>{{ end }}{{ end }}
+    {{ range $y1 := $l3 }}{{ range $y2 := $l4 }}<line x1="220" y1="{{ $y1 }}" x2="300" y2="{{ $y2 }}"/>{{ end }}{{ end }}
+    {{ range $y1 := $l4 }}{{ range $y2 := $l5 }}<line x1="300" y1="{{ $y1 }}" x2="380" y2="{{ $y2 }}"/>{{ end }}{{ end }}
+    {{ range $y1 := $l5 }}{{ range $y2 := $l6 }}<line x1="380" y1="{{ $y1 }}" x2="440" y2="{{ $y2 }}"/>{{ end }}{{ end }}
   </g>
 
-  {{/* subtle grain texture overlay on top of the aurora, to keep it from looking "plasticky" */}}
-  <g filter="url(#hi-grain)" opacity="0.8">
-    <rect width="480" height="480" fill="white"/>
+  {{/* flowing particles — sparse and slow, Safari-safe animateMotion */}}
+  <g filter="url(#hidn-glow)">
+    {{/* seed a few traveling packets on distinct random-ish paths */}}
+    {{ $flows := slice
+        (dict "p" "M 60 210 L 140 180 L 220 240 L 300 230 L 380 180 L 440 240" "dur" "6.5s" "begin" "0s"    "fill" "#a78bfa")
+        (dict "p" "M 60 290 L 140 300 L 220 240 L 300 150 L 380 180 L 440 240" "dur" "7s"   "begin" "1.2s" "fill" "#e879f9")
+        (dict "p" "M 60 130 L 140 180 L 220 100 L 300 150 L 380 280 L 440 240" "dur" "6s"   "begin" "2.4s" "fill" "#38bdf8")
+        (dict "p" "M 60 370 L 140 380 L 220 300 L 300 310 L 380 280 L 440 240" "dur" "7.2s" "begin" "3.4s" "fill" "#c4b5fd") }}
+    {{ range $flows }}
+      <circle r="4" fill="{{ .fill }}">
+        <animateMotion dur="{{ .dur }}" begin="{{ .begin }}" repeatCount="indefinite" path="{{ .p }}"/>
+      </circle>
+    {{ end }}
   </g>
 
-  {{/* soft inner vignette to anchor the composition in the card */}}
-  <rect x="0" y="0" width="480" height="480" fill="none"
-        stroke="rgba(0,0,0,0.35)" stroke-width="60" opacity="0.35"/>
+  {{/* nodes — all layers */}}
+  <g filter="url(#hidn-glow)">
+    {{ range $y := $l1 }}<circle cx="60"  cy="{{ $y }}" r="7" fill="url(#hidn-n1)"/>{{ end }}
+    {{ range $y := $l2 }}<circle cx="140" cy="{{ $y }}" r="7" fill="url(#hidn-n2)"/>{{ end }}
+    {{ range $y := $l3 }}<circle cx="220" cy="{{ $y }}" r="7" fill="url(#hidn-n3)"/>{{ end }}
+    {{ range $y := $l4 }}<circle cx="300" cy="{{ $y }}" r="7" fill="url(#hidn-n4)"/>{{ end }}
+    {{ range $y := $l5 }}<circle cx="380" cy="{{ $y }}" r="7" fill="url(#hidn-n5)"/>{{ end }}
+    {{ range $y := $l6 }}<circle cx="440" cy="{{ $y }}" r="10" fill="url(#hidn-n6)"/>{{ end }}
+  </g>
 </svg>
