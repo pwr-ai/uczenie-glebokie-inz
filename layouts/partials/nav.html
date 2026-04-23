@@ -13,11 +13,12 @@
         PWr
       </span>
     </a>
-    <div class="hidden items-center gap-1 md:flex">
-      <a href="#wyklady" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Wykłady</a>
-      <a href="#laboratoria" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Laboratoria</a>
-      <a href="#zespol" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Zespół</a>
-      <a href="#informacje" class="rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white">Informacje</a>
+    <div id="nav-links" class="relative hidden items-center gap-1 md:flex">
+      <a href="#wyklady" data-nav="wyklady" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Wykłady</a>
+      <a href="#laboratoria" data-nav="laboratoria" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Laboratoria</a>
+      <a href="#zespol" data-nav="zespol" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Zespół</a>
+      <a href="#informacje" data-nav="informacje" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-400 transition-colors hover:text-white">Informacje</a>
+      <span id="nav-indicator" class="pointer-events-none absolute bottom-0 left-0 h-7 rounded-lg bg-zinc-800/80 ring-1 ring-zinc-700/60 transition-all duration-300 ease-out opacity-0 -z-10"></span>
     </div>
     <a href="{{ .Site.Params.github }}" class="group inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-sm text-zinc-300 transition-all hover:border-zinc-700 hover:bg-zinc-900 hover:text-white">
       <i data-lucide="github" class="h-4 w-4"></i>

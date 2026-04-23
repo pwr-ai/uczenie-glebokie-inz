@@ -15,6 +15,80 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 // ===== Lucide icons =====
 if (window.lucide) window.lucide.createIcons();
 
+// ===== Scroll-spy nav highlight =====
+(function scrollSpy() {
+  const links = document.querySelectorAll(".nav-link");
+  const indicator = document.getElementById("nav-indicator");
+  if (!links.length) return;
+
+  const sections = ["wyklady", "laboratoria", "zespol", "informacje"]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  const linkMap = new Map();
+  links.forEach((a) => linkMap.set(a.dataset.nav, a));
+
+  let current = null;
+
+  function setActive(id) {
+    if (id === current) return;
+    current = id;
+    links.forEach((a) => {
+      const on = a.dataset.nav === id;
+      a.classList.toggle("text-white", on);
+      a.classList.toggle("text-zinc-400", !on);
+    });
+    const link = id ? linkMap.get(id) : null;
+    if (!indicator) return;
+    if (!link) {
+      indicator.style.opacity = "0";
+      return;
+    }
+    const parent = link.parentElement.getBoundingClientRect();
+    const rect = link.getBoundingClientRect();
+    indicator.style.width = rect.width + "px";
+    indicator.style.transform = `translateX(${rect.left - parent.left}px)`;
+    indicator.style.opacity = "1";
+  }
+
+  // Watch sections: pick the one whose top is closest to (but past) the nav
+  const navHeight = 72; // approx sticky header height
+  const io = new IntersectionObserver(
+    (entries) => {
+      // Find the entry most visible near the top
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) {
+        setActive(visible[0].target.id);
+      }
+    },
+    {
+      rootMargin: `-${navHeight}px 0px -55% 0px`,
+      threshold: [0, 0.15, 0.35, 0.6, 1],
+    }
+  );
+  sections.forEach((s) => io.observe(s));
+
+  // Recompute indicator on resize
+  window.addEventListener("resize", () => {
+    if (current) {
+      const link = linkMap.get(current);
+      if (link && indicator) {
+        const parent = link.parentElement.getBoundingClientRect();
+        const rect = link.getBoundingClientRect();
+        indicator.style.width = rect.width + "px";
+        indicator.style.transform = `translateX(${rect.left - parent.left}px)`;
+      }
+    }
+  });
+
+  // Clear highlight when scrolled back to the hero
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < 100) setActive(null);
+  }, { passive: true });
+})();
+
 // ===== Parallax on hero card =====
 const art = document.querySelector(".animate-float");
 if (art && window.matchMedia("(pointer: fine)").matches) {
