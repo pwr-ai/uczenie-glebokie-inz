@@ -39,8 +39,8 @@
   {{ range $i, $x := $xs }}
     {{ $col := index $ncolors $i }}
     {{ range $y := index $nodes $i }}
-      <circle cx="{{ $x }}" cy="{{ $y }}" r="6" fill="{{ $col }}"
-              stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+      <circle cx="{{ $x }}" cy="{{ $y }}" r="9" fill="{{ $col }}"
+              stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
     {{ end }}
   {{ end }}
 
