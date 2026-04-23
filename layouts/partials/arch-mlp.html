@@ -1,39 +1,58 @@
-<svg viewBox="0 0 340 140" class="h-full w-full">
+<svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" class="h-full w-full">
   <defs>
     <linearGradient id="amlp-edge" x1="0" x2="1">
-      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.3"/>
-      <stop offset="1" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0.35"/>
     </linearGradient>
     <radialGradient id="amlp-node-v" cx="0.3" cy="0.3"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#7c3aed"/></radialGradient>
     <radialGradient id="amlp-node-f" cx="0.3" cy="0.3"><stop offset="0" stop-color="#f0abfc"/><stop offset="1" stop-color="#c026d3"/></radialGradient>
     <radialGradient id="amlp-node-s" cx="0.3" cy="0.3"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#0284c7"/></radialGradient>
+    <filter id="amlp-glow"><feGaussianBlur stdDeviation="2.5"/></filter>
   </defs>
 
-  {{ $l1 := slice 25 55 85 115 }}
-  {{ $l2 := slice 35 70 105 }}
-  {{ $l3 := slice 45 95 }}
+  {{ $l1 := slice 80 140 200 260 }}
+  {{ $l2 := slice 110 170 230 }}
+  {{ $l3 := slice 130 210 }}
 
   {{/* edges */}}
-  <g stroke="url(#amlp-edge)" stroke-width="1">
-    {{ range $y1 := $l1 }}{{ range $y2 := $l2 }}<line x1="50" y1="{{ $y1 }}" x2="160" y2="{{ $y2 }}" />{{ end }}{{ end }}
-    {{ range $y1 := $l2 }}{{ range $y2 := $l3 }}<line x1="160" y1="{{ $y1 }}" x2="270" y2="{{ $y2 }}" />{{ end }}{{ end }}
+  <g stroke="url(#amlp-edge)" stroke-width="1.2">
+    {{ range $y1 := $l1 }}{{ range $y2 := $l2 }}<line x1="160" y1="{{ $y1 }}" x2="400" y2="{{ $y2 }}" />{{ end }}{{ end }}
+    {{ range $y1 := $l2 }}{{ range $y2 := $l3 }}<line x1="400" y1="{{ $y1 }}" x2="640" y2="{{ $y2 }}" />{{ end }}{{ end }}
+  </g>
+
+  {{/* subtle forward pulses — one per row, staggered */}}
+  <g filter="url(#amlp-glow)">
+    {{ range $i, $y := $l1 }}
+      {{ $yTarget := index $l2 (mod $i 3) }}
+      <circle r="4" fill="#a78bfa" opacity="0.9">
+        <animateMotion dur="5s" begin="{{ mul $i 0.35 }}s" repeatCount="indefinite"
+          path="M 160 {{ $y }} L 400 {{ $yTarget }}"/>
+      </circle>
+    {{ end }}
+    {{ range $i, $y := $l2 }}
+      {{ $yTarget := index $l3 (mod $i 2) }}
+      <circle r="4" fill="#e879f9" opacity="0.9">
+        <animateMotion dur="4.5s" begin="{{ add 0.6 (mul $i 0.4) }}s" repeatCount="indefinite"
+          path="M 400 {{ $y }} L 640 {{ $yTarget }}"/>
+      </circle>
+    {{ end }}
   </g>
 
   {{/* nodes */}}
-  {{ range $y := $l1 }}<circle cx="50" cy="{{ $y }}" r="5" fill="url(#amlp-node-v)" />{{ end }}
-  {{ range $y := $l2 }}<circle cx="160" cy="{{ $y }}" r="5" fill="url(#amlp-node-f)" />{{ end }}
-  {{ range $y := $l3 }}<circle cx="270" cy="{{ $y }}" r="6" fill="url(#amlp-node-s)" />{{ end }}
+  {{ range $y := $l1 }}<circle cx="160" cy="{{ $y }}" r="10" fill="url(#amlp-node-v)"/>{{ end }}
+  {{ range $y := $l2 }}<circle cx="400" cy="{{ $y }}" r="10" fill="url(#amlp-node-f)"/>{{ end }}
+  {{ range $y := $l3 }}<circle cx="640" cy="{{ $y }}" r="12" fill="url(#amlp-node-s)"/>{{ end }}
 
-  {{/* labels */}}
-  <g font-family="JetBrains Mono, monospace" font-size="9" fill="#71717a">
-    <text x="50" y="135" text-anchor="middle">input</text>
-    <text x="160" y="135" text-anchor="middle">hidden</text>
-    <text x="270" y="135" text-anchor="middle">output</text>
+  {{/* layer labels */}}
+  <g font-family="JetBrains Mono, monospace" font-size="14" fill="#71717a">
+    <text x="160" y="305" text-anchor="middle">wejście</text>
+    <text x="400" y="305" text-anchor="middle">warstwa ukryta</text>
+    <text x="640" y="305" text-anchor="middle">wyjście</text>
   </g>
 
-  {{/* class labels */}}
-  <g font-family="JetBrains Mono, monospace" font-size="9">
-    <text x="284" y="48" fill="#22c55e" font-weight="bold">ham</text>
-    <text x="284" y="98" fill="#71717a">spam</text>
+  {{/* class labels next to output */}}
+  <g font-family="JetBrains Mono, monospace" font-size="13">
+    <text x="662" y="134" fill="#22c55e" font-weight="bold">ham</text>
+    <text x="662" y="214" fill="#71717a">spam</text>
   </g>
 </svg>

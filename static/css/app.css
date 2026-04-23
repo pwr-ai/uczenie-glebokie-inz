@@ -1,17 +1,6 @@
-/* Reveal-on-scroll animation baseline */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Scrollbar theming */
+/* ================================================================ */
+/* SCROLLBAR                                                        */
+/* ================================================================ */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #f4f4f5; }
 ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 5px; }
@@ -20,11 +9,13 @@ html.dark ::-webkit-scrollbar-track { background: #09090b; }
 html.dark ::-webkit-scrollbar-thumb { background: #27272a; }
 html.dark ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
 
-/* Theme toggle icon visibility */
+/* ================================================================ */
+/* THEME TOGGLE ICON VISIBILITY                                     */
+/* ================================================================ */
 .theme-icon-light { display: inline-block; }
-.theme-icon-dark { display: none; }
+.theme-icon-dark  { display: none; }
 html.dark .theme-icon-light { display: none; }
-html.dark .theme-icon-dark { display: inline-block; }
+html.dark .theme-icon-dark  { display: inline-block; }
 
 /* ================================================================ */
 /* TOOLTIP                                                          */
@@ -62,16 +53,11 @@ html:not(.dark) .tip {
     0 12px 30px -10px rgba(24, 24, 27, 0.18),
     0 0 0 1px rgba(228, 228, 231, 1);
 }
-.tip.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-.tip[data-placement="top"]    { transform: translateY(-6px) scale(0.97); }
+.tip.is-visible              { opacity: 1; transform: translateY(0) scale(1); }
+.tip[data-placement="top"]   { transform: translateY(-6px) scale(0.97); }
 .tip[data-placement="top"].is-visible    { transform: translateY(0) scale(1); }
-.tip[data-placement="bottom"] { transform: translateY(6px)  scale(0.97); }
 .tip[data-placement="bottom"].is-visible { transform: translateY(0) scale(1); }
 
-/* arrow — rotated square matching tooltip background */
 .tip-arrow {
   position: absolute;
   width: 9px;
@@ -89,75 +75,60 @@ html:not(.dark) .tip-arrow { box-shadow: 0 0 0 1px rgba(228, 228, 231, 1); }
   bottom: -4px;
   clip-path: polygon(-50% 50%, 50% 50%, 150% 50%, 150% 150%, -50% 150%);
 }
-
 .tip-body { display: block; }
 
 [data-tip] { cursor: help; }
 svg [data-tip] { pointer-events: bounding-box; }
 
 /* ================================================================ */
-/* ARCH SEGMENT CONTROL                                             */
+/* ARCHITEKTURY — BLOCK TABS + PANELS                               */
 /* ================================================================ */
-.arch-tab {
-  color: #71717a;
+.block-tab {
+  color: #52525b;
 }
-html.dark .arch-tab { color: #a1a1aa; }
-.arch-tab.is-active {
+html.dark .block-tab { color: #a1a1aa; }
+.block-tab:hover {
+  color: #18181b;
+  background: rgba(0, 0, 0, 0.03);
+}
+html.dark .block-tab:hover {
+  color: #f4f4f5;
+  background: rgba(255, 255, 255, 0.04);
+}
+.block-tab.is-active {
   background: linear-gradient(135deg, #8b5cf6, #d946ef);
   color: white;
-  box-shadow: 0 2px 8px -2px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 2px 10px -2px rgba(139, 92, 246, 0.5);
+}
+.block-tab.is-active:hover {
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #d946ef);
+}
+
+/* Panel visibility: only the panel matching #arch-card's data-active-block is shown.
+   Hidden panels use display:none, which halts their SMIL animations (GPU relief). */
+.arch-panel { display: none; }
+#arch-card[data-active-block="1"] .arch-panel[data-block="1"],
+#arch-card[data-active-block="2"] .arch-panel[data-block="2"],
+#arch-card[data-active-block="3"] .arch-panel[data-block="3"],
+#arch-card[data-active-block="4"] .arch-panel[data-block="4"] {
+  display: block;
+  animation: panel-in 0.25s ease-out;
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ================================================================ */
-/* HERO ARCH SWITCHER — display:none when hidden so SMIL halts      */
-/* ================================================================ */
-.net-slide {
-  transition: opacity 0.4s ease;
-}
-.net-slide[hidden] {
-  display: none !important; /* belt-and-braces — stops SMIL animations */
-}
-.net-slide:not([hidden]) {
-  opacity: 1;
-}
-
-/* ================================================================ */
-/* NETWORK PHASE PULSES (MLP)                                       */
-/* ================================================================ */
-#net-svg .net-forward,
-#net-svg .net-backward,
-#net-svg .net-step {
-  transition: opacity 0.35s ease;
-}
-#net-svg[data-phase="forward"]  .net-forward  { opacity: 1; }
-#net-svg[data-phase="forward"]  .net-backward { opacity: 0; }
-#net-svg[data-phase="forward"]  .net-step     { opacity: 0; }
-#net-svg[data-phase="backward"] .net-forward  { opacity: 0.12; }
-#net-svg[data-phase="backward"] .net-backward { opacity: 1; }
-#net-svg[data-phase="backward"] .net-step     { opacity: 0; }
-#net-svg[data-phase="step"]     .net-forward  { opacity: 0.1; }
-#net-svg[data-phase="step"]     .net-backward { opacity: 0.1; }
-#net-svg[data-phase="step"]     .net-step     { opacity: 1; }
-
-/* ================================================================ */
-/* REDUCED MOTION                                                    */
+/* REDUCED MOTION                                                   */
 /* ================================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .animate-gradient-x,
-  .animate-float,
-  .animate-ping,
-  .animate-shimmer {
-    animation: none !important;
-  }
-  /* Pause all SMIL animations in hero SVGs */
-  #net-svg animateMotion,
-  #net-svg animate,
-  #net-svg animateTransform,
-  .net-slide svg animateMotion,
-  .net-slide svg animate,
-  .net-slide svg animateTransform {
+  .tip { transition: opacity 0.1s linear; transform: none !important; }
+  .arch-panel { animation: none !important; }
+  svg animate,
+  svg animateMotion,
+  svg animateTransform {
     animation-play-state: paused;
   }
-  .tip { transition: opacity 0.1s linear; transform: none !important; }
 }

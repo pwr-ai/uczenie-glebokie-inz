@@ -1,17 +1,3 @@
-// ===== Scroll reveal =====
-const io = new IntersectionObserver(
-  (entries) => {
-    for (const e of entries) {
-      if (e.isIntersecting) {
-        e.target.classList.add("in");
-        io.unobserve(e.target);
-      }
-    }
-  },
-  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-);
-document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-
 // ===== Lucide icons =====
 if (window.lucide) window.lucide.createIcons();
 
@@ -29,7 +15,6 @@ if (window.lucide) window.lucide.createIcons();
     if (currentEl === el) return;
     currentEl = el;
     body.textContent = el.getAttribute("data-tip");
-    // measure after content set
     requestAnimationFrame(() => place(el));
   }
 
@@ -40,7 +25,6 @@ if (window.lucide) window.lucide.createIcons();
 
   function place(el) {
     const anchor = el.getBoundingClientRect();
-    // ensure tip is momentarily measurable
     tip.style.left = "0px";
     tip.style.top = "0px";
     const r = tip.getBoundingClientRect();
@@ -48,14 +32,13 @@ if (window.lucide) window.lucide.createIcons();
     const GAP = 10;
     const spaceAbove = anchor.top;
     const spaceBelow = window.innerHeight - anchor.bottom;
-    const placement = spaceBelow >= r.height + GAP + 8 || spaceBelow >= spaceAbove
-      ? "bottom"
-      : "top";
+    const placement =
+      spaceBelow >= r.height + GAP + 8 || spaceBelow >= spaceAbove
+        ? "bottom"
+        : "top";
     tip.dataset.placement = placement;
 
-    let top = placement === "bottom"
-      ? anchor.bottom + GAP
-      : anchor.top - r.height - GAP;
+    let top = placement === "bottom" ? anchor.bottom + GAP : anchor.top - r.height - GAP;
     let left = anchor.left + anchor.width / 2 - r.width / 2;
 
     const margin = 8;
@@ -64,7 +47,6 @@ if (window.lucide) window.lucide.createIcons();
     tip.style.left = left + "px";
     tip.style.top = top + "px";
 
-    // arrow horizontal position (centered over the anchor, clamped to tip body)
     const arrowX = Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, r.width - 12));
     arrow.style.left = arrowX - 4.5 + "px";
 
@@ -124,8 +106,10 @@ if (window.lucide) window.lucide.createIcons();
     current = id;
     links.forEach((a) => {
       const on = a.dataset.nav === id;
-      a.classList.toggle("text-white", on);
-      a.classList.toggle("text-zinc-400", !on);
+      a.classList.toggle("text-zinc-900", on);
+      a.classList.toggle("dark:text-white", on);
+      a.classList.toggle("text-zinc-600", !on);
+      a.classList.toggle("dark:text-zinc-400", !on);
     });
     const link = id ? linkMap.get(id) : null;
     if (!indicator) return;
@@ -140,17 +124,13 @@ if (window.lucide) window.lucide.createIcons();
     indicator.style.opacity = "1";
   }
 
-  // Watch sections: pick the one whose top is closest to (but past) the nav
-  const navHeight = 72; // approx sticky header height
+  const navHeight = 72;
   const io = new IntersectionObserver(
     (entries) => {
-      // Find the entry most visible near the top
       const visible = entries
         .filter((e) => e.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) {
-        setActive(visible[0].target.id);
-      }
+      if (visible[0]) setActive(visible[0].target.id);
     },
     {
       rootMargin: `-${navHeight}px 0px -55% 0px`,
@@ -159,7 +139,6 @@ if (window.lucide) window.lucide.createIcons();
   );
   sections.forEach((s) => io.observe(s));
 
-  // Recompute indicator on resize
   window.addEventListener("resize", () => {
     if (current) {
       const link = linkMap.get(current);
@@ -172,198 +151,27 @@ if (window.lucide) window.lucide.createIcons();
     }
   });
 
-  // Clear highlight when scrolled back to the hero
-  window.addEventListener("scroll", () => {
-    if (window.scrollY < 100) setActive(null);
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (window.scrollY < 100) setActive(null);
+    },
+    { passive: true }
+  );
 })();
 
-// ===== Parallax on hero card =====
-const art = document.querySelector(".animate-float");
-if (art && window.matchMedia("(pointer: fine)").matches) {
-  window.addEventListener("mousemove", (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 10;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
-    art.style.transform = `translate(${x}px, ${y}px)`;
-  });
-}
+// ===== Architektury: block tabs (Blok I–IV) =====
+(function blockTabs() {
+  const card = document.getElementById("arch-card");
+  if (!card) return;
+  const tabs = card.querySelectorAll(".block-tab");
 
-// ===== Training-loop simulation =====
-(function trainLoop() {
-  const ep = document.getElementById("t-epoch");
-  if (!ep) return;
-  const lossEl = document.getElementById("t-loss");
-  const accEl = document.getElementById("t-acc");
-  const lrEl = document.getElementById("t-lr");
-  const bestEl = document.getElementById("t-best");
-  const phaseEl = document.getElementById("t-phase");
-  const progEl = document.getElementById("t-progress");
-  const line = document.getElementById("t-chart-line");
-  const area = document.getElementById("t-chart-area");
-  const net = document.getElementById("net-svg");
-  const phaseDot = document.getElementById("net-phase-dot");
-
-  const MAX_EPOCH = 100;
-  const HIST = 40;
-  const W = 200, H = 40;
-  const history = [];
-  let epoch = 1;
-  let best = Infinity;
-  let phaseIdx = 0;
-  const phases = [
-    { name: "FORWARD", color: "text-emerald-400", dot: "#34d399" },
-    { name: "BACKWARD", color: "text-amber-400", dot: "#fbbf24" },
-    { name: "STEP", color: "text-violet-400", dot: "#a78bfa" },
-  ];
-
-  // Architecture carousel — manual tabs + auto-cycle every N epochs
-  const netStack = document.getElementById("net-stack");
-  const archTabs = document.querySelectorAll(".arch-tab");
-  const ARCHS = ["mlp", "cnn", "rnn"];
-  // Per-arch training-curve params so each feels distinct
-  const ARCH_PARAMS = {
-    mlp: { tau: 22, floor: 0.04, accCeil: 0.94 },
-    cnn: { tau: 15, floor: 0.02, accCeil: 0.99 },
-    rnn: { tau: 30, floor: 0.08, accCeil: 0.88 },
-  };
-  let currentArch = "mlp";
-  let archIdx = 0;
-  let lastManualSwitch = -9999; // don't block the first auto-cycle
-  const ARCH_SWITCH_EVERY = 6; // epochs
-  const MANUAL_OVERRIDE_EPOCHS = 10; // pause auto-cycle after manual click
-
-  function primeHistory() {
-    history.length = 0;
-    best = Infinity;
-    for (let i = 0; i < 8; i++) {
-      const l = computeLoss(i + 1);
-      history.push(l);
-      if (l < best) best = l;
-    }
+  function setActive(n) {
+    card.dataset.activeBlock = String(n);
+    tabs.forEach((t) => t.classList.toggle("is-active", t.dataset.block === String(n)));
   }
 
-  function resetTraining() {
-    epoch = 1;
-    phaseIdx = 0;
-    if (progEl) progEl.style.width = "0%";
-    primeHistory();
-    renderChart();
-    if (ep)     ep.textContent = history.length;
-    if (lossEl) lossEl.textContent = history[history.length - 1].toFixed(4);
-    if (bestEl) bestEl.textContent = "best " + best.toFixed(4);
-    epoch = history.length + 1;
-  }
-
-  function setArch(next, manual) {
-    if (!netStack) return;
-    archIdx = ARCHS.indexOf(next);
-    if (archIdx < 0) archIdx = 0;
-    currentArch = next;
-    netStack.dataset.arch = next;
-    archTabs.forEach((t) => t.classList.toggle("is-active", t.dataset.archTab === next));
-    // Toggle `hidden` on slides: SMIL animations halt under display:none, saving GPU.
-    document.querySelectorAll(".net-slide").forEach((el) => {
-      el.hidden = !el.classList.contains("net-slide-" + next);
-    });
-    resetTraining();
-    if (manual) lastManualSwitch = epoch;
-  }
-
-  archTabs.forEach((tab) => {
-    tab.addEventListener("click", () => setArch(tab.dataset.archTab, true));
-  });
-
-  // Realistic-looking loss curve per arch
-  function computeLoss(e) {
-    const p = ARCH_PARAMS[currentArch] || ARCH_PARAMS.mlp;
-    const base = (1.5 - p.floor) * Math.exp(-e / p.tau) + p.floor;
-    const noise = (Math.random() - 0.5) * 0.08 * (1 + 3 * Math.exp(-e / 15));
-    const plateau = e > 60 ? Math.sin(e * 0.5) * 0.015 : 0;
-    return Math.max(p.floor * 0.75, base + noise + plateau);
-  }
-
-  function computeAcc(loss) {
-    const p = ARCH_PARAMS[currentArch] || ARCH_PARAMS.mlp;
-    const a = Math.max(0, p.accCeil - loss * 0.58);
-    return Math.min(p.accCeil, a + (Math.random() - 0.5) * 0.01);
-  }
-
-  function fmtLR(e) {
-    // cosine-ish schedule just for flavor
-    const r = 3e-4 * (0.5 + 0.5 * Math.cos((e / MAX_EPOCH) * Math.PI));
-    return r.toExponential(1).replace("e-", "e-");
-  }
-
-  function renderChart() {
-    if (history.length < 2) return;
-    const min = Math.min(...history);
-    const max = Math.max(...history);
-    const span = Math.max(0.05, max - min);
-    const pts = history.map((v, i) => {
-      const x = (i / (HIST - 1)) * W;
-      const y = H - ((v - min) / span) * (H - 4) - 2;
-      return [x, y];
-    });
-    line.setAttribute("points", pts.map((p) => p.join(",")).join(" "));
-    const areaD =
-      "M " + pts.map((p) => p.join(",")).join(" L ") +
-      ` L ${pts[pts.length - 1][0]},${H} L ${pts[0][0]},${H} Z`;
-    area.setAttribute("d", areaD);
-  }
-
-  function pulseNetwork(phase) {
-    if (!net) return;
-    net.dataset.phase = phase;
-  }
-
-  let tickCount = 0;
-  function tick() {
-    // Rotate phases every tick (~3 phases per epoch)
-    const phase = phases[phaseIdx % phases.length];
-    phaseEl.textContent = phase.name;
-    phaseEl.className = "font-mono " + phase.color;
-    if (phaseDot) phaseDot.setAttribute("fill", phase.dot);
-    pulseNetwork(phase.name.toLowerCase());
-    phaseIdx++;
-
-    // Advance epoch once every 3 ticks
-    if (tickCount % 3 === 0) {
-      const loss = computeLoss(epoch);
-      const acc = computeAcc(loss);
-      history.push(loss);
-      if (history.length > HIST) history.shift();
-      if (loss < best) best = loss;
-
-      ep.textContent = epoch;
-      lossEl.textContent = loss.toFixed(4);
-      accEl.textContent = (acc * 100).toFixed(1) + "%";
-      lrEl.textContent = fmtLR(epoch);
-      bestEl.textContent = "best " + best.toFixed(4);
-      progEl.style.width = (epoch / MAX_EPOCH) * 100 + "%";
-      renderChart();
-
-      epoch++;
-      if (epoch > MAX_EPOCH) {
-        // restart with a tiny "reset flash"
-        setTimeout(() => resetTraining(), 800);
-      }
-
-      // auto-cycle architecture every N epochs (unless user recently clicked a tab)
-      if (
-        netStack &&
-        epoch > 1 &&
-        (epoch - 1) % ARCH_SWITCH_EVERY === 0 &&
-        epoch - lastManualSwitch > MANUAL_OVERRIDE_EPOCHS
-      ) {
-        setArch(ARCHS[(archIdx + 1) % ARCHS.length], false);
-      }
-    }
-
-    tickCount++;
-  }
-
-  // Initial bootstrap: activate MLP, which primes history via resetTraining()
-  setArch(ARCHS[0], false);
-
-  setInterval(tick, 550);
+  tabs.forEach((tab) => tab.addEventListener("click", () => setActive(tab.dataset.block)));
+  // prime initial state based on markup (data-active-block="1")
+  setActive(card.dataset.activeBlock || "1");
 })();

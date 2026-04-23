@@ -1,57 +1,91 @@
-<svg viewBox="0 0 340 140" class="h-full w-full">
+<svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" class="h-full w-full">
   <defs>
     <radialGradient id="acnn-active" cx="0.5" cy="0.5">
-      <stop offset="0" stop-color="#e879f9" stop-opacity="0.9"/>
-      <stop offset="1" stop-color="#c026d3" stop-opacity="0.2"/>
+      <stop offset="0" stop-color="#e879f9" stop-opacity="1"/>
+      <stop offset="1" stop-color="#c026d3" stop-opacity="0.25"/>
     </radialGradient>
     <marker id="acnn-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0,0 L10,5 L0,10 Z" fill="#71717a"/>
     </marker>
   </defs>
 
-  {{/* ====== INPUT 8×8 ====== */}}
-  <g transform="translate(20,30)">
-    <rect width="80" height="80" rx="4" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
-    {{ range $y := (seq 0 7) }}{{ range $x := (seq 0 7) }}
-      <rect x="{{ mul $x 10 | add 1 }}" y="{{ mul $y 10 | add 1 }}" width="8" height="8" rx="1"
-            fill="rgba({{ mod (add (mul $x 31) (mul $y 17)) 120 | add 80 }},{{ mod (add (mul $x 23) (mul $y 41)) 100 | add 90 }},{{ mod (add (mul $x 13) (mul $y 53)) 130 | add 100 }},0.7)" />
+  {{/* digit "3" 7×7 */}}
+  {{ $digit := slice
+      (slice 0 1 1 1 1 1 0)
+      (slice 1 0 0 0 0 1 0)
+      (slice 0 0 0 0 1 0 0)
+      (slice 0 0 1 1 0 0 0)
+      (slice 0 0 0 0 1 0 0)
+      (slice 1 0 0 0 0 1 0)
+      (slice 0 1 1 1 1 0 0) }}
+
+  {{/* ===== INPUT 7×7 ===== */}}
+  <g transform="translate(50,60)">
+    <rect width="196" height="196" rx="8" fill="#0a0a0a" stroke="#3f3f46" stroke-width="1"/>
+    {{ range $y, $row := $digit }}{{ range $x, $v := $row }}
+      {{ $fill := "#18181b" }}
+      {{ if eq $v 1 }}{{ $fill = "#f4f4f5" }}{{ end }}
+      <rect x="{{ add 2 (mul $x 28) }}" y="{{ add 2 (mul $y 28) }}" width="24" height="24" rx="3" fill="{{ $fill }}"/>
     {{ end }}{{ end }}
-    {{/* kernel 3×3 — static at top-left */}}
-    <rect x="0" y="0" width="30" height="30" rx="3" fill="rgba(167,139,250,0.22)" stroke="#a78bfa" stroke-width="1.8"/>
-    <text x="40" y="-8" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa">input 8×8</text>
+    <text x="98" y="-12" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">obraz wejściowy 7×7</text>
   </g>
 
-  {{/* arrow + label */}}
+  {{/* ===== KERNEL 3×3 (Sobel-X) raster scan: 5×5 = 25 positions over 6s ===== */}}
   <g>
-    <path d="M 110 70 L 150 70" stroke="#71717a" stroke-width="1.2" marker-end="url(#acnn-arr)"/>
-    <text x="130" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa">conv 3×3</text>
+    <rect x="0" y="0" width="84" height="84" rx="5"
+          fill="rgba(167,139,250,0.18)" stroke="#a78bfa" stroke-width="2">
+      <animateTransform attributeName="transform" type="translate"
+        dur="6s" repeatCount="indefinite" calcMode="discrete"
+        keyTimes="0;0.04;0.08;0.12;0.16;0.2;0.24;0.28;0.32;0.36;0.4;0.44;0.48;0.52;0.56;0.6;0.64;0.68;0.72;0.76;0.8;0.84;0.88;0.92;0.96;1"
+        values="50,60; 78,60; 106,60; 134,60; 162,60; 50,88; 78,88; 106,88; 134,88; 162,88; 50,116; 78,116; 106,116; 134,116; 162,116; 50,144; 78,144; 106,144; 134,144; 162,144; 50,172; 78,172; 106,172; 134,172; 162,172; 50,60"/>
+    </rect>
   </g>
 
-  {{/* ====== FEATURE MAP 6×6 — fully populated ====== */}}
-  <g transform="translate(165,40)">
-    <rect width="60" height="60" rx="4" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
-    {{ range $y := (seq 0 5) }}{{ range $x := (seq 0 5) }}
-      {{/* vary intensity a bit for visual interest */}}
-      {{ $intensity := mod (add (mul $x 37) (mul $y 19)) 100 }}
-      <rect x="{{ mul $x 10 | add 1 }}" y="{{ mul $y 10 | add 1 }}" width="8" height="8" rx="1" fill="url(#acnn-active)" opacity="{{ div (add $intensity 40) 140.0 }}"/>
+  {{/* arrow */}}
+  <g>
+    <path d="M 270 158 L 330 158" stroke="#71717a" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
+    <text x="300" y="148" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#a78bfa">filtr 3×3</text>
+    <text x="300" y="175" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Sobel-X</text>
+  </g>
+
+  {{/* ===== FEATURE MAP 5×5 — cells fill in raster order ===== */}}
+  <g transform="translate(340,80)">
+    <rect width="160" height="160" rx="6" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+    {{ range $y := (seq 0 4) }}{{ range $x := (seq 0 4) }}
+      {{ $idx := add (mul $y 5) $x }}
+      {{ $begin := mul $idx 0.24 }}
+      <rect x="{{ add 2 (mul $x 32) }}" y="{{ add 2 (mul $y 32) }}" width="28" height="28" rx="3" fill="url(#acnn-active)" opacity="0">
+        <animate attributeName="opacity"
+          values="0;0;1;1;0"
+          keyTimes="0;{{ div $begin 6.0 }};{{ div (add $begin 0.15) 6.0 }};0.98;1"
+          dur="6s" repeatCount="indefinite"/>
+      </rect>
     {{ end }}{{ end }}
-    <text x="30" y="-8" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa">feature map 6×6</text>
+    <text x="80" y="-12" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">mapa cech 5×5</text>
   </g>
 
-  {{/* arrow to classifier */}}
+  {{/* arrow → classifier */}}
   <g>
-    <path d="M 235 70 L 275 70" stroke="#71717a" stroke-width="1.2" marker-end="url(#acnn-arr)"/>
-    <text x="255" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa">pool + fc</text>
+    <path d="M 512 158 L 565 158" stroke="#71717a" stroke-width="1.5" marker-end="url(#acnn-arr)"/>
+    <text x="538" y="148" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#a1a1aa">pool + fc</text>
   </g>
 
-  {{/* ====== CLASSIFICATION BARS (static) ====== */}}
-  <g transform="translate(285,40)">
-    <rect width="45" height="60" rx="4" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
-    <rect x="6" y="10" width="20" height="5" rx="1" fill="#38bdf8" opacity="0.4"/>
-    <rect x="6" y="20" width="12" height="5" rx="1" fill="#38bdf8" opacity="0.3"/>
-    <rect x="6" y="30" width="33" height="5" rx="1" fill="#22c55e" opacity="0.9"/>
-    <rect x="6" y="40" width="10" height="5" rx="1" fill="#38bdf8" opacity="0.3"/>
-    <text x="22" y="-8" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa">softmax</text>
-    <text x="42" y="34" font-family="JetBrains Mono, monospace" font-size="6" fill="#22c55e">cat</text>
+  {{/* ===== CLASSIFIER (static softmax bars for digits 0-9) ===== */}}
+  {{ $finals := slice 0.02 0.04 0.02 0.82 0.02 0.03 0.01 0.02 0.01 0.01 }}
+  <g transform="translate(580,60)">
+    <rect x="-8" y="-8" width="190" height="200" rx="6" fill="#0a0a0a" stroke="#3f3f46" stroke-width="1"/>
+    <text x="87" y="-16" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">softmax — cyfra</text>
+    {{ range $i, $c := (slice "0" "1" "2" "3" "4" "5" "6" "7" "8" "9") }}
+      {{ $is3 := eq $i 3 }}
+      {{ $barColor := "rgba(113,113,122,0.35)" }}
+      {{ $strokeColor := "#52525b" }}
+      {{ $labelColor := "#71717a" }}
+      {{ if $is3 }}{{ $barColor = "rgba(34,197,94,0.85)" }}{{ $strokeColor = "#22c55e" }}{{ $labelColor = "#22c55e" }}{{ end }}
+      <g transform="translate(0,{{ mul $i 18 }})">
+        <text x="4" y="9" font-family="JetBrains Mono, monospace" font-size="11" font-weight="{{ if $is3 }}bold{{ else }}normal{{ end }}" fill="{{ $labelColor }}">{{ $c }}</text>
+        <rect x="20" y="2" width="140" height="10" rx="2" fill="#18181b" stroke="#27272a"/>
+        <rect x="20" y="2" width="{{ mul (index $finals $i) 140 }}" height="10" rx="2" fill="{{ $barColor }}" stroke="{{ $strokeColor }}" stroke-width="0.8"/>
+      </g>
+    {{ end }}
   </g>
 </svg>

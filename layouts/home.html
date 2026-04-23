@@ -2,9 +2,8 @@
 <div id="top"></div>
 
 {{/* ============ HERO ============ */}}
-<section class="relative mx-auto max-w-7xl px-6 pt-16 pb-24 sm:pt-20 sm:pb-28">
-  {{/* ----- header + subheader (centered, narrow) ----- */}}
-  <div class="reveal mx-auto max-w-3xl text-center">
+<section class="relative mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-20 sm:pb-24">
+  <div class="mx-auto max-w-3xl text-center">
     <div class="flex flex-wrap items-center justify-center gap-2">
       <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 backdrop-blur transition-colors hover:border-violet-500/40">
         {{ partial "pwr-crest.html" (dict "class" "h-4 w-4 text-violet-700 dark:text-violet-300" "id" "hero") }}
@@ -23,7 +22,7 @@
 
     <h1 class="mt-6 text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
       <span class="inline-block text-zinc-900 dark:text-zinc-100">Uczenie</span>
-      <span class="inline-block bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600 dark:from-violet-400 dark:via-fuchsia-400 dark:to-sky-400 bg-clip-text bg-[length:200%_auto] text-transparent animate-gradient-x">Głębokie</span>
+      <span class="inline-block bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600 dark:from-violet-400 dark:via-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">Głębokie</span>
     </h1>
 
     <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -31,13 +30,13 @@
     </p>
 
     <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-      <a href="#wyklady" class="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-zinc-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-zinc-950 shadow-lg shadow-violet-500/10 transition-all hover:shadow-violet-500/30">
-        Program wykładów
+      <a href="#architektury" class="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-zinc-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-zinc-950 shadow-lg shadow-violet-500/10 transition-all hover:shadow-violet-500/30">
+        Zobacz architektury
         <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5"></i>
       </a>
-      <a href="#laboratoria" class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-5 py-2.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 backdrop-blur transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
-        <i data-lucide="flask-conical" class="h-4 w-4"></i>
-        Laboratoria
+      <a href="#wyklady" class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-5 py-2.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 backdrop-blur transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
+        <i data-lucide="book-open" class="h-4 w-4"></i>
+        Program wykładów
       </a>
     </div>
 
@@ -50,199 +49,70 @@
       {{ end }}
     </dl>
   </div>
-
-  {{/* ----- FULL-WIDTH TRAINING DASHBOARD ----- */}}
-  <div class="reveal mx-auto mt-14 max-w-6xl">
-    <div class="relative">
-      <div class="pointer-events-none absolute inset-x-10 -top-6 h-32 rounded-full bg-gradient-to-r from-violet-500/20 via-fuchsia-500/20 to-sky-500/20 blur-2xl"></div>
-
-      <div id="train-card" class="relative flex w-full flex-col rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-xl shadow-zinc-900/5 dark:shadow-none p-5 sm:p-6 overflow-hidden">
-
-        {{/* ===== top bar ===== */}}
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-mono text-zinc-500 dark:text-zinc-500">
-          <div class="flex items-center gap-1.5">
-            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-            <span id="t-phase" data-tip="Każdy krok uczenia składa się z trzech etapów: sieć liczy odpowiedź (FORWARD), sprawdza, jak bardzo się pomyliła (BACKWARD), a potem lekko poprawia swoje wagi (STEP)." class="font-semibold text-emerald-600 dark:text-emerald-400">FORWARD</span>
-          </div>
-          <span data-tip="Obliczenia wykonują się na karcie graficznej. GPU jest znacznie szybsze od zwykłego procesora przy uczeniu sieci neuronowych." class="flex items-center gap-1 text-zinc-600 dark:text-zinc-400">
-            <i data-lucide="cpu" class="h-3.5 w-3.5"></i> cuda:0
-          </span>
-          <span data-tip="„Tempo uczenia“ — jak duże poprawki sieć robi w wagach po każdym błędzie. Zbyt duże rozchwiewa trening, zbyt małe sprawia, że uczy się za wolno.">lr <span id="t-lr" class="text-zinc-700 dark:text-zinc-300">3e-4</span></span>
-          <span class="ml-auto flex items-center gap-1.5">
-            <i data-lucide="activity" class="h-3 w-3"></i>
-            train loss · <span id="t-best" class="text-zinc-700 dark:text-zinc-300">—</span>
-          </span>
-        </div>
-
-        {{/* ===== ARCHITECTURE TABS (main) ===== */}}
-        <div id="arch-tabs" class="mt-4 grid grid-cols-3 gap-1 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-950/50 p-1">
-          <button type="button" data-arch-tab="mlp" data-tip="Multilayer Perceptron — najprostsza sieć głęboka. Warstwy gęsto połączonych neuronów operujących na wektorze liczb." class="arch-tab group inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
-            <i data-lucide="git-fork" class="h-4 w-4"></i> MLP
-          </button>
-          <button type="button" data-arch-tab="cnn" data-tip="Convolutional Neural Network — sieć specjalizująca się w obrazach. Używa filtrów przesuwających się po obrazie, żeby wykrywać kształty i wzorce." class="arch-tab group inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
-            <i data-lucide="image" class="h-4 w-4"></i> CNN
-          </button>
-          <button type="button" data-arch-tab="rnn" data-tip="Recurrent Neural Network — sieć dla danych sekwencyjnych (tekst, mowa). Analizuje wejście krok po kroku i „pamięta“ kontekst." class="arch-tab group inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
-            <i data-lucide="message-square" class="h-4 w-4"></i> RNN
-          </button>
-        </div>
-
-        {{/* ===== metrics row (horizontal) ===== */}}
-        <div class="mt-3 grid grid-cols-3 gap-3">
-          <div data-tip="Jedna epoka = jedno przejście sieci przez cały zbiór treningowy. Typowo trenuje się przez kilkadziesiąt do kilkuset epok." class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-3 py-2">
-            <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">epoch</div>
-            <div class="font-mono text-2xl font-semibold"><span id="t-epoch">1</span><span class="text-zinc-400 dark:text-zinc-600 text-lg">/100</span></div>
-          </div>
-          <div data-tip="Miara pomyłek sieci — im mniejsza, tym lepsza sieć. Podczas treningu powinna spadać z epoki na epokę." class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-3 py-2">
-            <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">loss</div>
-            <div class="font-mono text-2xl font-semibold text-rose-700 dark:text-rose-300" id="t-loss">1.523</div>
-          </div>
-          <div data-tip="Accuracy — procent poprawnie sklasyfikowanych przykładów. Rośnie wraz ze spadkiem straty." class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-3 py-2">
-            <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">acc</div>
-            <div class="font-mono text-2xl font-semibold text-emerald-700 dark:text-emerald-300" id="t-acc">12.3%</div>
-          </div>
-        </div>
-
-        {{/* ===== BIG animation area (full width, landscape aspect) ===== */}}
-        <div id="net-stack" data-arch="mlp" class="relative mt-4 aspect-[2/1] sm:aspect-[12/5] w-full rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/60 dark:bg-zinc-950/50 overflow-hidden">
-          <div class="net-slide net-slide-mlp absolute inset-0 p-2">{{ partial "neural-net.html" . }}</div>
-          <div class="net-slide net-slide-cnn absolute inset-0 p-2" hidden>{{ partial "hero-cnn.html" . }}</div>
-          <div class="net-slide net-slide-rnn absolute inset-0 p-2" hidden>{{ partial "hero-rnn.html" . }}</div>
-        </div>
-
-        {{/* ===== loss sparkline (wider, short) ===== */}}
-        <div data-tip="Wykres straty w czasie — pokazuje, jak sieć poprawia się epoka po epoce. Spadający wykres oznacza, że trening działa." class="mt-3 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 px-3 py-2">
-          <svg id="t-chart" viewBox="0 0 200 40" preserveAspectRatio="none" class="h-10 w-full">
-            <defs>
-              <linearGradient id="loss-fill" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="#f43f5e" stop-opacity="0.4" />
-                <stop offset="1" stop-color="#f43f5e" stop-opacity="0" />
-              </linearGradient>
-            </defs>
-            <path id="t-chart-area" d="" fill="url(#loss-fill)" />
-            <polyline id="t-chart-line" points="" fill="none" stroke="#fb7185" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" />
-          </svg>
-        </div>
-
-        {{/* ===== progress bar ===== */}}
-        <div class="mt-3 h-1 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-          <div id="t-progress" class="h-full w-0 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-sky-500 transition-all duration-300"></div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
-{{/* ============ ARCHITEKTURY W AKCJI ============ */}}
+{{/* ============ ARCHITEKTURY ============ */}}
 <section id="architektury" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
-  <div class="reveal mx-auto max-w-2xl text-center">
+  <div class="mx-auto max-w-2xl text-center">
     <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Architektury <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">sieci głębokich</span></h2>
+    <p class="mt-4 text-zinc-600 dark:text-zinc-400">Cztery idee, które stoją za kolejnymi blokami kursu. Kliknij zakładkę, aby zobaczyć, jak dana rodzina sieci działa.</p>
   </div>
 
-  <div class="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-    {{/* ====== Blok I · MLP ====== */}}
-    <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-violet-500/40">
-      <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-violet-500/10 blur-3xl"></div>
-      <div class="relative">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
-            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-violet-500/30 bg-violet-500/10 text-violet-700 dark:text-violet-300">
-              <i data-lucide="git-fork" class="h-5 w-5"></i>
-            </div>
-            <div>
-              <span class="font-mono text-[10px] text-zinc-500">Blok I</span>
-              <h3 class="text-base font-semibold leading-tight">MLP — sieć gęsta</h3>
-            </div>
-          </div>
-          <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-0.5 font-mono text-[10px] text-zinc-500">fc + ReLU</span>
-        </div>
-        <div class="mt-4 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3 aspect-[17/7] overflow-hidden">
-          {{ partial "arch-mlp.html" . }}
-        </div>
-        <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Najprostsza sieć głęboka. Wektor liczb wejściowych przepływa przez kolejne warstwy neuronów i zamienia się w decyzję — np. czy wiadomość to spam.</p>
-      </div>
-    </article>
+  <div id="arch-card" data-active-block="1" class="mx-auto mt-12 max-w-6xl rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-xl shadow-zinc-900/5 dark:shadow-none p-4 sm:p-6 overflow-hidden">
+    {{/* ===== block tabs ===== */}}
+    <div role="tablist" class="block-tabs grid grid-cols-2 sm:grid-cols-4 gap-1 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-950/50 p-1">
+      <button type="button" role="tab" data-block="1" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
+        <i data-lucide="git-fork" class="h-4 w-4"></i> Blok I
+      </button>
+      <button type="button" role="tab" data-block="2" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
+        <i data-lucide="image" class="h-4 w-4"></i> Blok II
+      </button>
+      <button type="button" role="tab" data-block="3" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
+        <i data-lucide="message-square" class="h-4 w-4"></i> Blok III
+      </button>
+      <button type="button" role="tab" data-block="4" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-mono font-semibold transition-all">
+        <i data-lucide="scan-search" class="h-4 w-4"></i> Blok IV
+      </button>
+    </div>
 
-    {{/* ====== Blok II · CNN ====== */}}
-    <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-fuchsia-500/40">
-      <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-fuchsia-500/10 blur-3xl"></div>
-      <div class="relative">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
-            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300">
-              <i data-lucide="image" class="h-5 w-5"></i>
-            </div>
-            <div>
-              <span class="font-mono text-[10px] text-zinc-500">Blok II</span>
-              <h3 class="text-base font-semibold leading-tight">CNN — splot 2D</h3>
-            </div>
-          </div>
-          <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-0.5 font-mono text-[10px] text-zinc-500">conv3×3</span>
+    {{/* ===== panels ===== */}}
+    {{ $blocks := slice
+      (dict "n" "1" "roman" "I" "accent" "violet" "title" "MLP — fundament"
+            "desc" "Fundament całej dziedziny. Sieć neuronowa uczy się przekształcać liczby wejściowe w oczekiwany wynik, stopniowo dopasowując wagi połączeń między neuronami. Wszystkie nowoczesne architektury zaczynają się tutaj."
+            "partial" "arch-mlp.html")
+      (dict "n" "2" "roman" "II" "accent" "fuchsia" "title" "CNN — widzenie maszynowe"
+            "desc" "Sieci widzące lokalnie. Filtry przesuwane po obrazie budują coraz bardziej abstrakcyjne rozumienie: najpierw krawędzie, potem kształty, wreszcie całe obiekty. Ten sam pomysł napędza rozpoznawanie twarzy, obrazowanie medyczne i widzenie samochodów autonomicznych."
+            "partial" "arch-cnn.html")
+      (dict "n" "3" "roman" "III" "accent" "sky" "title" "RNN — dane sekwencyjne"
+            "desc" "Sieci pamiętające kontekst. Przetwarzają tekst, mowę czy szeregi czasowe element po elemencie, przekazując pamięć z poprzedniego kroku do kolejnego. Ta sama rodzina modeli stoi za wieloma zastosowaniami w NLP i rozumieniu mowy."
+            "partial" "arch-rnn.html")
+      (dict "n" "4" "roman" "IV" "accent" "emerald" "title" "Wyjaśnialność"
+            "desc" "Rozumieć, dlaczego sieć odpowiada tak, a nie inaczej. Rodzina metod wyjaśnialności (np. Grad-CAM) pokazuje, które elementy wejścia wpłynęły na decyzję modelu — kluczowe, gdy sieć wspiera ważne decyzje."
+            "partial" "arch-gradcam.html") }}
+    {{ range $b := $blocks }}
+      <div class="arch-panel mt-6" data-block="{{ $b.n }}">
+        <header class="max-w-2xl">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-{{ $b.accent }}-700 dark:text-{{ $b.accent }}-300">Blok {{ $b.roman }}</span>
+          <h3 class="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">{{ $b.title }}</h3>
+          <p class="mt-3 text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400">{{ $b.desc }}</p>
+        </header>
+        <div class="mt-6 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-950/60 p-3 sm:p-4 aspect-[2/1] sm:aspect-[5/2] w-full overflow-hidden">
+          {{ partial $b.partial . }}
         </div>
-        <div class="mt-4 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3 aspect-[17/7] overflow-hidden">
-          {{ partial "arch-cnn.html" . }}
-        </div>
-        <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Filtr przesuwa się po obrazie, wykrywając w każdym miejscu lokalne wzorce — krawędzie, tekstury, kształty. Z tego powstają „mapy cech“ przekazywane dalej.</p>
       </div>
-    </article>
-
-    {{/* ====== Blok III · RNN ====== */}}
-    <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/40">
-      <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-sky-500/10 blur-3xl"></div>
-      <div class="relative">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
-            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-700 dark:text-sky-300">
-              <i data-lucide="message-square" class="h-5 w-5"></i>
-            </div>
-            <div>
-              <span class="font-mono text-[10px] text-zinc-500">Blok III</span>
-              <h3 class="text-base font-semibold leading-tight">RNN — sekwencje</h3>
-            </div>
-          </div>
-          <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-0.5 font-mono text-[10px] text-zinc-500">h<sub>t</sub> → h<sub>t+1</sub></span>
-        </div>
-        <div class="mt-4 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3 aspect-[17/7] overflow-hidden">
-          {{ partial "arch-rnn.html" . }}
-        </div>
-        <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Sieć czyta sekwencję krok po kroku i „pamięta“ kontekst w stanie ukrytym h<sub>t</sub>. Dzięki temu nadaje się do tekstu, mowy i innych danych uporządkowanych w czasie.</p>
-      </div>
-    </article>
-
-    {{/* ====== Blok IV · Grad-CAM ====== */}}
-    <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-emerald-500/40">
-      <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl"></div>
-      <div class="relative">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
-            <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">
-              <i data-lucide="scan-search" class="h-5 w-5"></i>
-            </div>
-            <div>
-              <span class="font-mono text-[10px] text-zinc-500">Blok IV</span>
-              <h3 class="text-base font-semibold leading-tight">Grad-CAM — XAI</h3>
-            </div>
-          </div>
-          <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/50 px-2 py-0.5 font-mono text-[10px] text-zinc-500">heatmap</span>
-        </div>
-        <div class="mt-4 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3 aspect-[17/7] overflow-hidden">
-          {{ partial "arch-gradcam.html" . }}
-        </div>
-        <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Wyjaśnialność predykcji — mapa cieplna pokazuje, które fragmenty obrazu najbardziej wpłynęły na decyzję sieci. Pomaga zrozumieć, <em>dlaczego</em> model odpowiedział tak, a nie inaczej.</p>
-      </div>
-    </article>
+    {{ end }}
   </div>
 </section>
 
 {{/* ============ WYKŁADY ============ */}}
 <section id="wyklady" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
-  <div class="reveal mx-auto max-w-2xl text-center">
+  <div class="mx-auto max-w-2xl text-center">
     <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Program <span class="bg-gradient-to-r from-violet-600 to-fuchsia-600 dark:from-violet-400 dark:to-fuchsia-400 bg-clip-text text-transparent">wykładów</span></h2>
   </div>
 
   <div class="mt-14 grid gap-5 md:grid-cols-2">
     {{ range $i, $b := .Site.Data.lectures.blocks }}
-      <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:border-{{ $b.accent }}-500/40 hover:bg-white/80 dark:hover:bg-zinc-900/70">
+      <article class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:border-{{ $b.accent }}-500/40 hover:bg-white/80 dark:hover:bg-zinc-900/70">
         <div class="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl transition-all group-hover:bg-{{ $b.accent }}-500/20"></div>
         <div class="relative">
           <div class="flex items-start justify-between gap-4">
@@ -283,7 +153,7 @@
 
 {{/* ============ LABORATORIA ============ */}}
 <section id="laboratoria" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
-  <div class="reveal mx-auto max-w-2xl text-center">
+  <div class="mx-auto max-w-2xl text-center">
     <span class="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 px-3 py-1 text-xs font-medium text-fuchsia-700 dark:text-fuchsia-300">
       <i data-lucide="flask-conical" class="h-3.5 w-3.5"></i> 15 spotkań · 30h
     </span>
@@ -293,7 +163,7 @@
 
   <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
     {{ range $i, $b := .Site.Data.labs.blocks }}
-      <article class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-{{ $b.accent }}-500/40 hover:bg-white/80 dark:hover:bg-zinc-900/70">
+      <article class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-{{ $b.accent }}-500/40 hover:bg-white/80 dark:hover:bg-zinc-900/70">
         <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl transition-all group-hover:bg-{{ $b.accent }}-500/20"></div>
         <div class="relative">
           <div class="flex items-center gap-3">
@@ -328,7 +198,7 @@
 
 {{/* ============ STACK ============ */}}
 <section class="mx-auto max-w-7xl px-6 py-20">
-  <div class="reveal rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-gradient-to-br from-white/80 dark:from-zinc-900/80 via-white/60 dark:via-zinc-900/40 to-white/80 dark:to-zinc-900/80 p-8 backdrop-blur-xl sm:p-12">
+  <div class="rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-gradient-to-br from-white/80 dark:from-zinc-900/80 via-white/60 dark:via-zinc-900/40 to-white/80 dark:to-zinc-900/80 p-8 backdrop-blur-xl sm:p-12">
     <div class="grid items-center gap-10 lg:grid-cols-5">
       <div class="lg:col-span-2">
         <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-300">
@@ -349,7 +219,7 @@
           (dict "n" "Hugging Face" "t" "modele" "c" "amber" "logo" "huggingface" "hex" "FFD21E")
           (dict "n" "scikit-learn" "t" "baseline" "c" "violet" "logo" "scikitlearn" "hex" "F7931E")
         ) }}
-          <div class="reveal group relative overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/60 dark:bg-zinc-950/50 p-4 transition-all hover:-translate-y-0.5 hover:border-{{ .c }}-500/40">
+          <div class="group relative overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/60 dark:bg-zinc-950/50 p-4 transition-all hover:-translate-y-0.5 hover:border-{{ .c }}-500/40">
             <div class="flex items-center gap-3">
               <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80">
                 <img src="https://cdn.simpleicons.org/{{ .logo }}/{{ .hex }}" alt="{{ .n }}" class="h-5 w-5" loading="lazy" onerror="this.outerHTML='<i data-lucide=&quot;{{ .fallback | default `box` }}&quot; class=&quot;h-5 w-5 text-{{ .c }}-400&quot;></i>';if(window.lucide)window.lucide.createIcons();" />
@@ -371,7 +241,7 @@
 
 {{/* ============ ZESPÓŁ ============ */}}
 <section id="zespol" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
-  <div class="reveal mx-auto max-w-2xl text-center">
+  <div class="mx-auto max-w-2xl text-center">
     <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
       <i data-lucide="users" class="h-3.5 w-3.5"></i> Prowadzący
     </span>
@@ -381,7 +251,7 @@
 
   <div class="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
     {{ range .Site.Data.team.members }}
-      <article class="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-{{ .accent }}-500/40">
+      <article class="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-{{ .accent }}-500/40">
         <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-{{ .accent }}-500/10 blur-2xl transition-all group-hover:bg-{{ .accent }}-500/20"></div>
 
         <div class="relative">
@@ -426,7 +296,7 @@
 
 {{/* ============ INFORMACJE ============ */}}
 <section id="informacje" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
-  <div class="reveal mx-auto max-w-2xl text-center">
+  <div class="mx-auto max-w-2xl text-center">
     <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-300">
       <i data-lucide="info" class="h-3.5 w-3.5"></i> Organizacja
     </span>
@@ -434,7 +304,7 @@
   </div>
 
   <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-    <div class="reveal group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-violet-500/40">
+    <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-violet-500/40">
       <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-violet-500/20 via-fuchsia-500/10 to-sky-500/10 blur-2xl transition-all group-hover:from-violet-500/30"></div>
       <div class="relative">
         <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-violet-500/30 bg-violet-500/10 text-violet-700 dark:text-violet-300">
@@ -474,7 +344,7 @@
       </div>
     </div>
 
-    <div class="reveal rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
+    <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
       <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">
         <i data-lucide="clock" class="h-5 w-5"></i>
       </div>
@@ -486,7 +356,7 @@
       </dl>
     </div>
 
-    <div class="reveal rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
+    <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
       <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300">
         <i data-lucide="book-open" class="h-5 w-5"></i>
       </div>
@@ -498,7 +368,7 @@
       </ul>
     </div>
 
-    <div class="reveal rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
+    <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
       <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-700 dark:text-sky-300">
         <i data-lucide="library" class="h-5 w-5"></i>
       </div>
