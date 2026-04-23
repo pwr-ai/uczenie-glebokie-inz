@@ -85,6 +85,11 @@ svg [data-tip] { pointer-events: bounding-box; }
 /* ================================================================ */
 .block-tab {
   color: #52525b;
+  transition:
+    background 0.28s cubic-bezier(0.2, 0.9, 0.25, 1),
+    color 0.22s ease-out,
+    box-shadow 0.28s ease-out,
+    transform 0.28s cubic-bezier(0.2, 0.9, 0.25, 1);
 }
 html.dark .block-tab { color: #a1a1aa; }
 .block-tab:hover {
@@ -98,26 +103,32 @@ html.dark .block-tab:hover {
 .block-tab.is-active {
   background: linear-gradient(135deg, #8b5cf6, #d946ef);
   color: white;
-  box-shadow: 0 2px 10px -2px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 4px 16px -4px rgba(139, 92, 246, 0.55);
+  transform: translateY(-1px);
 }
 .block-tab.is-active:hover {
   color: white;
   background: linear-gradient(135deg, #8b5cf6, #d946ef);
 }
 
-/* Panel visibility: only the panel matching #arch-card's data-active-block is shown.
-   Hidden panels use display:none, which halts their SMIL animations (GPU relief). */
+/* ================================================================ */
+/* ARCHITEKTURY — PANELS: transition on tab switch                  */
+/* ================================================================ */
+/* Hidden panels use display:none (halts their SMIL = GPU relief).
+   Active panel animates in with opacity + slide. Only transform and
+   opacity are animated so Safari / WebKit stays smooth (no filter). */
 .arch-panel { display: none; }
 #arch-card[data-active-block="1"] .arch-panel[data-block="1"],
 #arch-card[data-active-block="2"] .arch-panel[data-block="2"],
 #arch-card[data-active-block="3"] .arch-panel[data-block="3"],
 #arch-card[data-active-block="4"] .arch-panel[data-block="4"] {
   display: block;
-  animation: panel-in 0.25s ease-out;
+  animation: panel-in 0.42s cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
+  will-change: opacity, transform;
 }
 @keyframes panel-in {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0);    }
 }
 
 /* ================================================================ */
