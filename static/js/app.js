@@ -139,13 +139,29 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
     { name: "STEP", color: "text-violet-400", dot: "#a78bfa" },
   ];
 
-  // Architecture carousel — switch hero net every N epochs
+  // Architecture carousel — manual tabs + auto-cycle every N epochs
   const netStack = document.getElementById("net-stack");
-  const modelLabel = document.getElementById("t-model");
+  const archTabs = document.querySelectorAll(".arch-tab");
   const ARCHS = ["mlp", "cnn", "rnn"];
-  const ARCH_LABELS = { mlp: "MLP", cnn: "CNN", rnn: "RNN" };
   let archIdx = 0;
-  const ARCH_SWITCH_EVERY = 12; // epochs
+  let lastManualSwitch = 0;
+  const ARCH_SWITCH_EVERY = 6; // epochs
+  const MANUAL_OVERRIDE_EPOCHS = 10; // pause auto-cycle after manual click
+
+  function setArch(next, manual) {
+    if (!netStack) return;
+    archIdx = ARCHS.indexOf(next);
+    if (archIdx < 0) archIdx = 0;
+    netStack.dataset.arch = next;
+    archTabs.forEach((t) => t.classList.toggle("is-active", t.dataset.archTab === next));
+    if (manual) lastManualSwitch = epoch;
+  }
+
+  archTabs.forEach((tab) => {
+    tab.addEventListener("click", () => setArch(tab.dataset.archTab, true));
+  });
+  // prime initial active state
+  setArch(ARCHS[0], false);
 
   // Realistic-looking loss curve: exponential decay with plateaus and noise
   function computeLoss(e) {
@@ -225,12 +241,14 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
         }, 800);
       }
 
-      // cycle architecture every N epochs
-      if (netStack && epoch > 1 && (epoch - 1) % ARCH_SWITCH_EVERY === 0) {
-        archIdx = (archIdx + 1) % ARCHS.length;
-        const next = ARCHS[archIdx];
-        netStack.dataset.arch = next;
-        if (modelLabel) modelLabel.textContent = ARCH_LABELS[next];
+      // auto-cycle architecture every N epochs (unless user recently clicked a tab)
+      if (
+        netStack &&
+        epoch > 1 &&
+        (epoch - 1) % ARCH_SWITCH_EVERY === 0 &&
+        epoch - lastManualSwitch > MANUAL_OVERRIDE_EPOCHS
+      ) {
+        setArch(ARCHS[(archIdx + 1) % ARCHS.length], false);
       }
     }
 

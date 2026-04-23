@@ -69,11 +69,11 @@
               </span>
               <span id="t-phase" class="text-emerald-600 dark:text-emerald-400">FORWARD</span>
             </div>
-            <span class="flex items-center gap-1 text-zinc-600 dark:text-zinc-400">
-              <i data-lucide="cpu" class="h-3 w-3"></i>
-              <span id="t-model" class="font-semibold text-violet-700 dark:text-violet-300">MLP</span>
-              <span class="text-zinc-400 dark:text-zinc-600">· cuda:0</span>
-            </span>
+            <div id="arch-tabs" class="inline-flex items-center gap-0.5 rounded-md border border-zinc-200/70 dark:border-zinc-700/70 bg-zinc-100/60 dark:bg-zinc-900/60 p-0.5">
+              <button type="button" data-arch-tab="mlp" class="arch-tab rounded px-2 py-0.5 text-[10px] font-mono font-semibold transition-colors">MLP</button>
+              <button type="button" data-arch-tab="cnn" class="arch-tab rounded px-2 py-0.5 text-[10px] font-mono font-semibold transition-colors">CNN</button>
+              <button type="button" data-arch-tab="rnn" class="arch-tab rounded px-2 py-0.5 text-[10px] font-mono font-semibold transition-colors">RNN</button>
+            </div>
             <span>lr <span id="t-lr" class="text-zinc-700 dark:text-zinc-300">3e-4</span></span>
           </div>
 

@@ -38,6 +38,23 @@ html.dark .theme-icon-dark { display: inline-block; }
 
 /* Gradient text animation already defined in Tailwind config */
 
+/* Architecture segment control */
+.arch-tab {
+  color: #71717a;
+}
+html.dark .arch-tab { color: #a1a1aa; }
+
+#net-stack[data-arch="mlp"] ~ * .arch-tab[data-arch-tab="mlp"],
+#net-stack[data-arch="cnn"] ~ * .arch-tab[data-arch-tab="cnn"],
+#net-stack[data-arch="rnn"] ~ * .arch-tab[data-arch-tab="rnn"] {
+  /* unused — siblings only. Handled via JS .is-active class below. */
+}
+.arch-tab.is-active {
+  background: linear-gradient(135deg, #8b5cf6, #d946ef);
+  color: white;
+  box-shadow: 0 2px 8px -2px rgba(139, 92, 246, 0.4);
+}
+
 /* Hero architecture switcher — cross-fade between MLP/CNN/RNN */
 .net-slide {
   opacity: 0;
