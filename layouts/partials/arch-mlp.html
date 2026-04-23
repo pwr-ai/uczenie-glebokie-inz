@@ -17,22 +17,23 @@
       (dict "name" "ciśnienie"    "val" "145 mmHg"    "bar" 0.73)
       (dict "name" "tętno (max)"  "val" "162 /min"    "bar" 0.85) }}
   <g>
-    <rect x="20" y="40" width="200" height="270" rx="12"
+    <rect x="20" y="50" width="200" height="225" rx="12"
           fill="rgba(167,139,250,0.05)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
-    <text x="120" y="28" text-anchor="middle" font-size="13" font-weight="600"
-          fill="currentColor" opacity="0.75">dane pacjenta</text>
-    <text x="120" y="43" text-anchor="middle" font-size="10"
+    <text x="120" y="70" text-anchor="middle" font-size="13" font-weight="600"
+          fill="currentColor" opacity="0.8">dane pacjenta</text>
+    <text x="120" y="84" text-anchor="middle" font-size="10"
           fill="currentColor" opacity="0.5">4 cechy tabelaryczne</text>
+    <line x1="36" y1="94" x2="204" y2="94" stroke="rgba(167,139,250,0.18)" stroke-width="1"/>
     {{ range $i, $f := $feats }}
-      {{ $y := add 78 (mul $i 56) }}
+      {{ $y := add 108 (mul $i 42) }}
       <text x="36" y="{{ add $y 4 }}" font-size="12" font-weight="600"
             fill="currentColor" opacity="0.85">{{ $f.name }}</text>
       <text x="184" y="{{ add $y 4 }}" text-anchor="end"
             font-family="JetBrains Mono, monospace"
-            font-size="10" fill="currentColor" opacity="0.55">{{ $f.val }}</text>
-      <rect x="36" y="{{ add $y 14 }}" width="148" height="9" rx="3"
+            font-size="10" fill="currentColor" opacity="0.6">{{ $f.val }}</text>
+      <rect x="36" y="{{ add $y 12 }}" width="148" height="8" rx="3"
             fill="rgba(113,113,122,0.15)" stroke="rgba(113,113,122,0.3)" stroke-width="0.8"/>
-      <rect x="36" y="{{ add $y 14 }}" width="{{ mul $f.bar 148 }}" height="9" rx="3"
+      <rect x="36" y="{{ add $y 12 }}" width="{{ mul $f.bar 148 }}" height="8" rx="3"
             fill="#a78bfa" opacity="0.85"/>
     {{ end }}
   </g>
@@ -100,31 +101,32 @@
 
   {{/* ============= RIGHT PANEL — diagnosis verdict ============= */}}
   <g>
-    <rect x="675" y="70" width="115" height="180" rx="12"
+    <rect x="675" y="90" width="115" height="165" rx="12"
           fill="rgba(244,63,94,0.05)" stroke="rgba(244,63,94,0.25)" stroke-width="1"/>
-    <text x="733" y="58" text-anchor="middle" font-size="13" font-weight="600"
-          fill="currentColor" opacity="0.75">predykcja</text>
-    <text x="733" y="73" text-anchor="middle" font-size="10"
+    <text x="733" y="110" text-anchor="middle" font-size="13" font-weight="600"
+          fill="currentColor" opacity="0.8">predykcja</text>
+    <text x="733" y="124" text-anchor="middle" font-size="10"
           fill="currentColor" opacity="0.5">ryzyko choroby serca</text>
+    <line x1="685" y1="134" x2="785" y2="134" stroke="rgba(244,63,94,0.18)" stroke-width="1"/>
 
     {{/* podwyższone (winning) */}}
-    <g transform="translate(685, 115)">
+    <g transform="translate(685, 155)">
       <text x="0" y="0" font-size="12" font-weight="700" fill="#dc2626">podwyższone</text>
-      <rect x="0" y="7" width="95" height="10" rx="3"
-            fill="rgba(113,113,122,0.15)" stroke="rgba(113,113,122,0.3)"/>
-      <rect x="0" y="7" width="85" height="10" rx="3" fill="#ef4444" opacity="0.9"/>
-      <text x="95" y="32" text-anchor="end" font-family="JetBrains Mono, monospace"
+      <text x="95" y="0" text-anchor="end" font-family="JetBrains Mono, monospace"
             font-size="11" fill="#dc2626" font-weight="700">0.89</text>
+      <rect x="0" y="8" width="95" height="8" rx="3"
+            fill="rgba(113,113,122,0.15)" stroke="rgba(113,113,122,0.3)"/>
+      <rect x="0" y="8" width="85" height="8" rx="3" fill="#ef4444" opacity="0.9"/>
     </g>
 
     {{/* niskie (losing) */}}
-    <g transform="translate(685, 180)">
+    <g transform="translate(685, 210)">
       <text x="0" y="0" font-size="12" font-weight="500" fill="currentColor" opacity="0.55">niskie</text>
-      <rect x="0" y="7" width="95" height="10" rx="3"
-            fill="rgba(113,113,122,0.15)" stroke="rgba(113,113,122,0.3)"/>
-      <rect x="0" y="7" width="10" height="10" rx="3" fill="currentColor" opacity="0.35"/>
-      <text x="95" y="32" text-anchor="end" font-family="JetBrains Mono, monospace"
+      <text x="95" y="0" text-anchor="end" font-family="JetBrains Mono, monospace"
             font-size="11" fill="currentColor" opacity="0.55">0.11</text>
+      <rect x="0" y="8" width="95" height="8" rx="3"
+            fill="rgba(113,113,122,0.15)" stroke="rgba(113,113,122,0.3)"/>
+      <rect x="0" y="8" width="10" height="8" rx="3" fill="currentColor" opacity="0.35"/>
     </g>
   </g>
 </svg>
