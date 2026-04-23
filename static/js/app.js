@@ -33,7 +33,7 @@ if (window.lucide) window.lucide.createIcons();
   const indicator = document.getElementById("nav-indicator");
   if (!links.length) return;
 
-  const sections = ["wyklady", "architektury", "laboratoria", "zespol", "informacje"]
+  const sections = ["architektury", "wyklady", "laboratoria", "zespol", "informacje"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
@@ -143,37 +143,68 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
   const netStack = document.getElementById("net-stack");
   const archTabs = document.querySelectorAll(".arch-tab");
   const ARCHS = ["mlp", "cnn", "rnn"];
+  // Per-arch training-curve params so each feels distinct
+  const ARCH_PARAMS = {
+    mlp: { tau: 22, floor: 0.04, accCeil: 0.94 },
+    cnn: { tau: 15, floor: 0.02, accCeil: 0.99 },
+    rnn: { tau: 30, floor: 0.08, accCeil: 0.88 },
+  };
+  let currentArch = "mlp";
   let archIdx = 0;
-  let lastManualSwitch = 0;
+  let lastManualSwitch = -9999; // don't block the first auto-cycle
   const ARCH_SWITCH_EVERY = 6; // epochs
   const MANUAL_OVERRIDE_EPOCHS = 10; // pause auto-cycle after manual click
+
+  function primeHistory() {
+    history.length = 0;
+    best = Infinity;
+    for (let i = 0; i < 8; i++) {
+      const l = computeLoss(i + 1);
+      history.push(l);
+      if (l < best) best = l;
+    }
+  }
+
+  function resetTraining() {
+    epoch = 1;
+    phaseIdx = 0;
+    if (progEl) progEl.style.width = "0%";
+    primeHistory();
+    renderChart();
+    if (ep)     ep.textContent = history.length;
+    if (lossEl) lossEl.textContent = history[history.length - 1].toFixed(4);
+    if (bestEl) bestEl.textContent = "best " + best.toFixed(4);
+    epoch = history.length + 1;
+  }
 
   function setArch(next, manual) {
     if (!netStack) return;
     archIdx = ARCHS.indexOf(next);
     if (archIdx < 0) archIdx = 0;
+    currentArch = next;
     netStack.dataset.arch = next;
     archTabs.forEach((t) => t.classList.toggle("is-active", t.dataset.archTab === next));
-    if (manual) lastManualSwitch = epoch;
+    resetTraining();
+    if (manual) lastManualSwitch = epoch; // absolute epoch counter at manual click
   }
 
   archTabs.forEach((tab) => {
     tab.addEventListener("click", () => setArch(tab.dataset.archTab, true));
   });
-  // prime initial active state
-  setArch(ARCHS[0], false);
 
-  // Realistic-looking loss curve: exponential decay with plateaus and noise
+  // Realistic-looking loss curve per arch
   function computeLoss(e) {
-    const base = 1.5 * Math.exp(-e / 22) + 0.04;
+    const p = ARCH_PARAMS[currentArch] || ARCH_PARAMS.mlp;
+    const base = (1.5 - p.floor) * Math.exp(-e / p.tau) + p.floor;
     const noise = (Math.random() - 0.5) * 0.08 * (1 + 3 * Math.exp(-e / 15));
     const plateau = e > 60 ? Math.sin(e * 0.5) * 0.015 : 0;
-    return Math.max(0.03, base + noise + plateau);
+    return Math.max(p.floor * 0.75, base + noise + plateau);
   }
 
   function computeAcc(loss) {
-    const a = Math.max(0, 1 - loss * 0.58);
-    return Math.min(0.994, a + (Math.random() - 0.5) * 0.01);
+    const p = ARCH_PARAMS[currentArch] || ARCH_PARAMS.mlp;
+    const a = Math.max(0, p.accCeil - loss * 0.58);
+    return Math.min(p.accCeil, a + (Math.random() - 0.5) * 0.01);
   }
 
   function fmtLR(e) {
@@ -233,12 +264,7 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
       epoch++;
       if (epoch > MAX_EPOCH) {
         // restart with a tiny "reset flash"
-        setTimeout(() => {
-          epoch = 1;
-          best = Infinity;
-          history.length = 0;
-          progEl.style.width = "0%";
-        }, 800);
+        setTimeout(() => resetTraining(), 800);
       }
 
       // auto-cycle architecture every N epochs (unless user recently clicked a tab)
@@ -255,16 +281,8 @@ if (art && window.matchMedia("(pointer: fine)").matches) {
     tickCount++;
   }
 
-  // Prime a few epochs so chart isn't empty on first render
-  for (let i = 0; i < 8; i++) {
-    const l = computeLoss(i + 1);
-    history.push(l);
-    if (l < best) best = l;
-  }
-  renderChart();
-  ep.textContent = history.length;
-  lossEl.textContent = history[history.length - 1].toFixed(4);
-  bestEl.textContent = "best " + best.toFixed(4);
+  // Initial bootstrap: activate MLP, which primes history via resetTraining()
+  setArch(ARCHS[0], false);
 
   setInterval(tick, 550);
 })();

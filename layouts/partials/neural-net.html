@@ -68,6 +68,35 @@
     <animate attributeName="opacity" values="0.4;1;0.4" dur="1.6s" repeatCount="indefinite"/>
   </circle>
 
+  {{/* ===== CLASSIFICATION HEAD — softmax of the 2 output nodes ===== */}}
+  {{/* target banner */}}
+  <g>
+    <rect x="325" y="10" width="70" height="18" rx="4" fill="rgba(34,197,94,0.12)" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="360" y="23" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">target: A</text>
+  </g>
+  {{/* class labels next to output nodes */}}
+  <g font-family="JetBrains Mono, monospace" font-size="10">
+    <text x="378" y="104" fill="#22c55e" font-weight="bold">A</text>
+    <text x="378" y="164" fill="#71717a">B</text>
+  </g>
+  {{/* animated softmax bars (converging toward class A winning) */}}
+  <g transform="translate(90, 225)">
+    <rect x="-6" y="-14" width="230" height="28" rx="5" fill="#0a0a0a" stroke="#3f3f46" stroke-width="1"/>
+    <text x="0" y="-18" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa">softmax</text>
+    {{/* A (winning) */}}
+    <text x="4" y="-2" font-family="JetBrains Mono, monospace" font-size="8" fill="#22c55e">A</text>
+    <rect x="18" y="-8" width="180" height="8" rx="2" fill="#18181b" stroke="#27272a"/>
+    <rect x="18" y="-8" width="36" height="8" rx="2" fill="rgba(34,197,94,0.85)" stroke="#22c55e">
+      <animate attributeName="width" values="36;172" keyTimes="0.1;1" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    {{/* B (losing) */}}
+    <text x="4" y="10" font-family="JetBrains Mono, monospace" font-size="8" fill="#71717a">B</text>
+    <rect x="18" y="4" width="180" height="8" rx="2" fill="#18181b" stroke="#27272a"/>
+    <rect x="18" y="4" width="144" height="8" rx="2" fill="rgba(113,113,122,0.4)" stroke="#52525b">
+      <animate attributeName="width" values="144;8" keyTimes="0.1;1" dur="5s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
   {{/* labels */}}
   <g font-family="JetBrains Mono, monospace" font-size="8" fill="#71717a">
     <text x="60" y="250" text-anchor="middle">input</text>
