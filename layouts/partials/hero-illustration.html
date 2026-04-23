@@ -5,59 +5,25 @@
       <stop offset="0.7" stop-color="#d946ef" stop-opacity="0.08"/>
       <stop offset="1"   stop-color="#38bdf8" stop-opacity="0"/>
     </radialGradient>
-
-    {{/* vertical disk gradient fills — left (input, violet) to right (output, sky) */}}
-    <linearGradient id="is-disk-1" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#c4b5fd" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#7c3aed" stop-opacity="0.1"/>
-    </linearGradient>
-    <linearGradient id="is-disk-2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#d8b4fe" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#9333ea" stop-opacity="0.1"/>
-    </linearGradient>
-    <linearGradient id="is-disk-3" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#f0abfc" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#c026d3" stop-opacity="0.1"/>
-    </linearGradient>
-    <linearGradient id="is-disk-4" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#a5b4fc" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#4f46e5" stop-opacity="0.1"/>
-    </linearGradient>
-    <linearGradient id="is-disk-5" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#7dd3fc" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#0284c7" stop-opacity="0.1"/>
-    </linearGradient>
-
-    {{/* vertical rim stroke — subtle top→bottom sheen */}}
-    <linearGradient id="is-rim" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0"   stop-color="#ffffff" stop-opacity="0.15"/>
-      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.55"/>
-      <stop offset="1"   stop-color="#ffffff" stop-opacity="0.15"/>
-    </linearGradient>
-
     <linearGradient id="is-edge" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.45"/>
-      <stop offset="1" stop-color="#38bdf8" stop-opacity="0.45"/>
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0.55"/>
     </linearGradient>
   </defs>
 
-  {{/* backdrop glow */}}
   <rect width="480" height="480" fill="url(#is-bg)"/>
 
-  {{/* layer x-positions (left→right) */}}
   {{ $xs := slice 80 160 240 320 400 }}
-  {{/* node y-coords per layer (within disk bounds: roughly 120..360) */}}
   {{ $nodes := slice
       (slice 160 220 280 340)
       (slice 170 240 310)
       (slice 140 195 240 285 340)
       (slice 180 240 300)
       (slice 200 280) }}
-  {{ $disks := slice "url(#is-disk-1)" "url(#is-disk-2)" "url(#is-disk-3)" "url(#is-disk-4)" "url(#is-disk-5)" }}
   {{ $ncolors := slice "#c4b5fd" "#d8b4fe" "#f0abfc" "#a5b4fc" "#7dd3fc" }}
 
-  {{/* ===== horizontal edges between adjacent layers ===== */}}
-  <g stroke="url(#is-edge)" stroke-width="0.9" opacity="0.35">
+  {{/* ===== fully-connected horizontal edges ===== */}}
+  <g stroke="url(#is-edge)" stroke-width="1" opacity="0.55">
     {{ range $i := (seq 0 3) }}
       {{ $leftX  := index $xs $i }}
       {{ $rightX := index $xs (add $i 1) }}
@@ -69,23 +35,16 @@
     {{ end }}
   </g>
 
-  {{/* ===== vertical disks (tilted perspective, seen from the side) ===== */}}
-  {{ range $i, $x := $xs }}
-    <ellipse cx="{{ $x }}" cy="240" rx="18" ry="130"
-             fill="{{ index $disks $i }}"
-             stroke="url(#is-rim)" stroke-width="1"/>
-  {{ end }}
-
-  {{/* ===== nodes — rounded pills (not circles), bright flat colors ===== */}}
+  {{/* ===== nodes — circles with subtle gradient ===== */}}
   {{ range $i, $x := $xs }}
     {{ $col := index $ncolors $i }}
     {{ range $y := index $nodes $i }}
-      <rect x="{{ sub $x 12 }}" y="{{ sub $y 4 }}" width="24" height="8" rx="4"
-            fill="{{ $col }}"/>
+      <circle cx="{{ $x }}" cy="{{ $y }}" r="6" fill="{{ $col }}"
+              stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
     {{ end }}
   {{ end }}
 
-  {{/* ===== 3 comets flowing left→right through the stack ===== */}}
+  {{/* ===== 3 comets flowing left→right ===== */}}
   <g>
     <circle r="3" fill="#c4b5fd">
       <animateMotion dur="5s" begin="0s"   repeatCount="indefinite"
