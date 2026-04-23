@@ -95,7 +95,7 @@
           {{/* ===== panels ===== */}}
           {{ $blocks := slice
             (dict "n" "1" "num" "1" "accent" "violet" "title" "Podstawy sieci neuronowych"
-                  "caption" "Wielowarstwowy perceptron (MLP). Wektor cech wejściowych przepływa przez warstwy ukryte; sieć produkuje rozkład prawdopodobieństwa na klasach wyjściowych."
+                  "caption" "Wielowarstwowy perceptron (MLP). Wektor cech wejściowych przepływa przez warstwy ukryte do warstwy wyjściowej, która zwraca wartość predykcji dla każdej klasy."
                   "partial" "arch-mlp.html")
             (dict "n" "2" "num" "2" "accent" "fuchsia" "title" "Sieci konwolucyjne i modele generatywne"
                   "caption" "Sieć konwolucyjna (CNN). Kolejne warstwy filtrów wykrywają coraz bardziej abstrakcyjne wzorce w obrazie — od krawędzi po całe obiekty."
