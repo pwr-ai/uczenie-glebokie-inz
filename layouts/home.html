@@ -5,23 +5,7 @@
 <section class="relative mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-20 sm:pb-24">
   <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
     <div>
-      <div class="flex flex-wrap items-center gap-2">
-        <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 backdrop-blur transition-colors hover:border-violet-500/40">
-          {{ partial "pwr-crest.html" (dict "class" "h-4 w-4 text-violet-700 dark:text-violet-300" "id" "hero") }}
-          <span>Politechnika Wrocławska</span>
-          <i data-lucide="external-link" class="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5"></i>
-        </a>
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
-          <i data-lucide="graduation-cap" class="h-3.5 w-3.5 text-fuchsia-700 dark:text-fuchsia-300"></i>
-          W4N · Informatyka i Telekomunikacja
-        </span>
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-          Semestr zimowy · studia inż.
-        </span>
-      </div>
-
-      <h1 class="mt-6 text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+      <h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
         <span class="block text-zinc-900 dark:text-zinc-100">Uczenie</span>
         <span class="block bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600 dark:from-violet-400 dark:via-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">Głębokie</span>
       </h1>
@@ -57,6 +41,25 @@
         {{ partial "hero-illustration.html" . }}
       </div>
     </div>
+  </div>
+  <div class="mt-10 flex flex-nowrap items-center justify-center gap-2 overflow-x-auto">
+    <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex shrink-0 items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 backdrop-blur transition-colors hover:border-violet-500/40">
+      {{ partial "pwr-crest.html" (dict "class" "h-4 w-4 text-violet-700 dark:text-violet-300" "id" "hero") }}
+      <span>Politechnika Wrocławska</span>
+      <i data-lucide="external-link" class="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5"></i>
+    </a>
+    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
+      <i data-lucide="graduation-cap" class="h-3.5 w-3.5 text-fuchsia-700 dark:text-fuchsia-300"></i>
+      W4N · Informatyka i Telekomunikacja
+    </span>
+    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
+      <i data-lucide="sparkles" class="h-3.5 w-3.5 text-violet-700 dark:text-violet-300"></i>
+      Sztuczna Inteligencja - inż
+    </span>
+    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
+      <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+      Semestr Zimowy 2026/2027
+    </span>
   </div>
 </section>
 
