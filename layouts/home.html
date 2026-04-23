@@ -2,7 +2,7 @@
 <div id="top"></div>
 
 {{/* ============ HERO ============ */}}
-<section class="relative mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-20 sm:pb-24">
+<section class="relative mx-auto max-w-7xl px-6 pt-14 pb-14 sm:pt-16 sm:pb-16">
   <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
     <div>
       <h1 class="whitespace-nowrap text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
@@ -43,155 +43,180 @@
       </div>
     </div>
   </div>
-  <div class="mt-10 flex flex-nowrap items-center justify-center gap-2 overflow-x-auto">
-    <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex shrink-0 items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300 backdrop-blur transition-colors hover:border-violet-500/40">
-      {{ partial "pwr-crest.html" (dict "class" "h-4 w-4 text-violet-700 dark:text-violet-300" "id" "hero") }}
-      <span>Politechnika Wrocławska</span>
-      <i data-lucide="external-link" class="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5"></i>
-    </a>
-    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
-      <i data-lucide="graduation-cap" class="h-3.5 w-3.5 text-fuchsia-700 dark:text-fuchsia-300"></i>
-      W4N · Informatyka i Telekomunikacja
-    </span>
-    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
-      <i data-lucide="sparkles" class="h-3.5 w-3.5 text-violet-700 dark:text-violet-300"></i>
-      Sztuczna Inteligencja - inż
-    </span>
-    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-3 py-1 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur">
-      <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-      Semestr Zimowy 2026/2027
-    </span>
+  <div class="mt-10 flex justify-center">
+    <div class="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 px-6 py-2.5 text-sm text-zinc-600 shadow-sm shadow-zinc-900/5 backdrop-blur dark:text-zinc-400 dark:shadow-none">
+      <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 transition-colors hover:text-violet-700 dark:hover:text-violet-300">
+        {{ partial "pwr-crest.html" (dict "class" "h-5 w-5 text-violet-700 dark:text-violet-300" "id" "hero") }}
+        <span class="font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-violet-700 dark:group-hover:text-violet-300">Politechnika Wrocławska</span>
+      </a>
+      <span aria-hidden="true" class="text-zinc-300 dark:text-zinc-700">|</span>
+      <span class="inline-flex items-center gap-2">
+        <i data-lucide="graduation-cap" class="h-4 w-4 text-fuchsia-700 dark:text-fuchsia-300"></i>
+        W4N · Informatyka i Telekomunikacja
+      </span>
+      <span aria-hidden="true" class="text-zinc-300 dark:text-zinc-700">|</span>
+      <span class="inline-flex items-center gap-2">
+        <i data-lucide="sparkles" class="h-4 w-4 text-sky-700 dark:text-sky-300"></i>
+        Sztuczna Inteligencja (inż.)
+      </span>
+      <span aria-hidden="true" class="text-zinc-300 dark:text-zinc-700">|</span>
+      <span class="inline-flex items-center gap-2">
+        <span class="relative flex h-2 w-2" aria-hidden="true">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+        </span>
+        Semestr Zimowy 2026/2027
+      </span>
+    </div>
   </div>
 </section>
 
 {{/* ============ WYKŁADY ============ */}}
-<section id="wyklady" class="relative scroll-mt-20">
-  <div class="wyk-scroll-host relative" style="height: 260vh;">
-    <div class="sticky top-20 flex h-[calc(100vh-5rem)] flex-col justify-center py-6">
-      <div class="mx-auto w-full max-w-5xl px-6">
+<section id="wyklady" class="mx-auto max-w-5xl px-6 py-14 scroll-mt-20">
+  <div class="mx-auto max-w-2xl text-center mb-12">
+    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Program <span class="bg-gradient-to-r from-violet-600 to-fuchsia-600 dark:from-violet-400 dark:to-fuchsia-400 bg-clip-text text-transparent">wykładów</span></h2>
+  </div>
 
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Program <span class="bg-gradient-to-r from-violet-600 to-fuchsia-600 dark:from-violet-400 dark:to-fuchsia-400 bg-clip-text text-transparent">wykładów</span></h2>
-        </div>
-
-        <div id="wyk-stack" data-active-block="1" class="mx-auto mt-6 grid grid-cols-[auto_1fr] gap-6 sm:gap-8">
-          {{/* vertical stepper — top-to-bottom */}}
-          <div class="wyk-steps relative flex flex-col items-center gap-6 pt-6">
-            {{ range $i, $b := .Site.Data.lectures.blocks }}
-              <button type="button" data-wyk-block="{{ add $i 1 }}"
-                class="wyk-tab group relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all hover:border-{{ $b.accent }}-500">
-                {{ $b.roman }}
-              </button>
-            {{ end }}
-          </div>
-
+  <div id="wyk-stack" class="grid grid-cols-[auto_1fr] gap-6 sm:gap-10">
+    {{/* left rail — sticky vertical stepper + progress */}}
+    <div class="relative hidden sm:block">
+      <div class="sticky top-24 flex flex-col items-center gap-3">
+        <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500 whitespace-nowrap">Program wykładów</span>
+        <div class="step-spine relative flex flex-col items-center gap-10 py-4">
           {{ range $i, $b := .Site.Data.lectures.blocks }}
-            <article class="wyk-block col-start-2" data-block="{{ add $i 1 }}">
-              <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-lg shadow-zinc-900/5 dark:shadow-none p-6 sm:p-8 backdrop-blur-sm">
-                <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl"></div>
-                <div class="relative">
-                  <div class="flex flex-wrap items-start justify-between gap-4">
-                    <div class="flex items-start gap-4">
-                      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-{{ $b.accent }}-500/30 bg-{{ $b.accent }}-500/10 text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">
-                        <i data-lucide="{{ $b.icon }}" class="h-6 w-6"></i>
-                      </div>
-                      <div>
-                        <span class="font-mono text-xs font-semibold uppercase tracking-wider text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">Blok {{ $b.roman }}</span>
-                        <h3 class="mt-1 text-xl font-semibold leading-tight sm:text-2xl">{{ $b.title }}</h3>
-                      </div>
-                    </div>
-                    <span class="shrink-0 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-3 py-1 font-mono text-xs text-zinc-600 dark:text-zinc-400">{{ $b.hours }}h</span>
-                  </div>
-
-                  <p class="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">{{ $b.summary }}</p>
-
-                  <ul class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50">
-                    {{ range $b.items }}
-                      <li class="flex items-start gap-3 px-4 py-2.5 text-sm">
-                        <span class="mt-0.5 inline-flex h-6 min-w-[2rem] items-center justify-center rounded-md bg-zinc-200 dark:bg-zinc-800/80 px-1.5 font-mono text-[11px] text-zinc-600 dark:text-zinc-400">{{ .nr }}</span>
-                        <span class="flex-1 text-zinc-700 dark:text-zinc-300">{{ .topic }}</span>
-                        <span class="shrink-0 font-mono text-xs text-zinc-500 dark:text-zinc-500">{{ .hours }}h</span>
-                      </li>
-                    {{ end }}
-                  </ul>
-
-                  <div class="mt-5 flex flex-wrap gap-1.5">
-                    {{ range $b.tags }}
-                      <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/60 px-2 py-0.5 font-mono text-[10px] text-zinc-600 dark:text-zinc-400">{{ . }}</span>
-                    {{ end }}
-                  </div>
-                </div>
-              </div>
-            </article>
+            <button type="button" data-block="{{ add $i 1 }}"
+              class="step-tab group relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all hover:border-{{ $b.accent }}-500"
+              aria-label="Przejdź do bloku {{ $b.roman }}">
+              {{ $b.roman }}
+            </button>
           {{ end }}
         </div>
-
-        {{/* scroll progress indicator */}}
-        <div class="mx-auto mt-4 flex max-w-5xl items-center gap-2">
-          <div class="h-1 flex-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-            <div id="wyk-progress" class="h-full w-1/4 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-sky-500 transition-all duration-300"></div>
-          </div>
-          <span class="font-mono text-xs text-zinc-500 dark:text-zinc-500"><span id="wyk-progress-label">1</span>/4</span>
-        </div>
-
       </div>
+    </div>
+
+    {{/* right column — all block cards stacked */}}
+    <div class="flex flex-col gap-12">
+      {{ range $i, $b := .Site.Data.lectures.blocks }}
+        <article class="wyk-block scroll-mt-28" data-block="{{ add $i 1 }}" id="wyk-{{ $b.id }}">
+          <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-lg shadow-zinc-900/5 dark:shadow-none p-6 sm:p-8 backdrop-blur-sm">
+            <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl"></div>
+            <div class="relative">
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div class="flex items-start gap-4">
+                  <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-{{ $b.accent }}-500/30 bg-{{ $b.accent }}-500/10 text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">
+                    <i data-lucide="{{ $b.icon }}" class="h-6 w-6"></i>
+                  </div>
+                  <div>
+                    <span class="font-mono text-xs font-semibold uppercase tracking-wider text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">Blok {{ $b.roman }}</span>
+                    <h3 class="mt-1 text-xl font-semibold leading-tight sm:text-2xl">{{ $b.title }}</h3>
+                  </div>
+                </div>
+                <span class="shrink-0 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-3 py-1 font-mono text-xs text-zinc-600 dark:text-zinc-400">{{ $b.hours }}h</span>
+              </div>
+
+              <p class="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">{{ $b.summary }}</p>
+
+              <ul class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50">
+                {{ range $b.items }}
+                  <li class="flex items-start gap-3 px-4 py-2.5 text-sm">
+                    <span class="mt-0.5 inline-flex h-6 min-w-[2rem] items-center justify-center rounded-md bg-zinc-200 dark:bg-zinc-800/80 px-1.5 font-mono text-[11px] text-zinc-600 dark:text-zinc-400">{{ .nr }}</span>
+                    <span class="flex-1 text-zinc-700 dark:text-zinc-300">{{ .topic }}</span>
+                    <span class="shrink-0 font-mono text-xs text-zinc-500 dark:text-zinc-500">{{ .hours }}h</span>
+                  </li>
+                {{ end }}
+              </ul>
+
+              <div class="mt-5 flex flex-wrap gap-1.5">
+                {{ range $b.tags }}
+                  <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/60 px-2 py-0.5 font-mono text-[10px] text-zinc-600 dark:text-zinc-400">{{ . }}</span>
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </article>
+      {{ end }}
     </div>
   </div>
 </section>
 
 {{/* ============ LABORATORIA ============ */}}
-<section id="laboratoria" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
-  <div class="mx-auto max-w-2xl text-center">
-    <span class="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 px-3 py-1 text-xs font-medium text-fuchsia-700 dark:text-fuchsia-300">
-      <i data-lucide="flask-conical" class="h-3.5 w-3.5"></i> 15 spotkań · 30h
-    </span>
-    <h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Program <span class="bg-gradient-to-r from-fuchsia-600 to-sky-600 dark:from-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">laboratoriów</span></h2>
+<section id="laboratoria" class="mx-auto max-w-5xl px-6 py-14 scroll-mt-20">
+  <div class="mx-auto max-w-2xl text-center mb-12">
+    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Program <span class="bg-gradient-to-r from-fuchsia-600 to-sky-600 dark:from-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">laboratoriów</span></h2>
     <p class="mt-4 text-zinc-600 dark:text-zinc-400">Piętnaście spotkań praktycznych. Własne implementacje w NumPy, pełny pipeline w PyTorch, modele generatywne, agenci Deep RL, wyjaśnialność i ataki adwersarialne.</p>
   </div>
 
-  <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-    {{ range $i, $b := .Site.Data.labs.blocks }}
-      <article class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-{{ $b.accent }}-500/40 hover:bg-white/80 dark:hover:bg-zinc-900/70">
-        <div class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl transition-all group-hover:bg-{{ $b.accent }}-500/20"></div>
-        <div class="relative">
-          <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg border border-{{ $b.accent }}-500/30 bg-{{ $b.accent }}-500/10 text-{{ $b.accent }}-300">
-              <i data-lucide="{{ $b.icon }}" class="h-5 w-5"></i>
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center gap-2">
-                <span class="font-mono text-[11px] text-zinc-500 dark:text-zinc-500">Blok {{ $b.roman }}</span>
-                <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/60 px-1.5 py-0.5 font-mono text-[10px] text-zinc-600 dark:text-zinc-400">{{ $b.range }}</span>
+  <div id="lab-stack" class="grid grid-cols-[auto_1fr] gap-6 sm:gap-10">
+    {{/* left rail — sticky vertical stepper */}}
+    <div class="relative hidden sm:block">
+      <div class="sticky top-24 flex flex-col items-center gap-3">
+        <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500 whitespace-nowrap">Program laboratoriów</span>
+        <div class="step-spine relative flex flex-col items-center gap-8 py-4">
+          {{ range $i, $b := .Site.Data.labs.blocks }}
+            <button type="button" data-block="{{ add $i 1 }}"
+              class="step-tab group relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 font-mono text-[11px] font-semibold text-zinc-600 dark:text-zinc-400 transition-all hover:border-{{ $b.accent }}-500"
+              aria-label="Przejdź do bloku {{ $b.roman }}">
+              {{ $b.roman }}
+            </button>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    {{/* right column — all lab block cards stacked */}}
+    <div class="flex flex-col gap-12">
+      {{ range $i, $b := .Site.Data.labs.blocks }}
+        <article class="lab-block scroll-mt-28" data-block="{{ add $i 1 }}" id="lab-{{ $b.id }}">
+          <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-lg shadow-zinc-900/5 dark:shadow-none p-6 sm:p-8 backdrop-blur-sm">
+            <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl"></div>
+            <div class="relative">
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div class="flex items-start gap-4">
+                  <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-{{ $b.accent }}-500/30 bg-{{ $b.accent }}-500/10 text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">
+                    <i data-lucide="{{ $b.icon }}" class="h-6 w-6"></i>
+                  </div>
+                  <div>
+                    <span class="font-mono text-xs font-semibold uppercase tracking-wider text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">Blok {{ $b.roman }}</span>
+                    <h3 class="mt-1 text-xl font-semibold leading-tight sm:text-2xl">{{ $b.title }}</h3>
+                  </div>
+                </div>
+                <span class="shrink-0 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-3 py-1 font-mono text-xs text-zinc-600 dark:text-zinc-400">{{ $b.range }}</span>
               </div>
-              <h3 class="text-base font-semibold leading-tight">{{ $b.title }}</h3>
+
+              <ul class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50">
+                {{ range $b.items }}
+                  <li class="flex items-start gap-3 px-4 py-3 text-sm">
+                    <span class="mt-0.5 inline-flex h-6 min-w-[2rem] items-center justify-center rounded-md bg-{{ $b.accent }}-500/15 px-1.5 font-mono text-[11px] font-semibold text-{{ $b.accent }}-700 dark:text-{{ $b.accent }}-300">{{ .nr }}</span>
+                    <div class="flex-1">
+                      <div class="text-zinc-800 dark:text-zinc-200 font-medium">{{ .topic }}</div>
+                      <p class="mt-0.5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">{{ .details }}</p>
+                    </div>
+                  </li>
+                {{ end }}
+              </ul>
             </div>
           </div>
-
-          <ul class="mt-4 space-y-2">
-            {{ range $b.items }}
-              <li class="rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50 p-3">
-                <div class="flex items-center gap-2">
-                  <span class="inline-flex h-5 min-w-[1.5rem] items-center justify-center rounded bg-{{ $b.accent }}-500/15 px-1 font-mono text-[10px] font-semibold text-{{ $b.accent }}-300">{{ .nr }}</span>
-                  <span class="text-sm font-medium text-zinc-800 dark:text-zinc-200">{{ .topic }}</span>
-                </div>
-                <p class="mt-1 pl-8 text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">{{ .details }}</p>
-              </li>
-            {{ end }}
-          </ul>
-        </div>
-      </article>
-    {{ end }}
+        </article>
+      {{ end }}
+    </div>
   </div>
 </section>
 
-{{/* ============ ARCHITEKTURY ============ */}}
-<section id="architektury" class="relative scroll-mt-20">
-  <div class="arch-scroll-host relative" style="height: 260vh;">
+{{/* ============ CO POZNASZ (Architektury + Narzędzia) ============ */}}
+<section id="co-poznasz" class="scroll-mt-20">
+  <div class="mx-auto max-w-2xl px-6 pt-14 text-center">
+    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Co <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">poznasz</span></h2>
+    <p class="mt-4 text-zinc-600 dark:text-zinc-400">Architektury, które zbudujesz, i narzędzia, których użyjesz w realnych projektach ML.</p>
+  </div>
+
+  {{/* --- architektury --- */}}
+  <div id="architektury" class="relative scroll-mt-20">
+    <div class="arch-scroll-host relative" style="height: 260vh;">
     <div class="sticky top-20 flex h-[calc(100vh-5rem)] flex-col justify-center py-6">
       <div class="mx-auto w-full max-w-7xl px-6">
 
         <div class="mx-auto max-w-2xl text-center">
-          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Architektury <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">sieci głębokich</span></h2>
+          <h3 class="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">Architektury <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">sieci głębokich</span></h3>
         </div>
 
         <div id="arch-card" data-active-block="1" class="mx-auto mt-8 w-full max-w-6xl rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-xl shadow-zinc-900/5 dark:shadow-none p-4 sm:p-6 overflow-hidden">
@@ -248,59 +273,52 @@
 
       </div>
     </div>
+    </div>
   </div>
-</section>
 
-{{/* ============ STACK ============ */}}
-<section class="mx-auto max-w-7xl px-6 py-20">
-  <div class="rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-gradient-to-br from-white/80 dark:from-zinc-900/80 via-white/60 dark:via-zinc-900/40 to-white/80 dark:to-zinc-900/80 p-8 backdrop-blur-xl sm:p-12">
-    <div class="grid items-center gap-10 lg:grid-cols-5">
-      <div class="lg:col-span-2">
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-300">
-          <i data-lucide="layers" class="h-3.5 w-3.5"></i> Stos technologiczny
-        </span>
-        <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Warsztat <span class="bg-gradient-to-r from-fuchsia-600 to-violet-600 dark:from-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">inżyniera ML</span></h2>
-        <p class="mt-3 text-zinc-600 dark:text-zinc-400">Biblioteki z realnych projektów ML — obliczenia numeryczne, trening, tracking eksperymentów, wyjaśnialność, środowiska RL.</p>
-      </div>
-      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:col-span-3">
-        {{ range (slice
-          (dict "n" "Python" "t" "3.11+" "c" "sky" "logo" "python" "hex" "3776AB")
-          (dict "n" "NumPy" "t" "matematyka" "c" "violet" "logo" "numpy" "hex" "4DABCF")
-          (dict "n" "PyTorch" "t" "autograd" "c" "fuchsia" "logo" "pytorch" "hex" "EE4C2C")
-          (dict "n" "Captum" "t" "XAI" "c" "amber" "logo" "pytorchlightning" "hex" "F59E0B" "fallback" "microscope")
-          (dict "n" "Weights & Biases" "t" "tracking" "c" "emerald" "logo" "weightsandbiases" "hex" "FFBE00")
-          (dict "n" "MLflow" "t" "experiments" "c" "rose" "logo" "mlflow" "hex" "0194E2")
-          (dict "n" "Gymnasium" "t" "Deep RL" "c" "sky" "logo" "openai" "hex" "10A37F" "fallback" "gamepad-2")
-          (dict "n" "Hugging Face" "t" "modele" "c" "amber" "logo" "huggingface" "hex" "FFD21E")
-          (dict "n" "scikit-learn" "t" "baseline" "c" "violet" "logo" "scikitlearn" "hex" "F7931E")
-        ) }}
-          <div class="group relative overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/60 dark:bg-zinc-950/50 p-4 transition-all hover:-translate-y-0.5 hover:border-{{ .c }}-500/40">
-            <div class="flex items-center gap-3">
-              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80">
-                <img src="https://cdn.simpleicons.org/{{ .logo }}/{{ .hex }}" alt="{{ .n }}" class="h-5 w-5" loading="lazy" onerror="this.outerHTML='<i data-lucide=&quot;{{ .fallback | default `box` }}&quot; class=&quot;h-5 w-5 text-{{ .c }}-400&quot;></i>';if(window.lucide)window.lucide.createIcons();" />
-              </div>
-              <div class="min-w-0 flex-1">
-                <div class="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100">{{ .n }}</div>
-                <div class="truncate text-[11px] text-zinc-500 dark:text-zinc-500">{{ .t }}</div>
-              </div>
-            </div>
-            <div class="mt-3 h-1 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-              <div class="h-full w-0 bg-gradient-to-r from-{{ .c }}-500 to-{{ .c }}-400 transition-all duration-1000 group-hover:w-full"></div>
-            </div>
+  {{/* --- narzędzia --- */}}
+  <div class="mx-auto max-w-7xl px-6 pb-14">
+    <div class="mx-auto max-w-2xl text-center">
+      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">Warsztat <span class="bg-gradient-to-r from-fuchsia-600 to-violet-600 dark:from-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">inżyniera ML</span></h3>
+      <p class="mt-3 text-zinc-600 dark:text-zinc-400">Biblioteki z realnych projektów ML — obliczenia numeryczne, trening, tracking eksperymentów, wyjaśnialność, środowiska RL.</p>
+    </div>
+
+  <div class="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+    {{ range (slice
+      (dict "n" "Python" "t" "3.11+" "c" "sky" "logo" "python" "hex" "3776AB")
+      (dict "n" "NumPy" "t" "matematyka" "c" "violet" "logo" "numpy" "hex" "4DABCF")
+      (dict "n" "PyTorch" "t" "autograd" "c" "fuchsia" "logo" "pytorch" "hex" "EE4C2C")
+      (dict "n" "Captum" "t" "XAI" "c" "amber" "logo" "pytorchlightning" "hex" "F59E0B" "fallback" "microscope")
+      (dict "n" "Weights & Biases" "t" "tracking" "c" "emerald" "logo" "weightsandbiases" "hex" "FFBE00")
+      (dict "n" "MLflow" "t" "experiments" "c" "rose" "logo" "mlflow" "hex" "0194E2")
+      (dict "n" "Gymnasium" "t" "Deep RL" "c" "sky" "logo" "openai" "hex" "10A37F" "fallback" "gamepad-2")
+      (dict "n" "Hugging Face" "t" "modele" "c" "amber" "logo" "huggingface" "hex" "FFD21E")
+      (dict "n" "scikit-learn" "t" "baseline" "c" "violet" "logo" "scikitlearn" "hex" "F7931E")
+    ) }}
+      <article class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-{{ .c }}-500/40">
+        <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-{{ .c }}-500/10 blur-3xl transition-all group-hover:bg-{{ .c }}-500/20"></div>
+        <div class="relative flex items-center gap-4">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80">
+            <img src="https://cdn.simpleicons.org/{{ .logo }}/{{ .hex }}" alt="" aria-hidden="true" class="h-6 w-6" loading="lazy" onerror="this.outerHTML='<i data-lucide=&quot;{{ .fallback | default `box` }}&quot; class=&quot;h-6 w-6 text-{{ .c }}-500 dark:text-{{ .c }}-400&quot;></i>';if(window.lucide)window.lucide.createIcons();" />
           </div>
-        {{ end }}
-      </div>
+          <div class="min-w-0 flex-1">
+            <div class="truncate text-base font-semibold text-zinc-900 dark:text-zinc-100">{{ .n }}</div>
+            <div class="truncate text-xs text-zinc-500 dark:text-zinc-500">{{ .t }}</div>
+          </div>
+        </div>
+        <div class="relative mt-4 h-1 w-full overflow-hidden rounded-full bg-zinc-200/60 dark:bg-zinc-800/60">
+          <div class="h-full w-0 bg-gradient-to-r from-{{ .c }}-500 to-{{ .c }}-400 transition-all duration-1000 group-hover:w-full"></div>
+        </div>
+      </article>
+    {{ end }}
     </div>
   </div>
 </section>
 
 {{/* ============ ZESPÓŁ ============ */}}
-<section id="zespol" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
+<section id="zespol" class="mx-auto max-w-7xl px-6 py-14 scroll-mt-20">
   <div class="mx-auto max-w-2xl text-center">
-    <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
-      <i data-lucide="users" class="h-3.5 w-3.5"></i> Prowadzący
-    </span>
-    <h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Zespół <span class="bg-gradient-to-r from-emerald-600 to-sky-600 dark:from-emerald-400 dark:to-sky-400 bg-clip-text text-transparent">kursu</span></h2>
+    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Zespół <span class="bg-gradient-to-r from-emerald-600 to-sky-600 dark:from-emerald-400 dark:to-sky-400 bg-clip-text text-transparent">kursu</span></h2>
     <p class="mt-4 text-zinc-600 dark:text-zinc-400">Pracownicy naukowo-dydaktyczni Politechniki Wrocławskiej prowadzący wykłady i laboratoria.</p>
   </div>
 
@@ -349,99 +367,78 @@
   </div>
 </section>
 
-{{/* ============ INFORMACJE ============ */}}
-<section id="informacje" class="mx-auto max-w-7xl px-6 py-20 scroll-mt-20">
+{{/* ============ EFEKTY KSZTAŁCENIA ============ */}}
+<section id="efekty" class="mx-auto max-w-7xl px-6 py-14 scroll-mt-20">
   <div class="mx-auto max-w-2xl text-center">
-    <span class="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-700 dark:text-sky-300">
-      <i data-lucide="info" class="h-3.5 w-3.5"></i> Organizacja
-    </span>
-    <h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Informacje <span class="bg-gradient-to-r from-sky-600 to-violet-600 dark:from-sky-400 dark:to-violet-400 bg-clip-text text-transparent">praktyczne</span></h2>
+    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Efekty <span class="bg-gradient-to-r from-violet-600 to-fuchsia-600 dark:from-violet-400 dark:to-fuchsia-400 bg-clip-text text-transparent">kształcenia</span></h2>
   </div>
 
-  <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-    <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-violet-500/40">
-      <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-violet-500/20 via-fuchsia-500/10 to-sky-500/10 blur-2xl transition-all group-hover:from-violet-500/30"></div>
-      <div class="relative">
-        <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-violet-500/30 bg-violet-500/10 text-violet-700 dark:text-violet-300">
-          {{ partial "pwr-crest.html" (dict "class" "h-5 w-5" "id" "info") }}
+  {{ $effects := slice
+    (dict "cat" "Z zakresu wiedzy" "accent" "violet" "icon" "brain"
+          "rows" (slice
+            (dict "k" "PEU_W01" "t" "Wyjaśnia teoretyczne podstawy działania, budowy oraz metody uczenia przedstawionych na wykładzie głębokich sieci neuronowych." "r" "K1_SZT_W02")))
+    (dict "cat" "Z zakresu umiejętności" "accent" "fuchsia" "icon" "wrench"
+          "rows" (slice
+            (dict "k" "PEU_U01" "t" "Projektuje, buduje i uczy model sieci rozwiązujący postawiony problem." "r" "K1_SZT_U13")))
+    (dict "cat" "Z zakresu kompetencji społecznych" "accent" "sky" "icon" "users"
+          "rows" (slice
+            (dict "k" "PEU_K01" "t" "Jest zdolny do wykorzystania innowacyjnych narzędzi w rozwiązywaniu różnych problemów z użyciem głębokiego uczenia." "r" "K1_SZT_K05")))
+  }}
+
+  <div class="mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 backdrop-blur-sm dark:shadow-none">
+    <div class="hidden grid-cols-[auto_1fr_auto] gap-4 border-b border-zinc-200/70 px-5 py-3 text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-500 dark:border-zinc-800/70 dark:text-zinc-500 sm:grid">
+      <span>Efekt przedmiotowy</span>
+      <span>Treść</span>
+      <span class="text-right">Efekt kierunkowy</span>
+    </div>
+
+    {{ range $effects }}
+      <div class="border-b border-zinc-200/70 dark:border-zinc-800/70 last:border-b-0">
+        <div class="flex items-center gap-2 bg-{{ .accent }}-500/5 px-5 py-2.5">
+          <i data-lucide="{{ .icon }}" class="h-3.5 w-3.5 text-{{ .accent }}-600 dark:text-{{ .accent }}-400"></i>
+          <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-{{ .accent }}-700 dark:text-{{ .accent }}-300">{{ .cat }}</span>
         </div>
-        <h3 class="text-lg font-semibold">Afiliacja</h3>
-        <dl class="mt-4 space-y-3 text-sm">
-          <div class="flex items-start gap-2">
-            <i data-lucide="landmark" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-violet-600 dark:text-violet-400"></i>
-            <div>
-              <dt class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Uczelnia</dt>
-              <dd class="text-zinc-800 dark:text-zinc-200">Politechnika Wrocławska</dd>
-            </div>
+        {{ $accent := .accent }}
+        {{ range .rows }}
+          <div class="grid grid-cols-1 gap-2 px-5 py-4 sm:grid-cols-[auto_1fr_auto] sm:items-start sm:gap-4">
+            <span class="inline-flex h-fit items-center rounded-md border border-{{ $accent }}-500/30 bg-{{ $accent }}-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-{{ $accent }}-700 dark:text-{{ $accent }}-300">{{ .k }}</span>
+            <p class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{{ .t }}</p>
+            <span class="inline-flex h-fit items-center rounded-md border border-zinc-200 bg-zinc-100/60 px-2 py-0.5 font-mono text-xs text-zinc-600 dark:border-zinc-800 dark:bg-zinc-950/60 dark:text-zinc-400 sm:justify-self-end">{{ .r }}</span>
           </div>
-          <div class="flex items-start gap-2">
-            <i data-lucide="graduation-cap" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-fuchsia-600 dark:text-fuchsia-400"></i>
-            <div>
-              <dt class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Wydział</dt>
-              <dd class="text-zinc-800 dark:text-zinc-200">W4N · Informatyki i Telekomunikacji</dd>
-            </div>
-          </div>
-          <div class="flex items-start gap-2">
-            <i data-lucide="building-2" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-600 dark:text-sky-400"></i>
-            <div>
-              <dt class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Katedra</dt>
-              <dd class="text-zinc-800 dark:text-zinc-200">Sztucznej Inteligencji</dd>
-            </div>
-          </div>
-          <div class="flex items-start gap-2">
-            <i data-lucide="map-pin" class="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600 dark:text-emerald-400"></i>
-            <div>
-              <dt class="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-500">Lokalizacja</dt>
-              <dd class="text-zinc-800 dark:text-zinc-200">Wybrzeże Wyspiańskiego 27, Wrocław</dd>
-            </div>
-          </div>
-        </dl>
-      </div>
-    </div>
-
-    <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
-      <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300">
-        <i data-lucide="clock" class="h-5 w-5"></i>
-      </div>
-      <h3 class="text-lg font-semibold">Wymiar kursu</h3>
-      <dl class="mt-4 space-y-2 text-sm">
-        <div class="flex justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 pb-2"><dt class="text-zinc-600 dark:text-zinc-400">Wykłady</dt><dd class="font-mono text-zinc-800 dark:text-zinc-200">30h</dd></div>
-        <div class="flex justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 pb-2"><dt class="text-zinc-600 dark:text-zinc-400">Laboratoria</dt><dd class="font-mono text-zinc-800 dark:text-zinc-200">30h</dd></div>
-        <div class="flex justify-between pt-1"><dt class="font-semibold text-zinc-800 dark:text-zinc-200">Łącznie</dt><dd class="font-mono font-semibold text-violet-700 dark:text-violet-300">60h</dd></div>
-      </dl>
-    </div>
-
-    <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
-      <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300">
-        <i data-lucide="book-open" class="h-5 w-5"></i>
-      </div>
-      <h3 class="text-lg font-semibold">Prerekwizyty</h3>
-      <ul class="mt-4 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-        {{ range (slice "Python 3 (OOP, dekoratory)" "Algebra liniowa" "Rachunek różniczkowy" "Rachunek prawdopodobieństwa" "Podstawy NumPy (mile widziane)") }}
-          <li class="flex items-start gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-fuchsia-600 dark:text-fuchsia-400"></i><span>{{ . }}</span></li>
         {{ end }}
-      </ul>
-    </div>
-
-    <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm">
-      <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-sky-500/30 bg-sky-500/10 text-sky-700 dark:text-sky-300">
-        <i data-lucide="library" class="h-5 w-5"></i>
       </div>
-      <h3 class="text-lg font-semibold">Literatura</h3>
-      <ul class="mt-4 space-y-3 text-sm">
-        {{ range (slice
-          (dict "a" "Goodfellow, Bengio, Courville" "t" "Deep Learning, MIT 2016")
-          (dict "a" "Michael Nielsen" "t" "Neural Networks & Deep Learning")
-          (dict "a" "Vaswani et al." "t" "Attention Is All You Need, 2017")
-          (dict "a" "C. M. Bishop" "t" "Pattern Recognition and ML")
-        ) }}
-          <li>
-            <div class="text-zinc-800 dark:text-zinc-200">{{ .t }}</div>
-            <div class="text-xs text-zinc-500 dark:text-zinc-500">{{ .a }}</div>
-          </li>
-        {{ end }}
-      </ul>
-    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ============ LITERATURA ============ */}}
+<section id="literatura" class="mx-auto max-w-7xl px-6 py-14 scroll-mt-20">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl"><span class="bg-gradient-to-r from-sky-600 to-violet-600 dark:from-sky-400 dark:to-violet-400 bg-clip-text text-transparent">Literatura</span></h2>
+  </div>
+
+  <div class="mx-auto mt-12 max-w-3xl">
+    <ul class="grid gap-3 sm:grid-cols-2">
+      {{ range (slice
+        (dict "a" "Goodfellow, Bengio, Courville" "t" "Deep Learning" "y" "MIT 2016" "u" "https://www.deeplearningbook.org/")
+        (dict "a" "Michael Nielsen" "t" "Neural Networks & Deep Learning" "y" "2015" "u" "http://neuralnetworksanddeeplearning.com/")
+        (dict "a" "Vaswani et al." "t" "Attention Is All You Need" "y" "NeurIPS 2017" "u" "https://arxiv.org/abs/1706.03762")
+        (dict "a" "Christopher M. Bishop" "t" "Pattern Recognition and Machine Learning" "y" "Springer 2006" "u" "https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/")
+      ) }}
+        <li>
+          <a href="{{ .u }}" target="_blank" rel="noopener" class="group flex h-full items-start gap-3 rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 p-4 shadow-sm shadow-zinc-900/5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/40 dark:shadow-none">
+            <i data-lucide="book-open" class="mt-0.5 h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400"></i>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-1.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-sky-700 dark:group-hover:text-sky-300">
+                <span class="truncate">{{ .t }}</span>
+                <i data-lucide="external-link" class="h-3 w-3 shrink-0 opacity-0 transition-opacity group-hover:opacity-60"></i>
+              </div>
+              <div class="mt-0.5 text-xs text-zinc-500 dark:text-zinc-500">{{ .a }} · {{ .y }}</div>
+            </div>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
   </div>
 </section>
 

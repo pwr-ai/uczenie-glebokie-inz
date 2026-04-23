@@ -6,9 +6,12 @@
 html {
   scroll-padding-top: 80px;
   scroll-behavior: smooth;
+  /* Proximity (not mandatory) so it only snaps near a snap point and doesn't
+     fight anchor jumps to other sections. Snap points are set per-block below. */
+  scroll-snap-type: y proximity;
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; scroll-snap-type: none; }
 }
 
 /* ================================================================ */
@@ -141,23 +144,18 @@ html.dark .block-tab:hover {
 }
 
 /* ================================================================ */
-/* WYKŁADY — scroll-host with one block visible at a time           */
+/* STEPPER — shared sticky vertical stepper (Wykłady, Laboratoria)   */
 /* ================================================================ */
-.wyk-block { display: none; }
-#wyk-stack[data-active-block="1"] .wyk-block[data-block="1"],
-#wyk-stack[data-active-block="2"] .wyk-block[data-block="2"],
-#wyk-stack[data-active-block="3"] .wyk-block[data-block="3"],
-#wyk-stack[data-active-block="4"] .wyk-block[data-block="4"] {
-  display: block;
-  animation: wyk-in 0.24s ease-out;
-}
-@keyframes wyk-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* Each card is a snap point; scroll-margin matches .scroll-mt-28 on the block
+   so the card docks just below the sticky nav when snapped or clicked. */
+.wyk-block,
+.lab-block {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 /* vertical stepper — connecting line + clickable step circles */
-.wyk-steps::before {
+.step-spine::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -173,18 +171,18 @@ html.dark .block-tab:hover {
   );
   border-radius: 1px;
 }
-.wyk-tab {
+.step-tab {
   transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
-.wyk-tab:hover { transform: scale(1.05); }
-.wyk-tab.is-active {
+.step-tab:hover { transform: scale(1.05); }
+.step-tab.is-active {
   background: linear-gradient(135deg, #8b5cf6, #d946ef);
   color: white;
   border-color: transparent;
   box-shadow: 0 4px 14px -4px rgba(139, 92, 246, 0.55);
   transform: scale(1.1);
 }
-.wyk-tab.is-active:hover { color: white; }
+.step-tab.is-active:hover { color: white; }
 
 /* ================================================================ */
 /* REDUCED MOTION                                                   */
@@ -192,7 +190,6 @@ html.dark .block-tab:hover {
 @media (prefers-reduced-motion: reduce) {
   .tip { transition: opacity 0.1s linear; transform: none !important; }
   .arch-panel { animation: none !important; }
-  .wyk-block { opacity: 1 !important; transform: none !important; transition: none !important; }
   svg animate,
   svg animateMotion,
   svg animateTransform {

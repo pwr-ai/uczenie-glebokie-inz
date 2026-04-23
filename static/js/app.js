@@ -92,7 +92,7 @@ if (window.lucide) window.lucide.createIcons();
   const indicator = document.getElementById("nav-indicator");
   if (!links.length) return;
 
-  const sections = ["wyklady", "laboratoria", "zespol", "informacje"]
+  const sections = ["wyklady", "laboratoria", "zespol", "efekty", "literatura"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
 
@@ -144,62 +144,51 @@ if (window.lucide) window.lucide.createIcons();
   onScroll();
 })();
 
-// ===== Wykłady: scroll-advance + tab clicks (mirror of Architektury) =====
-(function wykTabs() {
-  const stack = document.getElementById("wyk-stack");
+// ===== Sticky stepper (Wykłady, Laboratoria): active tab tracks whichever
+// .{prefix}-block is currently in view =====
+function mountStepper(stackId, blockClass) {
+  const stack = document.getElementById(stackId);
   if (!stack) return;
-  const tabs = stack.querySelectorAll(".wyk-tab");
-  const host = document.querySelector(".wyk-scroll-host");
-  const progressBar = document.getElementById("wyk-progress");
-  const progressLabel = document.getElementById("wyk-progress-label");
-  const MAX = 4;
+  const tabs = stack.querySelectorAll(".step-tab");
+  const blocks = stack.querySelectorAll("." + blockClass);
+  if (!tabs.length || !blocks.length) return;
   let current = 0;
 
   function setActive(n) {
-    n = Math.max(1, Math.min(MAX, parseInt(n, 10) || 1));
     if (n === current) return;
     current = n;
     stack.dataset.activeBlock = String(n);
     tabs.forEach((t) =>
-      t.classList.toggle("is-active", t.dataset.wykBlock === String(n))
+      t.classList.toggle("is-active", t.dataset.block === String(n))
     );
-    if (progressBar) progressBar.style.width = (n / MAX) * 100 + "%";
-    if (progressLabel) progressLabel.textContent = String(n);
-  }
-
-  function scrollForBlock(n) {
-    if (!host) return null;
-    const rect = host.getBoundingClientRect();
-    const span = host.offsetHeight - window.innerHeight;
-    if (span <= 0) return null;
-    const frac = (n - 0.5) / MAX;
-    return window.scrollY + rect.top + span * frac;
   }
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      const n = parseInt(tab.dataset.wykBlock, 10);
-      const y = scrollForBlock(n);
-      if (y != null) window.scrollTo({ top: y });
-      setActive(n);
+      const n = parseInt(tab.dataset.block, 10);
+      const target = stack.querySelector(`.${blockClass}[data-block="${n}"]`);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
-  if (host) {
-    function onScroll() {
-      const rect = host.getBoundingClientRect();
-      const span = host.offsetHeight - window.innerHeight;
-      if (span <= 0) return;
-      const progress = Math.max(0, Math.min(0.9999, -rect.top / span));
-      setActive(Math.floor(progress * MAX) + 1);
+  // Track which block is "current": pick the last block whose top has crossed
+  // the detection line (140 px below viewport top — just under the sticky nav).
+  const DETECT_Y = 140;
+  function onScroll() {
+    let active = 1;
+    for (const b of blocks) {
+      if (b.getBoundingClientRect().top <= DETECT_Y) {
+        active = parseInt(b.dataset.block, 10) || active;
+      }
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    onScroll();
-  } else {
-    setActive(stack.dataset.activeBlock || "1");
+    setActive(active);
   }
-})();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
+}
+mountStepper("wyk-stack", "wyk-block");
+mountStepper("lab-stack", "lab-block");
 
 // ===== Architektury: block tabs + scroll-advance =====
 (function blockTabs() {
