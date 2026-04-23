@@ -78,47 +78,44 @@
         <div id="arch-card" data-active-block="1" class="mx-auto mt-8 w-full max-w-6xl rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-xl shadow-zinc-900/5 dark:shadow-none p-4 sm:p-6 overflow-hidden">
           {{/* ===== block tabs ===== */}}
           <div role="tablist" class="block-tabs grid grid-cols-2 sm:grid-cols-4 gap-1 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-950/50 p-1">
-            <button type="button" role="tab" data-block="1" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="git-fork" class="h-4 w-4"></i> Podstawy
+            <button type="button" role="tab" data-block="1" class="block-tab is-active inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
+              <i data-lucide="git-fork" class="h-4 w-4"></i> Blok 1: Podstawy
             </button>
             <button type="button" role="tab" data-block="2" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="image" class="h-4 w-4"></i> CNN
+              <i data-lucide="image" class="h-4 w-4"></i> Blok 2: CNN
             </button>
             <button type="button" role="tab" data-block="3" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="message-square" class="h-4 w-4"></i> Sekwencje
+              <i data-lucide="message-square" class="h-4 w-4"></i> Blok 3: Sekwencje
             </button>
             <button type="button" role="tab" data-block="4" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="scan-search" class="h-4 w-4"></i> Zaawansowane
+              <i data-lucide="scan-search" class="h-4 w-4"></i> Blok 4: Zaawansowane
             </button>
           </div>
 
           {{/* ===== panels ===== */}}
           {{ $blocks := slice
             (dict "n" "1" "num" "1" "accent" "violet" "title" "Podstawy sieci neuronowych"
-                  "desc" ""
+                  "caption" "Wielowarstwowy perceptron (MLP). Wektor cech wejściowych przepływa przez warstwy ukryte; sieć produkuje rozkład prawdopodobieństwa na klasach wyjściowych."
                   "partial" "arch-mlp.html")
             (dict "n" "2" "num" "2" "accent" "fuchsia" "title" "Sieci konwolucyjne i modele generatywne"
-                  "desc" "Sieci konwolucyjne rozpoznające obrazy, transfer learning z modeli pretrenowanych oraz modele generatywne — autokodery, VAE i GAN — uczące się tworzyć nowe dane podobne do treningowych."
+                  "caption" "Sieć konwolucyjna (CNN). Kolejne warstwy filtrów wykrywają coraz bardziej abstrakcyjne wzorce w obrazie — od krawędzi po całe obiekty."
                   "partial" "arch-cnn.html")
             (dict "n" "3" "num" "3" "accent" "sky" "title" "Sekwencje, uwaga i Transformery"
-                  "desc" "Sieci rekurencyjne (RNN, LSTM, GRU) do danych sekwencyjnych, a następnie mechanizm uwagi i architektura Transformer — fundament nowoczesnych modeli językowych i tłumaczenia maszynowego."
+                  "caption" "Mechanizm uwagi w Transformerze. Każdy token dynamicznie waży pozostałe tokeny w sekwencji, ucząc się kontekstowych zależności."
                   "partial" "arch-rnn.html")
             (dict "n" "4" "num" "4" "accent" "emerald" "title" "Tematy zaawansowane"
-                  "desc" "Uczenie ze wzmocnieniem z sieciami głębokimi (agenci uczący się przez próby), metody wyjaśnialności (XAI, np. Grad-CAM), a także zaawansowane zastosowania CNN: detekcja i segmentacja obiektów w obrazach."
+                  "caption" "Grad-CAM. Mapa aktywacji pokazująca, które regiony obrazu najsilniej wpłynęły na decyzję klasyfikatora — narzędzie wyjaśnialności (XAI)."
                   "partial" "arch-gradcam.html") }}
           {{ range $b := $blocks }}
-            <div class="arch-panel mt-5 sm:mt-6" data-block="{{ $b.n }}">
-              <header class="max-w-3xl">
-                <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span class="font-mono text-[11px] uppercase tracking-wider text-{{ $b.accent }}-700 dark:text-{{ $b.accent }}-300">Blok {{ $b.num }}</span>
-                  <h3 class="text-xl font-bold tracking-tight sm:text-2xl">{{ $b.title }}</h3>
-                </div>
-                {{ with $b.desc }}<p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{{ . }}</p>{{ end }}
-              </header>
-              <div class="mt-4 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-950/60 p-3 sm:p-4 aspect-[12/5] w-full overflow-hidden">
+            <figure class="arch-panel mt-5 sm:mt-6" data-block="{{ $b.n }}">
+              <div class="rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-950/60 p-3 sm:p-4 aspect-[12/5] w-full overflow-hidden">
                 {{ partial $b.partial . }}
               </div>
-            </div>
+              <figcaption class="mx-auto mt-3 max-w-3xl text-center text-xs leading-relaxed text-zinc-500 dark:text-zinc-500 sm:text-sm">
+                <span class="font-semibold text-zinc-700 dark:text-zinc-300">Rys. {{ $b.num }}.</span>
+                {{ $b.caption }}
+              </figcaption>
+            </figure>
           {{ end }}
         </div>
 
