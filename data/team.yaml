@@ -1,40 +1,48 @@
 members:
   - name: prof. dr hab. inż. Urszula Markowska-Kaczmar
-    role: Wykład · Laboratoria
+    role_pl: Wykład · Laboratoria
+    role_en: Lectures · Labs
     affiliation: Katedra Sztucznej Inteligencji · PWr
-    focus: Deep learning, interpretowalność sieci neuronowych, zastosowania w obrazowaniu medycznym. Autorka ponad 130 publikacji.
+    focus_pl: Deep learning, interpretowalność sieci neuronowych, zastosowania w obrazowaniu medycznym. Autorka ponad 130 publikacji.
+    focus_en: Deep learning, neural-network interpretability, medical-imaging applications. Author of over 130 publications.
     email: urszula.markowska-kaczmar@pwr.edu.pl
     initials: UMK
-    accent: violet
+    accent: garnet
     photo: images/team/urszula-markowska-kaczmar.jpg
-    link: https://ai.pwr.edu.pl/author/urszula-markowska-kaczmar/
+    link: https://ai.pwr.edu.pl/people/urszula-markowska-kaczmar
 
   - name: mgr inż. Jan Jakubik
-    role: Laboratoria
+    role_pl: Laboratoria
+    role_en: Labs
     affiliation: Katedra Sztucznej Inteligencji · PWr
-    focus: Zastosowania ML do analizy muzyki i dźwięku, uczenie słabo nadzorowane, NLP.
+    focus_pl: Zastosowania ML do analizy muzyki i dźwięku, uczenie słabo nadzorowane, NLP.
+    focus_en: ML for music and audio analysis, weakly-supervised learning, NLP.
     email: jan.jakubik@pwr.edu.pl
     initials: JJ
-    accent: sky
+    accent: teal
     photo: images/team/jan-jakubik.jpg
-    link: https://ai.pwr.edu.pl/author/jan-jakubik/
-
-  - name: dr inż. Kamil Tagowski
-    role: Laboratoria
-    affiliation: Katedra Sztucznej Inteligencji · PWr
-    focus: Graph representation learning, polski NLP, systemy dialogowe i Question-Answering.
-    email: kamil.tagowski@pwr.edu.pl
-    initials: KT
-    accent: sky
-    photo: images/team/kamil-tagowski.jpg
-    link: https://ai.pwr.edu.pl/author/kamil-tagowski/
+    link: https://ai.pwr.edu.pl/people/jan-jakubik
 
   - name: dr inż. Piotr Zieliński
-    role: Laboratoria
+    role_pl: Laboratoria
+    role_en: Labs
     affiliation: Katedra Sztucznej Inteligencji · PWr
-    focus: Representation learning w widzeniu komputerowym, multi-object representation, deep reinforcement learning.
+    focus_pl: Representation learning w widzeniu komputerowym, multi-object representation, deep reinforcement learning.
+    focus_en: Representation learning in computer vision, multi-object representation, deep reinforcement learning.
     email: p.zielinski@pwr.edu.pl
     initials: PZ
-    accent: sky
+    accent: plum
     photo: images/team/piotr-zielinski.jpg
-    link: https://ai.pwr.edu.pl/author/piotr-zielinski/
+    link: https://ai.pwr.edu.pl/people/piotr-zielinski
+
+  - name: dr inż. Kamil Tagowski
+    role_pl: Ekspert merytoryczny
+    role_en: Subject-matter expert
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus_pl: Graph representation learning, polski NLP, systemy dialogowe i QA, SI w finansach i podatkach.
+    focus_en: Graph representation learning, Polish NLP, dialogue and QA systems, AI in finance and taxation.
+    email: kamil.tagowski@pwr.edu.pl
+    initials: KT
+    accent: indigo
+    photo: images/team/kamil-tagowski.jpg
+    link: https://ai.pwr.edu.pl/people/kamil-tagowski

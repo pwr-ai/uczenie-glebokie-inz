@@ -1,444 +1,225 @@
 {{ define "main" }}
-<div id="top"></div>
 
 {{/* ============ HERO ============ */}}
-<section class="relative mx-auto max-w-7xl px-6 pt-14 pb-14 sm:pt-16 sm:pb-16">
-  <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+<section class="hero">
+  <div class="wrap">
     <div>
-      <h1 class="whitespace-nowrap text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-        <span class="text-zinc-900 dark:text-zinc-100">Uczenie</span>
-        <span class="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-sky-600 dark:from-violet-400 dark:via-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">Głębokie</span>
-      </h1>
-
-      <p class="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+      <span class="eyebrow" data-i18n data-pl="Kurs inżynierski · Sztuczna Inteligencja" data-en="BEng course · Artificial Intelligence">Kurs inżynierski · Sztuczna Inteligencja</span>
+      <h1 data-i18n data-pl="Uczenie <span class='em'>Głębokie</span>" data-en="Deep <span class='em'>Learning</span>">Uczenie <span class="em">Głębokie</span></h1>
+      <p class="lead" data-i18n
+         data-pl="Kurs wprowadza w podstawy głębokiego uczenia. Obejmuje kluczowe architektury sieci, sposoby ich trenowania oraz techniki doskonalenia tego procesu. Teorię uzupełniają praktyczne laboratoria w Pythonie i PyTorchu."
+         data-en="The course introduces the foundations of deep learning. It covers the key network architectures, how to train them, and techniques for refining that process. The theory is complemented by hands-on labs in Python and PyTorch.">
         Kurs wprowadza w podstawy głębokiego uczenia. Obejmuje kluczowe architektury sieci, sposoby ich trenowania oraz techniki doskonalenia tego procesu. Teorię uzupełniają praktyczne laboratoria w Pythonie i PyTorchu.
       </p>
-
-      <div class="mt-8 flex flex-wrap items-center gap-3">
-        <a href="#wyklady" class="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-zinc-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-zinc-950 shadow-lg shadow-violet-500/10 transition-all hover:shadow-violet-500/30">
-          <i data-lucide="book-open" class="h-4 w-4"></i>
-          Program wykładów
-          <i data-lucide="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5"></i>
+      <div class="cta">
+        <a class="btn btn-primary" href="#wyklady">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v18H5.5A2.5 2.5 0 0 1 3 18.5zM21 5.5A2.5 2.5 0 0 0 18.5 3H13v18h5.5a2.5 2.5 0 0 0 2.5-2.5z" stroke-linejoin="round"/></svg>
+          <span data-i18n data-pl="Program wykładów" data-en="Lecture syllabus">Program wykładów</span>
         </a>
-        <a href="#laboratoria" class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 shadow-sm shadow-zinc-900/5 dark:shadow-none px-5 py-2.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 backdrop-blur transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
-          <i data-lucide="flask-conical" class="h-4 w-4"></i>
-          Program laboratoriów
+        <a class="btn btn-ghost" href="#laboratoria">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 3h6M10 3v6l-5 8.5A2 2 0 0 0 6.7 21h10.6a2 2 0 0 0 1.7-3.5L14 9V3" stroke-linejoin="round"/></svg>
+          <span data-i18n data-pl="Program laboratoriów" data-en="Lab syllabus">Program laboratoriów</span>
         </a>
       </div>
-
-      <dl class="mt-10 grid max-w-lg grid-cols-3 gap-4">
-        {{ range (slice (dict "k" "30h" "v" "wykładów" "c" "violet") (dict "k" "30h" "v" "laboratoriów" "c" "fuchsia") (dict "k" "3 + 3" "v" "ECTS" "c" "sky")) }}
-          <div class="rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-4 backdrop-blur-sm">
-            <dt class="bg-gradient-to-br from-{{ .c }}-500 to-{{ .c }}-700 dark:from-{{ .c }}-300 dark:to-{{ .c }}-500 bg-clip-text text-3xl font-bold text-transparent">{{ .k }}</dt>
-            <dd class="mt-1 text-xs text-zinc-500 dark:text-zinc-500">{{ .v }}</dd>
-          </div>
-        {{ end }}
-      </dl>
-    </div>
-
-    {{/* right column — static decorative neural net illustration */}}
-    <div class="relative hidden lg:block">
-      <div class="aspect-square w-full">
-        {{ partial "hero-illustration.html" . }}
+      <div class="meta-strip">
+        <div class="m"><div class="v">30 h</div><div class="k" data-i18n data-pl="wykładów" data-en="lectures">wykładów</div></div>
+        <div class="m"><div class="v">15 × 1,5 h</div><div class="k" data-i18n data-pl="laboratoriów" data-en="labs">laboratoriów</div></div>
+        <div class="m"><div class="v">3 + 3</div><div class="k">ECTS</div></div>
       </div>
     </div>
-  </div>
-  <div class="mt-10 flex justify-center">
-    <div class="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 px-6 py-2.5 text-sm text-zinc-600 shadow-sm shadow-zinc-900/5 backdrop-blur dark:text-zinc-400 dark:shadow-none">
-      <a href="https://pwr.edu.pl" target="_blank" rel="noopener" class="group inline-flex items-center gap-2 transition-colors hover:text-violet-700 dark:hover:text-violet-300">
-        {{ partial "pwr-crest.html" (dict "class" "h-5 w-5 text-violet-700 dark:text-violet-300" "id" "hero") }}
-        <span class="font-semibold text-zinc-800 dark:text-zinc-200 group-hover:text-violet-700 dark:group-hover:text-violet-300">Politechnika Wrocławska</span>
-      </a>
-      <span aria-hidden="true" class="text-zinc-300 dark:text-zinc-700">|</span>
-      <span class="inline-flex items-center gap-2">
-        <i data-lucide="graduation-cap" class="h-4 w-4 text-fuchsia-700 dark:text-fuchsia-300"></i>
-        W4N · Informatyka i Telekomunikacja
-      </span>
-      <span aria-hidden="true" class="text-zinc-300 dark:text-zinc-700">|</span>
-      <span class="inline-flex items-center gap-2">
-        <i data-lucide="sparkles" class="h-4 w-4 text-sky-700 dark:text-sky-300"></i>
-        Sztuczna Inteligencja (inż.)
-      </span>
-      <span aria-hidden="true" class="text-zinc-300 dark:text-zinc-700">|</span>
-      <span class="inline-flex items-center gap-2">
-        <span class="relative flex h-2 w-2" aria-hidden="true">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-        </span>
-        Semestr Zimowy 2026/2027
+
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 360 360" fill="none">
+        <g class="net-edges" stroke="currentColor" stroke-width="1" opacity="0.28">
+          <path d="M60 70 L160 60M60 70 L160 130M60 70 L160 200M60 70 L160 270M60 150 L160 60M60 150 L160 130M60 150 L160 200M60 150 L160 270M60 230 L160 60M60 230 L160 130M60 230 L160 200M60 230 L160 270M60 310 L160 60M60 310 L160 130M60 310 L160 200M60 310 L160 270"/>
+          <path d="M160 60 L260 100M160 60 L260 180M160 60 L260 260M160 130 L260 100M160 130 L260 180M160 130 L260 260M160 200 L260 100M160 200 L260 180M160 200 L260 260M160 270 L260 100M160 270 L260 180M160 270 L260 260"/>
+          <path d="M260 100 L320 140M260 100 L320 220M260 180 L320 140M260 180 L320 220M260 260 L320 140M260 260 L320 220"/>
+        </g>
+        <g fill="var(--paper)" stroke="currentColor" stroke-width="1.6">
+          <circle cx="60" cy="70" r="7"/><circle cx="60" cy="150" r="7"/><circle cx="60" cy="230" r="7"/><circle cx="60" cy="310" r="7"/>
+          <circle cx="160" cy="60" r="7"/><circle cx="160" cy="130" r="7"/><circle cx="160" cy="200" r="7"/><circle cx="160" cy="270" r="7"/>
+          <circle cx="260" cy="100" r="7"/><circle cx="260" cy="180" r="7"/><circle cx="260" cy="260" r="7"/>
+        </g>
+        <g fill="currentColor"><circle cx="320" cy="140" r="8"/><circle cx="320" cy="220" r="8"/></g>
+      </svg>
+      <span class="hero-tag">
+        <span class="pulse"><i></i></span>
+        <span data-i18n data-pl="Semestr zimowy 2026/2027" data-en="Winter semester 2026/2027">Semestr zimowy 2026/2027</span>
       </span>
     </div>
   </div>
 </section>
 
 {{/* ============ WYKŁADY ============ */}}
-<section id="wyklady" class="mx-auto max-w-5xl px-6 py-14 scroll-mt-20">
-  <div class="mx-auto max-w-2xl text-center mb-12">
-    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Program <span class="bg-gradient-to-r from-violet-600 to-fuchsia-600 dark:from-violet-400 dark:to-fuchsia-400 bg-clip-text text-transparent">wykładów</span></h2>
+<section class="band wrap" id="wyklady">
+  <div class="sec-head">
+    <span class="en" data-i18n data-pl="Wykłady · 30 h · 4 bloki" data-en="Lectures · 30 h · 4 blocks">Wykłady · 30 h · 4 bloki</span>
+    <h2 data-i18n data-pl="Program <span class='em'>wykładów</span>" data-en="Lecture <span class='em'>syllabus</span>">Program <span class="em">wykładów</span></h2>
+    <p data-i18n data-pl="W czterech blokach tematycznych przejdziesz od podstaw sieci w pełni połączonych do bardziej zaawansowanych metod głębokiego uczenia. Każde zagadnienie poznasz najpierw intuicyjnie, a następnie od strony formalnej."
+       data-en="Across four thematic blocks you will move from the fundamentals of fully connected networks to more advanced deep learning methods. You will meet each topic first intuitively, then formally.">W czterech blokach tematycznych przejdziesz od podstaw sieci w pełni połączonych do bardziej zaawansowanych metod głębokiego uczenia. Każde zagadnienie poznasz najpierw intuicyjnie, a następnie od strony formalnej.</p>
   </div>
-
-  <div id="wyk-stack" class="grid grid-cols-[auto_1fr] gap-6 sm:gap-10">
-    {{/* left rail — sticky vertical stepper + progress */}}
-    <div class="relative hidden sm:block">
-      <div class="sticky top-24 flex flex-col items-center gap-3">
-        <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500 whitespace-nowrap">Program wykładów</span>
-        <div class="step-spine relative flex flex-col items-center gap-10 py-4">
-          {{ range $i, $b := .Site.Data.lectures.blocks }}
-            <button type="button" data-block="{{ add $i 1 }}"
-              class="step-tab group relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 font-mono text-xs font-semibold text-zinc-600 dark:text-zinc-400 transition-all hover:border-{{ $b.accent }}-500"
-              aria-label="Przejdź do bloku {{ $b.roman }}">
-              {{ $b.roman }}
-            </button>
-          {{ end }}
+  <div class="curric">
+    {{ range .Site.Data.lectures.blocks }}
+      <article class="block" style="--ba:var(--c-{{ .accent }})">
+        <div class="side">
+          <div class="roman">{{ .roman }}</div>
+          <div class="btitle" data-i18n data-pl="{{ .title }}" data-en="{{ .title_en | default .title }}">{{ .title }}</div>
+          <div class="bhours">{{ .hours }}</div>
         </div>
-      </div>
-    </div>
-
-    {{/* right column — all block cards stacked */}}
-    <div class="flex flex-col gap-12">
-      {{ range $i, $b := .Site.Data.lectures.blocks }}
-        <article class="wyk-block scroll-mt-28" data-block="{{ add $i 1 }}" id="wyk-{{ $b.id }}">
-          <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-lg shadow-zinc-900/5 dark:shadow-none p-6 sm:p-8 backdrop-blur-sm">
-            <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl"></div>
-            <div class="relative">
-              <div class="flex flex-wrap items-start justify-between gap-4">
-                <div class="flex items-start gap-4">
-                  <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-{{ $b.accent }}-500/30 bg-{{ $b.accent }}-500/10 text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">
-                    <i data-lucide="{{ $b.icon }}" class="h-6 w-6"></i>
-                  </div>
-                  <div>
-                    <span class="font-mono text-xs font-semibold uppercase tracking-wider text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">Blok {{ $b.roman }}</span>
-                    <h3 class="mt-1 text-xl font-semibold leading-tight sm:text-2xl">{{ $b.title }}</h3>
-                  </div>
-                </div>
-                <span class="shrink-0 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-3 py-1 font-mono text-xs text-zinc-600 dark:text-zinc-400">{{ $b.hours }}h</span>
-              </div>
-
-              <p class="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">{{ $b.summary }}</p>
-
-              <ul class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50">
-                {{ range $b.items }}
-                  <li class="flex items-start gap-3 px-4 py-2.5 text-sm">
-                    <span class="mt-0.5 inline-flex h-6 min-w-[2rem] items-center justify-center rounded-md bg-zinc-200 dark:bg-zinc-800/80 px-1.5 font-mono text-[11px] text-zinc-600 dark:text-zinc-400">{{ .nr }}</span>
-                    <span class="flex-1 text-zinc-700 dark:text-zinc-300">{{ .topic }}</span>
-                    <span class="shrink-0 font-mono text-xs text-zinc-500 dark:text-zinc-500">{{ .hours }}h</span>
-                  </li>
-                {{ end }}
-              </ul>
-
-              <div class="mt-5 flex flex-wrap gap-1.5">
-                {{ range $b.tags }}
-                  <span class="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/60 px-2 py-0.5 font-mono text-[10px] text-zinc-600 dark:text-zinc-400">{{ . }}</span>
-                {{ end }}
-              </div>
-            </div>
+        <div>
+          <p class="summary" data-i18n data-pl="{{ .summary_pl }}" data-en="{{ .summary_en }}">{{ .summary_pl }}</p>
+          <ol>
+            {{ range .items }}
+              <li><span class="nr">{{ .nr }}</span><span class="tp">{{ .topic }}</span><span class="hr">{{ .hours }}</span></li>
+            {{ end }}
+          </ol>
+          <div class="tags">
+            {{ range .tags }}<span>{{ . }}</span>{{ end }}
           </div>
-        </article>
-      {{ end }}
-    </div>
+        </div>
+      </article>
+    {{ end }}
   </div>
 </section>
 
 {{/* ============ LABORATORIA ============ */}}
-<section id="laboratoria" class="mx-auto max-w-5xl px-6 py-14 scroll-mt-20">
-  <div class="mx-auto max-w-2xl text-center mb-12">
-    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Program <span class="bg-gradient-to-r from-fuchsia-600 to-sky-600 dark:from-fuchsia-400 dark:to-sky-400 bg-clip-text text-transparent">laboratoriów</span></h2>
-    <p class="mt-4 text-zinc-600 dark:text-zinc-400">Piętnaście spotkań praktycznych. Własne implementacje w NumPy, pełny pipeline w PyTorch, modele generatywne, agenci Deep RL, wyjaśnialność i ataki adwersarialne.</p>
+<section class="band wrap" id="laboratoria">
+  <div class="sec-head">
+    <span class="en" data-i18n data-pl="Laboratoria · 15 × 1,5 h · 3 bloki" data-en="Labs · 15 × 1.5 h · 3 blocks">Laboratoria · 15 × 1,5 h · 3 bloki</span>
+    <h2 data-i18n data-pl="Program <span class='em'>laboratoriów</span>" data-en="Lab <span class='em'>syllabus</span>">Program <span class="em">laboratoriów</span></h2>
+    <p data-i18n data-pl="Podczas piętnastu praktycznych spotkań samodzielnie zaimplementujesz podstawowe sieci neuronowe w NumPy, zbudujesz kompletny pipeline uczenia w PyTorch oraz poznasz modele generatywne, agentów Deep RL, metody wyjaśnialności i ataki adwersarialne."
+       data-en="Over fifteen hands-on sessions you will implement basic neural networks from scratch in NumPy, build a complete training pipeline in PyTorch, and explore generative models, Deep RL agents, explainability methods, and adversarial attacks.">Podczas piętnastu praktycznych spotkań samodzielnie zaimplementujesz podstawowe sieci neuronowe w NumPy, zbudujesz kompletny pipeline uczenia w PyTorch oraz poznasz modele generatywne, agentów Deep RL, metody wyjaśnialności i ataki adwersarialne.</p>
   </div>
-
-  <div id="lab-stack" class="grid grid-cols-[auto_1fr] gap-6 sm:gap-10">
-    {{/* left rail — sticky vertical stepper */}}
-    <div class="relative hidden sm:block">
-      <div class="sticky top-24 flex flex-col items-center gap-3">
-        <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500 whitespace-nowrap">Program laboratoriów</span>
-        <div class="step-spine relative flex flex-col items-center gap-8 py-4">
-          {{ range $i, $b := .Site.Data.labs.blocks }}
-            <button type="button" data-block="{{ add $i 1 }}"
-              class="step-tab group relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 font-mono text-[11px] font-semibold text-zinc-600 dark:text-zinc-400 transition-all hover:border-{{ $b.accent }}-500"
-              aria-label="Przejdź do bloku {{ $b.roman }}">
-              {{ $b.roman }}
-            </button>
-          {{ end }}
+  <div class="curric">
+    {{ range .Site.Data.labs.blocks }}
+      <article class="block" style="--ba:var(--c-{{ .accent }})">
+        <div class="side">
+          <div class="roman">{{ .roman }}</div>
+          <div class="btitle" data-i18n data-pl="{{ .title }}" data-en="{{ .title_en | default .title }}">{{ .title }}</div>
+          <div class="bhours">{{ .range }}</div>
         </div>
-      </div>
-    </div>
-
-    {{/* right column — all lab block cards stacked */}}
-    <div class="flex flex-col gap-12">
-      {{ range $i, $b := .Site.Data.labs.blocks }}
-        <article class="lab-block scroll-mt-28" data-block="{{ add $i 1 }}" id="lab-{{ $b.id }}">
-          <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-lg shadow-zinc-900/5 dark:shadow-none p-6 sm:p-8 backdrop-blur-sm">
-            <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-{{ $b.accent }}-500/10 blur-3xl"></div>
-            <div class="relative">
-              <div class="flex flex-wrap items-start justify-between gap-4">
-                <div class="flex items-start gap-4">
-                  <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-{{ $b.accent }}-500/30 bg-{{ $b.accent }}-500/10 text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">
-                    <i data-lucide="{{ $b.icon }}" class="h-6 w-6"></i>
-                  </div>
-                  <div>
-                    <span class="font-mono text-xs font-semibold uppercase tracking-wider text-{{ $b.accent }}-600 dark:text-{{ $b.accent }}-300">Blok {{ $b.roman }}</span>
-                    <h3 class="mt-1 text-xl font-semibold leading-tight sm:text-2xl">{{ $b.title }}</h3>
-                  </div>
-                </div>
-                <span class="shrink-0 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 px-3 py-1 font-mono text-xs text-zinc-600 dark:text-zinc-400">{{ $b.range }}</span>
-              </div>
-
-              <ul class="mt-5 divide-y divide-zinc-200 dark:divide-zinc-800/80 rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-100/60 dark:bg-zinc-950/50">
-                {{ range $b.items }}
-                  <li class="flex items-start gap-3 px-4 py-3 text-sm">
-                    <span class="mt-0.5 inline-flex h-6 min-w-[2rem] items-center justify-center rounded-md bg-{{ $b.accent }}-500/15 px-1.5 font-mono text-[11px] font-semibold text-{{ $b.accent }}-700 dark:text-{{ $b.accent }}-300">{{ .nr }}</span>
-                    <div class="flex-1">
-                      <div class="text-zinc-800 dark:text-zinc-200 font-medium">{{ .topic }}</div>
-                      <p class="mt-0.5 text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">{{ .details }}</p>
-                    </div>
-                  </li>
-                {{ end }}
-              </ul>
-            </div>
-          </div>
-        </article>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
-{{/* ============ CO POZNASZ (Architektury + Narzędzia) ============ */}}
-<section id="co-poznasz" class="scroll-mt-20">
-  <div class="mx-auto max-w-2xl px-6 pt-14 text-center">
-    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Co <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">poznasz</span></h2>
-    <p class="mt-4 text-zinc-600 dark:text-zinc-400">Architektury, które zbudujesz, i narzędzia, których użyjesz w realnych projektach ML.</p>
-  </div>
-
-  {{/* --- architektury --- */}}
-  <div id="architektury" class="relative scroll-mt-20">
-    <div class="arch-scroll-host relative" style="height: 260vh;">
-    <div class="sticky top-20 flex h-[calc(100vh-5rem)] flex-col justify-center py-6">
-      <div class="mx-auto w-full max-w-7xl px-6">
-
-        <div class="mx-auto max-w-2xl text-center">
-          <h3 class="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">Architektury <span class="bg-gradient-to-r from-sky-600 via-fuchsia-600 to-violet-600 dark:from-sky-400 dark:via-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">sieci głębokich</span></h3>
-        </div>
-
-        <div id="arch-card" data-active-block="1" class="mx-auto mt-8 w-full max-w-6xl rounded-3xl border border-zinc-200 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 shadow-xl shadow-zinc-900/5 dark:shadow-none p-4 sm:p-6 overflow-hidden">
-          {{/* ===== block tabs ===== */}}
-          <div role="tablist" class="block-tabs grid grid-cols-2 sm:grid-cols-4 gap-1 rounded-lg border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-950/50 p-1">
-            <button type="button" role="tab" data-block="1" class="block-tab is-active inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="git-fork" class="h-4 w-4"></i> Blok 1: Podstawy
-            </button>
-            <button type="button" role="tab" data-block="2" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="image" class="h-4 w-4"></i> Blok 2: CNN
-            </button>
-            <button type="button" role="tab" data-block="3" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="message-square" class="h-4 w-4"></i> Blok 3: Sekwencje
-            </button>
-            <button type="button" role="tab" data-block="4" class="block-tab inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-all">
-              <i data-lucide="scan-search" class="h-4 w-4"></i> Blok 4: Zaawansowane
-            </button>
-          </div>
-
-          {{/* ===== panels ===== */}}
-          {{ $blocks := slice
-            (dict "n" "1" "num" "1" "accent" "violet" "title" "Podstawy sieci neuronowych"
-                  "caption" "Wielowarstwowy perceptron (MLP) z dwiema warstwami ukrytymi estymujący ryzyko choroby serca na podstawie czterech cech pacjenta."
-                  "partial" "arch-mlp.html")
-            (dict "n" "2" "num" "2" "accent" "fuchsia" "title" "Sieci konwolucyjne i modele generatywne"
-                  "caption" "Sieć konwolucyjna (CNN): splot 3×3 z filtrem Sobel-X, max-pooling 2×2, flatten i warstwa gęsta w zadaniu klasyfikacji Fashion-MNIST."
-                  "partial" "arch-cnn.html")
-            (dict "n" "3" "num" "3" "accent" "sky" "title" "Sekwencje, uwaga i Transformery"
-                  "caption" "Mechanizm uwagi w Transformerze. Każdy token dynamicznie waży pozostałe tokeny w sekwencji, ucząc się kontekstowych zależności."
-                  "partial" "arch-rnn.html")
-            (dict "n" "4" "num" "4" "accent" "emerald" "title" "Tematy zaawansowane"
-                  "caption" "Grad-CAM. Mapa aktywacji pokazująca, które regiony obrazu najsilniej wpłynęły na decyzję klasyfikatora — narzędzie wyjaśnialności (XAI)."
-                  "partial" "arch-gradcam.html") }}
-          {{ range $b := $blocks }}
-            <figure class="arch-panel mt-5 sm:mt-6" data-block="{{ $b.n }}">
-              <div class="rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-950/60 p-3 sm:p-4 aspect-[12/5] w-full overflow-hidden">
-                {{ partial $b.partial . }}
-              </div>
-              <figcaption class="mt-3 text-center text-xs leading-relaxed text-zinc-500 dark:text-zinc-500 sm:text-sm lg:whitespace-nowrap">
-                <span class="font-semibold text-zinc-700 dark:text-zinc-300">Rys. {{ $b.num }}.</span>
-                {{ $b.caption }}
-              </figcaption>
-            </figure>
-          {{ end }}
-        </div>
-
-        {{/* scroll progress indicator */}}
-        <div class="mx-auto mt-4 flex max-w-6xl items-center gap-2">
-          <div class="h-1 flex-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-            <div id="arch-progress" class="h-full w-1/4 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-sky-500 transition-all duration-300"></div>
-          </div>
-          <span class="font-mono text-xs text-zinc-500 dark:text-zinc-500"><span id="arch-progress-label">1</span>/4</span>
-        </div>
-
-      </div>
-    </div>
-    </div>
-  </div>
-
-  {{/* --- narzędzia --- */}}
-  <div class="mx-auto max-w-7xl px-6 pb-14">
-    <div class="mx-auto max-w-2xl text-center">
-      <h3 class="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">Warsztat <span class="bg-gradient-to-r from-fuchsia-600 to-violet-600 dark:from-fuchsia-400 dark:to-violet-400 bg-clip-text text-transparent">inżyniera ML</span></h3>
-      <p class="mt-3 text-zinc-600 dark:text-zinc-400">Biblioteki z realnych projektów ML — obliczenia numeryczne, trening, tracking eksperymentów, wyjaśnialność, środowiska RL.</p>
-    </div>
-
-  <div class="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-    {{ range (slice
-      (dict "n" "Python" "t" "3.11+" "c" "sky" "logo" "python" "hex" "3776AB")
-      (dict "n" "NumPy" "t" "matematyka" "c" "violet" "logo" "numpy" "hex" "4DABCF")
-      (dict "n" "PyTorch" "t" "autograd" "c" "fuchsia" "logo" "pytorch" "hex" "EE4C2C")
-      (dict "n" "Captum" "t" "XAI" "c" "amber" "logo" "pytorchlightning" "hex" "F59E0B" "fallback" "microscope")
-      (dict "n" "Weights & Biases" "t" "tracking" "c" "emerald" "logo" "weightsandbiases" "hex" "FFBE00")
-      (dict "n" "MLflow" "t" "experiments" "c" "rose" "logo" "mlflow" "hex" "0194E2")
-      (dict "n" "Gymnasium" "t" "Deep RL" "c" "sky" "logo" "openai" "hex" "10A37F" "fallback" "gamepad-2")
-      (dict "n" "Hugging Face" "t" "modele" "c" "amber" "logo" "huggingface" "hex" "FFD21E")
-      (dict "n" "scikit-learn" "t" "baseline" "c" "violet" "logo" "scikitlearn" "hex" "F7931E")
-    ) }}
-      <article class="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-{{ .c }}-500/40">
-        <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-{{ .c }}-500/10 blur-3xl transition-all group-hover:bg-{{ .c }}-500/20"></div>
-        <div class="relative flex items-center gap-4">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80">
-            <img src="https://cdn.simpleicons.org/{{ .logo }}/{{ .hex }}" alt="" aria-hidden="true" class="h-6 w-6" loading="lazy" onerror="this.outerHTML='<i data-lucide=&quot;{{ .fallback | default `box` }}&quot; class=&quot;h-6 w-6 text-{{ .c }}-500 dark:text-{{ .c }}-400&quot;></i>';if(window.lucide)window.lucide.createIcons();" />
-          </div>
-          <div class="min-w-0 flex-1">
-            <div class="truncate text-base font-semibold text-zinc-900 dark:text-zinc-100">{{ .n }}</div>
-            <div class="truncate text-xs text-zinc-500 dark:text-zinc-500">{{ .t }}</div>
-          </div>
-        </div>
-        <div class="relative mt-4 h-1 w-full overflow-hidden rounded-full bg-zinc-200/60 dark:bg-zinc-800/60">
-          <div class="h-full w-0 bg-gradient-to-r from-{{ .c }}-500 to-{{ .c }}-400 transition-all duration-1000 group-hover:w-full"></div>
+        <div>
+          <ol>
+            {{ range .items }}
+              <li><span class="nr">{{ .nr }}</span><span class="tp">{{ .topic }}<small>{{ .details }}</small></span></li>
+            {{ end }}
+          </ol>
         </div>
       </article>
     {{ end }}
-    </div>
+  </div>
+</section>
+
+{{/* ============ NARZĘDZIA ============ */}}
+<section class="band wrap" id="narzedzia">
+  <div class="sec-head">
+    <span class="en" data-i18n data-pl="Warsztat inżyniera ML" data-en="The ML engineer's toolkit">Warsztat inżyniera ML</span>
+    <h2 data-i18n data-pl="Warsztat <span class='em'>inżyniera</span>" data-en="The engineer's <span class='em'>toolkit</span>">Warsztat <span class="em">inżyniera</span></h2>
+    <p data-i18n data-pl="Będziemy pracować z bibliotekami wykorzystywanymi w rzeczywistych projektach uczenia maszynowego. Posłużą one do wykonywania obliczeń, trenowania modeli, śledzenia eksperymentów, wyjaśniania predykcji oraz budowania środowisk do uczenia ze wzmocnieniem." data-en="We will work with libraries used in real-world machine learning projects. They will serve to run computations, train models, track experiments, explain predictions, and build reinforcement learning environments.">Będziemy pracować z bibliotekami wykorzystywanymi w rzeczywistych projektach uczenia maszynowego. Posłużą one do wykonywania obliczeń, trenowania modeli, śledzenia eksperymentów, wyjaśniania predykcji oraz budowania środowisk do uczenia ze wzmocnieniem.</p>
+  </div>
+  <div class="tools">
+    {{ $lens := "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20.5 20.5 16 16\" stroke-linecap=\"round\"/><path d=\"M8 11.5l2 2 3.5-4.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>" }}
+    {{ $pad := "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"10\" rx=\"5\"/><path d=\"M7 10.5v3M5.5 12h3\" stroke-linecap=\"round\"/><circle cx=\"16\" cy=\"11\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"18.5\" cy=\"13\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>" }}
+    {{ range (slice
+      (dict "n" "Python" "d" "język" "logo" "python" "hex" "3776AB" "mark" "Py")
+      (dict "n" "NumPy" "d" "obliczenia" "logo" "numpy" "hex" "4D77CF" "mark" "np")
+      (dict "n" "PyTorch" "d" "autograd" "logo" "pytorch" "hex" "EE4C2C" "mark" "PT")
+      (dict "n" "Captum" "d" "wyjaśnialność" "c" "plum" "svg" $lens "mark" "Cp")
+      (dict "n" "Weights &amp; Biases" "d" "tracking" "logo" "weightsandbiases" "hex" "FFBE00" "mark" "wb")
+      (dict "n" "MLflow" "d" "eksperymenty" "logo" "mlflow" "hex" "0194E2" "mark" "Ml")
+      (dict "n" "Gymnasium" "d" "Deep RL" "c" "amber" "svg" $pad "mark" "Gym")
+      (dict "n" "Hugging Face" "d" "modele" "logo" "huggingface" "hex" "FFD21E" "mark" "HF")
+      (dict "n" "scikit-learn" "d" "baseline" "logo" "scikitlearn" "hex" "F7931E" "mark" "skl")
+    ) }}
+      <div class="tool">
+        <span class="lg" style="--tc:var(--c-{{ .c | default "garnet" }})" aria-hidden="true">
+          {{- if .logo -}}
+            <img src="https://cdn.simpleicons.org/{{ .logo }}/{{ .hex }}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('{{ .mark }}'))"/>
+          {{- else -}}
+            {{ .svg | safeHTML }}
+          {{- end -}}
+        </span>
+        <div><div class="nm">{{ .n | safeHTML }}</div><div class="ds">{{ .d }}</div></div>
+      </div>
+    {{ end }}
   </div>
 </section>
 
 {{/* ============ ZESPÓŁ ============ */}}
-<section id="zespol" class="mx-auto max-w-7xl px-6 py-14 scroll-mt-20">
-  <div class="mx-auto max-w-2xl text-center">
-    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Zespół <span class="bg-gradient-to-r from-emerald-600 to-sky-600 dark:from-emerald-400 dark:to-sky-400 bg-clip-text text-transparent">kursu</span></h2>
-    <p class="mt-4 text-zinc-600 dark:text-zinc-400">Pracownicy naukowo-dydaktyczni Politechniki Wrocławskiej prowadzący wykłady i laboratoria.</p>
+<section class="band wrap" id="zespol">
+  <div class="sec-head">
+    <span class="en" data-i18n data-pl="Zespół dydaktyczny" data-en="Teaching team">Zespół dydaktyczny</span>
+    <h2 data-i18n data-pl="Zespół <span class='em'>kursu</span>" data-en="Course <span class='em'>team</span>">Zespół <span class="em">kursu</span></h2>
+    <p data-i18n data-pl="Pracownicy naukowo-dydaktyczni Katedry Sztucznej Inteligencji Politechniki Wrocławskiej."
+       data-en="Research and teaching staff of the Department of Artificial Intelligence, Wrocław University of Science and Technology.">Pracownicy naukowo-dydaktyczni Katedry Sztucznej Inteligencji Politechniki Wrocławskiej.</p>
   </div>
-
-  <div class="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+  <div class="team">
     {{ range .Site.Data.team.members }}
-      <article class="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 dark:shadow-none p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-{{ .accent }}-500/40">
-        <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-{{ .accent }}-500/10 blur-2xl transition-all group-hover:bg-{{ .accent }}-500/20"></div>
-
-        <div class="relative">
-          <div class="relative h-24 w-24">
-            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-{{ .accent }}-500 to-{{ .accent }}-700 blur-md opacity-40 transition-opacity group-hover:opacity-70"></div>
-            {{ if .photo }}
-              <img src="{{ .photo | relURL }}" alt="{{ .name }}" loading="lazy"
-                class="relative h-24 w-24 rounded-2xl object-cover ring-2 ring-{{ .accent }}-500/40 shadow-lg shadow-{{ .accent }}-500/20 transition-transform duration-500 group-hover:scale-105" />
-            {{ else }}
-              <div class="relative flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-{{ .accent }}-500 to-{{ .accent }}-700 text-2xl font-bold text-white shadow-lg shadow-{{ .accent }}-500/20">
-                {{ .initials }}
-              </div>
-            {{ end }}
-          </div>
-
-          <span class="mt-5 inline-flex items-center gap-1 rounded-full border border-{{ .accent }}-500/30 bg-{{ .accent }}-500/10 px-2.5 py-0.5 text-[10px] font-medium text-{{ .accent }}-300">
-            <i data-lucide="{{ if eq .role `Wykład · Laboratoria` }}academic-cap{{ else }}flask-conical{{ end }}" class="h-3 w-3"></i>
-            {{ .role }}
-          </span>
-
-          <h3 class="mt-2 text-base font-semibold leading-snug text-zinc-900 dark:text-zinc-100">{{ .name }}</h3>
-          <p class="mt-1 text-[11px] text-zinc-500 dark:text-zinc-500">{{ .affiliation }}</p>
-
-          {{ with .focus }}
-            <p class="mt-3 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">{{ . }}</p>
-          {{ end }}
-        </div>
-
-        <div class="relative mt-5 flex items-center justify-between border-t border-zinc-200/60 dark:border-zinc-800/60 pt-4">
-          <a href="mailto:{{ .email }}" class="inline-flex items-center gap-1.5 font-mono text-[11px] text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100">
-            <i data-lucide="mail" class="h-3.5 w-3.5"></i>
-            mail
-          </a>
-          <a href="{{ .link }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-[11px] text-zinc-500 dark:text-zinc-500 transition-colors hover:text-zinc-800 dark:hover:text-zinc-200">
-            profil AI PWr <i data-lucide="external-link" class="h-3 w-3"></i>
-          </a>
+      <article class="person">
+        {{ if .photo }}
+          <img class="photo" src="{{ .photo | relURL }}" alt="{{ .name }}" loading="lazy"
+               onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'{{ .initials }}'}))"/>
+        {{ else }}
+          <div class="avatar">{{ .initials }}</div>
+        {{ end }}
+        <div class="role" data-i18n data-pl="{{ .role_pl }}" data-en="{{ .role_en }}">{{ .role_pl }}</div>
+        <h3>{{ .name }}</h3>
+        <div class="aff">{{ .affiliation }}</div>
+        <div class="links">
+          <a href="mailto:{{ .email }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg> mail</a>
+          <a href="{{ .link }}" target="_blank" rel="noopener"><span data-i18n data-pl="profil AI PWr" data-en="AI PWr profile">profil AI PWr</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
     {{ end }}
   </div>
 </section>
 
-{{/* ============ EFEKTY KSZTAŁCENIA ============ */}}
-<section id="efekty" class="mx-auto max-w-7xl px-6 py-14 scroll-mt-20">
-  <div class="mx-auto max-w-2xl text-center">
-    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">Efekty <span class="bg-gradient-to-r from-violet-600 to-fuchsia-600 dark:from-violet-400 dark:to-fuchsia-400 bg-clip-text text-transparent">kształcenia</span></h2>
+{{/* ============ EFEKTY ============ */}}
+<section class="band wrap" id="efekty">
+  <div class="sec-head">
+    <span class="en" data-i18n data-pl="Efekty kształcenia" data-en="Learning outcomes">Efekty kształcenia</span>
+    <h2 data-i18n data-pl="Efekty <span class='em'>kształcenia</span>" data-en="Learning <span class='em'>outcomes</span>">Efekty <span class="em">kształcenia</span></h2>
   </div>
-
-  {{ $effects := slice
-    (dict "cat" "Z zakresu wiedzy" "accent" "violet" "icon" "brain"
-          "rows" (slice
-            (dict "k" "PEU_W01" "t" "Wyjaśnia teoretyczne podstawy działania, budowy oraz metody uczenia przedstawionych na wykładzie głębokich sieci neuronowych." "r" "K1_SZT_W02")))
-    (dict "cat" "Z zakresu umiejętności" "accent" "fuchsia" "icon" "wrench"
-          "rows" (slice
-            (dict "k" "PEU_U01" "t" "Projektuje, buduje i uczy model sieci rozwiązujący postawiony problem." "r" "K1_SZT_U13")))
-    (dict "cat" "Z zakresu kompetencji społecznych" "accent" "sky" "icon" "users"
-          "rows" (slice
-            (dict "k" "PEU_K01" "t" "Jest zdolny do wykorzystania innowacyjnych narzędzi w rozwiązywaniu różnych problemów z użyciem głębokiego uczenia." "r" "K1_SZT_K05")))
-  }}
-
-  <div class="mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 shadow-sm shadow-zinc-900/5 backdrop-blur-sm dark:shadow-none">
-    <div class="hidden grid-cols-[auto_1fr_auto] gap-4 border-b border-zinc-200/70 px-5 py-3 text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-500 dark:border-zinc-800/70 dark:text-zinc-500 sm:grid">
-      <span>Efekt przedmiotowy</span>
-      <span>Treść</span>
-      <span class="text-right">Efekt kierunkowy</span>
+  <div class="outcomes">
+    <div class="oc-row">
+      <div class="oc-cat" data-i18n data-pl="Wiedza" data-en="Knowledge">Wiedza</div>
+      <div><span class="code">PEU_W01</span><p data-i18n data-pl="Wyjaśnia teoretyczne podstawy działania, budowy oraz metody uczenia przedstawionych na wykładzie głębokich sieci neuronowych."
+        data-en="Explains the theoretical foundations, architecture and training methods of the deep neural networks covered in lectures.">Wyjaśnia teoretyczne podstawy działania, budowy oraz metody uczenia przedstawionych na wykładzie głębokich sieci neuronowych.</p></div>
+      <div class="oc-ker">K1_SZT_W02</div>
     </div>
-
-    {{ range $effects }}
-      <div class="border-b border-zinc-200/70 dark:border-zinc-800/70 last:border-b-0">
-        <div class="flex items-center gap-2 bg-{{ .accent }}-500/5 px-5 py-2.5">
-          <i data-lucide="{{ .icon }}" class="h-3.5 w-3.5 text-{{ .accent }}-600 dark:text-{{ .accent }}-400"></i>
-          <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-{{ .accent }}-700 dark:text-{{ .accent }}-300">{{ .cat }}</span>
-        </div>
-        {{ $accent := .accent }}
-        {{ range .rows }}
-          <div class="grid grid-cols-1 gap-2 px-5 py-4 sm:grid-cols-[auto_1fr_auto] sm:items-start sm:gap-4">
-            <span class="inline-flex h-fit items-center rounded-md border border-{{ $accent }}-500/30 bg-{{ $accent }}-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-{{ $accent }}-700 dark:text-{{ $accent }}-300">{{ .k }}</span>
-            <p class="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">{{ .t }}</p>
-            <span class="inline-flex h-fit items-center rounded-md border border-zinc-200 bg-zinc-100/60 px-2 py-0.5 font-mono text-xs text-zinc-600 dark:border-zinc-800 dark:bg-zinc-950/60 dark:text-zinc-400 sm:justify-self-end">{{ .r }}</span>
-          </div>
-        {{ end }}
-      </div>
-    {{ end }}
+    <div class="oc-row">
+      <div class="oc-cat" data-i18n data-pl="Umiejętności" data-en="Skills">Umiejętności</div>
+      <div><span class="code">PEU_U01</span><p data-i18n data-pl="Projektuje, buduje i uczy model sieci rozwiązujący postawiony problem."
+        data-en="Designs, builds and trains a network model that solves a given problem.">Projektuje, buduje i uczy model sieci rozwiązujący postawiony problem.</p></div>
+      <div class="oc-ker">K1_SZT_U13</div>
+    </div>
+    <div class="oc-row">
+      <div class="oc-cat" data-i18n data-pl="Kompetencje" data-en="Competencies">Kompetencje</div>
+      <div><span class="code">PEU_K01</span><p data-i18n data-pl="Jest zdolny do wykorzystania innowacyjnych narzędzi w rozwiązywaniu różnych problemów z użyciem głębokiego uczenia."
+        data-en="Is able to apply innovative tools to solve a range of problems using deep learning.">Jest zdolny do wykorzystania innowacyjnych narzędzi w rozwiązywaniu różnych problemów z użyciem głębokiego uczenia.</p></div>
+      <div class="oc-ker">K1_SZT_K05</div>
+    </div>
   </div>
 </section>
 
 {{/* ============ LITERATURA ============ */}}
-<section id="literatura" class="mx-auto max-w-7xl px-6 py-14 scroll-mt-20">
-  <div class="mx-auto max-w-2xl text-center">
-    <h2 class="text-4xl font-bold tracking-tight sm:text-5xl"><span class="bg-gradient-to-r from-sky-600 to-violet-600 dark:from-sky-400 dark:to-violet-400 bg-clip-text text-transparent">Literatura</span></h2>
+<section class="band wrap" id="literatura" style="border-bottom:0">
+  <div class="sec-head">
+    <span class="en" data-i18n data-pl="Polecana literatura" data-en="Recommended reading">Polecana literatura</span>
+    <h2 data-i18n data-pl="<span class='em'>Literatura</span>" data-en="<span class='em'>Reading</span>"><span class="em">Literatura</span></h2>
   </div>
-
-  <div class="mx-auto mt-12 max-w-3xl">
-    <ul class="grid gap-3 sm:grid-cols-2">
-      {{ range (slice
-        (dict "a" "Goodfellow, Bengio, Courville" "t" "Deep Learning" "y" "MIT 2016" "u" "https://www.deeplearningbook.org/")
-        (dict "a" "Michael Nielsen" "t" "Neural Networks & Deep Learning" "y" "2015" "u" "http://neuralnetworksanddeeplearning.com/")
-        (dict "a" "Vaswani et al." "t" "Attention Is All You Need" "y" "NeurIPS 2017" "u" "https://arxiv.org/abs/1706.03762")
-        (dict "a" "Christopher M. Bishop" "t" "Pattern Recognition and Machine Learning" "y" "Springer 2006" "u" "https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/")
-      ) }}
-        <li>
-          <a href="{{ .u }}" target="_blank" rel="noopener" class="group flex h-full items-start gap-3 rounded-xl border border-zinc-200 dark:border-zinc-800/80 bg-white/60 dark:bg-zinc-900/40 p-4 shadow-sm shadow-zinc-900/5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-500/40 dark:shadow-none">
-            <i data-lucide="book-open" class="mt-0.5 h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400"></i>
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-1.5 text-sm font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-sky-700 dark:group-hover:text-sky-300">
-                <span class="truncate">{{ .t }}</span>
-                <i data-lucide="external-link" class="h-3 w-3 shrink-0 opacity-0 transition-opacity group-hover:opacity-60"></i>
-              </div>
-              <div class="mt-0.5 text-xs text-zinc-500 dark:text-zinc-500">{{ .a }} · {{ .y }}</div>
-            </div>
-          </a>
-        </li>
-      {{ end }}
-    </ul>
+  <div class="refs">
+    {{ range $i, $r := (slice
+      (dict "t" "Deep Learning" "a" "Goodfellow, Bengio, Courville · MIT 2016" "u" "https://www.deeplearningbook.org/")
+      (dict "t" "Neural Networks &amp; Deep Learning" "a" "Michael Nielsen · 2015" "u" "http://neuralnetworksanddeeplearning.com/")
+      (dict "t" "Attention Is All You Need" "a" "Vaswani et al. · NeurIPS 2017" "u" "https://arxiv.org/abs/1706.03762")
+      (dict "t" "Pattern Recognition and Machine Learning" "a" "Christopher M. Bishop · Springer 2006" "u" "https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/")
+    ) }}
+      <a class="ref" href="{{ $r.u }}" target="_blank" rel="noopener">
+        <span class="num">{{ printf "%02d" (add $i 1) }}</span>
+        <span><span class="ti">{{ $r.t | safeHTML }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="au">{{ $r.a | safeHTML }}</span></span>
+      </a>
+    {{ end }}
   </div>
 </section>
 

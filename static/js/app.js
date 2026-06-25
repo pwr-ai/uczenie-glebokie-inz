@@ -1,249 +1,104 @@
-// ===== Lucide icons =====
-if (window.lucide) window.lucide.createIcons();
-
-// ===== Tooltips (data-tip="...") — anchored to element, with arrow =====
-(function tooltips() {
-  const tip = document.getElementById("tip");
-  if (!tip) return;
-  const body = tip.querySelector(".tip-body");
-  const arrow = tip.querySelector(".tip-arrow");
-  if (!body || !arrow) return;
-
-  let currentEl = null;
-
-  function show(el) {
-    if (currentEl === el) return;
-    currentEl = el;
-    body.textContent = el.getAttribute("data-tip");
-    requestAnimationFrame(() => place(el));
-  }
-
-  function hide() {
-    currentEl = null;
-    tip.classList.remove("is-visible");
-  }
-
-  function place(el) {
-    const anchor = el.getBoundingClientRect();
-    tip.style.left = "0px";
-    tip.style.top = "0px";
-    const r = tip.getBoundingClientRect();
-
-    const GAP = 10;
-    const spaceAbove = anchor.top;
-    const spaceBelow = window.innerHeight - anchor.bottom;
-    const placement =
-      spaceBelow >= r.height + GAP + 8 || spaceBelow >= spaceAbove
-        ? "bottom"
-        : "top";
-    tip.dataset.placement = placement;
-
-    let top = placement === "bottom" ? anchor.bottom + GAP : anchor.top - r.height - GAP;
-    let left = anchor.left + anchor.width / 2 - r.width / 2;
-
-    const margin = 8;
-    left = Math.max(margin, Math.min(left, window.innerWidth - r.width - margin));
-
-    tip.style.left = left + "px";
-    tip.style.top = top + "px";
-
-    const arrowX = Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, r.width - 12));
-    arrow.style.left = arrowX - 4.5 + "px";
-
-    tip.classList.add("is-visible");
-  }
-
-  document.addEventListener("mouseover", (e) => {
-    const el = e.target.closest("[data-tip]");
-    if (!el) return;
-    show(el);
+/* ---------------- i18n ---------------- */
+let LANG = "pl";
+function applyLang(lang) {
+  LANG = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dataset.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const v = el.getAttribute("data-" + lang);
+    if (v != null) el.innerHTML = v;
   });
-  document.addEventListener("mouseout", (e) => {
-    const el = e.target.closest("[data-tip]");
-    if (!el) return;
-    const next = e.relatedTarget;
-    if (next && el.contains(next)) return;
-    hide();
-  });
-  document.addEventListener("focusin", (e) => {
-    const el = e.target.closest && e.target.closest("[data-tip]");
-    if (el) show(el);
-  });
-  document.addEventListener("focusout", hide);
-  window.addEventListener("scroll", hide, { passive: true });
-  window.addEventListener("resize", hide);
-})();
+  document.querySelectorAll("[data-set-lang]").forEach((b) =>
+    b.setAttribute("aria-pressed", b.dataset.setLang === lang ? "true" : "false")
+  );
+  try { localStorage.setItem("ug:lang", lang); } catch (_) {}
+}
 
-// ===== Theme toggle =====
-(function themeToggle() {
-  const btn = document.getElementById("theme-toggle");
+/* ---------------- arch tabs ---------------- */
+function initTabs() {
+  const tabs = document.querySelectorAll(".arch-tabs button");
+  const panels = document.querySelectorAll(".arch-panel");
+  if (!tabs.length) return;
+  tabs.forEach((t) =>
+    t.addEventListener("click", () => {
+      tabs.forEach((x) => x.setAttribute("aria-selected", "false"));
+      panels.forEach((p) => p.classList.remove("on"));
+      t.setAttribute("aria-selected", "true");
+      panels[+t.dataset.tab].classList.add("on");
+    })
+  );
+}
+
+/* ---------------- scrollspy ---------------- */
+function initSpy() {
+  const links = [...document.querySelectorAll("nav.anchors a")];
+  if (!links.length) return;
+  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const obs = new IntersectionObserver(
+    (es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting) {
+          links.forEach((l) => l.classList.remove("active"));
+          const a = map.get(e.target.id);
+          if (a) a.classList.add("active");
+        }
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  ["wyklady", "laboratoria", "narzedzia", "zespol", "efekty", "literatura"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+}
+
+/* ---------------- mobile menu ---------------- */
+function initMenu() {
+  const btn = document.getElementById("menuBtn");
   if (!btn) return;
   btn.addEventListener("click", () => {
-    const isDark = document.documentElement.classList.toggle("dark");
-    try {
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    } catch (_) {}
+    const el = document.getElementById("wyklady");
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 70;
+    window.scrollTo({ top: y, behavior: "smooth" });
   });
-})();
-
-// ===== Scroll-spy nav highlight =====
-(function scrollSpy() {
-  const links = document.querySelectorAll(".nav-link");
-  const indicator = document.getElementById("nav-indicator");
-  if (!links.length) return;
-
-  const sections = ["wyklady", "laboratoria", "co-poznasz", "zespol", "efekty", "literatura"]
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
-
-  const linkMap = new Map();
-  links.forEach((a) => linkMap.set(a.dataset.nav, a));
-
-  let current = null;
-
-  function setActive(id) {
-    if (id === current) return;
-    current = id;
-    links.forEach((a) => {
-      const on = a.dataset.nav === id;
-      a.classList.toggle("text-zinc-900", on);
-      a.classList.toggle("dark:text-white", on);
-      a.classList.toggle("text-zinc-600", !on);
-      a.classList.toggle("dark:text-zinc-400", !on);
-    });
-    const link = id ? linkMap.get(id) : null;
-    if (!indicator) return;
-    if (!link) {
-      indicator.style.opacity = "0";
-      return;
-    }
-    const parent = link.parentElement.getBoundingClientRect();
-    const rect = link.getBoundingClientRect();
-    indicator.style.width = rect.width + "px";
-    indicator.style.transform = `translateX(${rect.left - parent.left}px)`;
-    indicator.style.opacity = "1";
-  }
-
-  // Scroll-position driven: active section = the last one whose top has
-  // crossed the detection line (100 px below viewport top, just under the
-  // sticky nav). Reliable for tall sections (Architektury is 260 vh).
-  const DETECT_Y = 100;
-  function onScroll() {
-    if (window.scrollY < 60) {
-      setActive(null);
-      return;
-    }
-    let active = null;
-    for (const s of sections) {
-      if (s.getBoundingClientRect().top <= DETECT_Y) active = s.id;
-    }
-    setActive(active);
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-  onScroll();
-})();
-
-// ===== Sticky stepper (Wykłady, Laboratoria): active tab tracks whichever
-// .{prefix}-block is currently in view =====
-function mountStepper(stackId, blockClass) {
-  const stack = document.getElementById(stackId);
-  if (!stack) return;
-  const tabs = stack.querySelectorAll(".step-tab");
-  const blocks = stack.querySelectorAll("." + blockClass);
-  if (!tabs.length || !blocks.length) return;
-  let current = 0;
-
-  function setActive(n) {
-    if (n === current) return;
-    current = n;
-    stack.dataset.activeBlock = String(n);
-    tabs.forEach((t) =>
-      t.classList.toggle("is-active", t.dataset.block === String(n))
-    );
-  }
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const n = parseInt(tab.dataset.block, 10);
-      const target = stack.querySelector(`.${blockClass}[data-block="${n}"]`);
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
-
-  // Track which block is "current": pick the last block whose top has crossed
-  // the detection line (140 px below viewport top — just under the sticky nav).
-  const DETECT_Y = 140;
-  function onScroll() {
-    let active = 1;
-    for (const b of blocks) {
-      if (b.getBoundingClientRect().top <= DETECT_Y) {
-        active = parseInt(b.dataset.block, 10) || active;
-      }
-    }
-    setActive(active);
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-  onScroll();
 }
-mountStepper("wyk-stack", "wyk-block");
-mountStepper("lab-stack", "lab-block");
 
-// ===== Architektury: block tabs + scroll-advance =====
-(function blockTabs() {
-  const card = document.getElementById("arch-card");
-  if (!card) return;
-  const tabs = card.querySelectorAll(".block-tab");
-  const host = document.querySelector(".arch-scroll-host");
-  const progressBar = document.getElementById("arch-progress");
-  const progressLabel = document.getElementById("arch-progress-label");
-  const MAX = 4;
-  let current = 0; // force first paint
-
-  function setActive(n) {
-    n = Math.max(1, Math.min(MAX, parseInt(n, 10) || 1));
-    if (n === current) return; // no-op if unchanged → prevents animation-restart flicker
-    current = n;
-    card.dataset.activeBlock = String(n);
-    tabs.forEach((t) => t.classList.toggle("is-active", t.dataset.block === String(n)));
-    if (progressBar) progressBar.style.width = (n / MAX) * 100 + "%";
-    if (progressLabel) progressLabel.textContent = String(n);
-  }
-
-  // Map block number → page scroll position inside the 260vh host (centre of each slot)
-  function scrollForBlock(n) {
-    if (!host) return null;
-    const rect = host.getBoundingClientRect();
-    const span = host.offsetHeight - window.innerHeight;
-    if (span <= 0) return null;
-    const frac = (n - 0.5) / MAX; // centre of slot n
-    return window.scrollY + rect.top + span * frac;
-  }
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const n = parseInt(tab.dataset.block, 10);
-      // Instant scroll — avoids smooth-scroll traversal re-firing the scroll
-      // handler and flickering the active tab through intermediate blocks.
-      const y = scrollForBlock(n);
-      if (y != null) window.scrollTo({ top: y });
-      setActive(n);
+/* ---------------- scroll reveal (staggered per container) ---------------- */
+function initReveal() {
+  if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  document.querySelectorAll(".sec-head,.arch,.outcomes").forEach((e) => e.setAttribute("data-reveal", ""));
+  [[".block", 70], [".tool", 45], [".person", 80], [".ref", 60]].forEach(([sel, step]) => {
+    const byParent = new Map();
+    document.querySelectorAll(sel).forEach((el) => {
+      el.setAttribute("data-reveal", "");
+      const arr = byParent.get(el.parentElement) || [];
+      arr.push(el);
+      byParent.set(el.parentElement, arr);
     });
+    byParent.forEach((arr) => arr.forEach((el, i) => el.style.setProperty("--d", Math.min(i, 9) * step + "ms")));
   });
+  const ro = new IntersectionObserver(
+    (es) =>
+      es.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          ro.unobserve(e.target);
+        }
+      }),
+    { rootMargin: "0px 0px -7% 0px", threshold: 0.06 }
+  );
+  document.querySelectorAll("[data-reveal]").forEach((e) => ro.observe(e));
+}
 
-  if (host) {
-    function onScroll() {
-      const rect = host.getBoundingClientRect();
-      const span = host.offsetHeight - window.innerHeight;
-      if (span <= 0) return;
-      const progress = Math.max(0, Math.min(0.9999, -rect.top / span));
-      setActive(Math.floor(progress * MAX) + 1);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    onScroll();
-  } else {
-    setActive(card.dataset.activeBlock || "1");
-  }
-})();
+/* ---------------- boot ---------------- */
+initTabs();
+initSpy();
+initMenu();
+initReveal();
+document.querySelectorAll("[data-set-lang]").forEach((b) =>
+  b.addEventListener("click", () => applyLang(b.dataset.setLang))
+);
+let saved = "pl";
+try { saved = localStorage.getItem("ug:lang") || "pl"; } catch (_) {}
+applyLang(saved);

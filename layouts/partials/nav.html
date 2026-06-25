@@ -1,31 +1,28 @@
-<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200/50 dark:border-zinc-800/50">
-  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-    <a href="#top" class="group flex items-center gap-2.5">
-      <div class="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-lg shadow-violet-500/30 transition-transform group-hover:scale-105">
-        <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="6" cy="6" r="2" /><circle cx="6" cy="18" r="2" /><circle cx="18" cy="12" r="2" />
-          <path d="M8 6h8M8 18h8M6 8v8" />
-        </svg>
-      </div>
-      <span class="text-sm font-semibold tracking-tight">Uczenie Głębokie <span class="text-zinc-400 dark:text-zinc-600">@</span> PWr</span>
-      <span class="hidden md:inline-flex items-center gap-1 rounded-md border border-amber-500/30 bg-amber-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-amber-700 dark:text-amber-300">
-        <i data-lucide="construction" class="h-3 w-3"></i>
-        w budowie
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Uczenie Głębokie — strona główna">
+      {{ partial "brand-mark.html" (dict "class" "crest") }}
+      <span>
+        <b>Uczenie Głębokie</b>
+        <small data-i18n data-pl="Politechnika Wrocławska · Inż." data-en="Wrocław Univ. of Sci. &amp; Tech. · BEng">Politechnika Wrocławska · Inż.</small>
       </span>
     </a>
-    <div id="nav-links" class="relative hidden items-center gap-1 md:flex">
-      <a href="#wyklady" data-nav="wyklady" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Wykłady</a>
-      <a href="#laboratoria" data-nav="laboratoria" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Laboratoria</a>
-      <a href="#co-poznasz" data-nav="co-poznasz" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Co poznasz</a>
-      <a href="#zespol" data-nav="zespol" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Zespół</a>
-      <a href="#efekty" data-nav="efekty" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Efekty</a>
-      <a href="#literatura" data-nav="literatura" class="nav-link rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">Literatura</a>
-      <span id="nav-indicator" class="pointer-events-none absolute bottom-0 left-0 h-7 rounded-lg bg-zinc-200 dark:bg-zinc-800/80 ring-1 ring-zinc-300/60 dark:ring-zinc-700/60 transition-all duration-300 ease-out opacity-0 -z-10"></span>
+    <nav class="anchors" aria-label="Sekcje">
+      <a href="#wyklady" data-i18n data-pl="Wykłady" data-en="Lectures">Wykłady</a>
+      <a href="#laboratoria" data-i18n data-pl="Laboratoria" data-en="Labs">Laboratoria</a>
+      <a href="#narzedzia" data-i18n data-pl="Narzędzia" data-en="Tools">Narzędzia</a>
+      <a href="#zespol" data-i18n data-pl="Zespół" data-en="Team">Zespół</a>
+      <a href="#efekty" data-i18n data-pl="Efekty" data-en="Outcomes">Efekty</a>
+      <a href="#literatura" data-i18n data-pl="Literatura" data-en="Reading">Literatura</a>
+    </nav>
+    <div class="hgroup">
+      <div class="lang" role="group" aria-label="Język / Language">
+        <button type="button" data-set-lang="pl" aria-pressed="true">PL</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+      </button>
     </div>
-    <button id="theme-toggle" type="button" aria-label="Przełącz motyw"
-      class="group inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/50 text-zinc-700 dark:text-zinc-300 transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-900">
-      <i data-lucide="sun" class="theme-icon-light h-4 w-4"></i>
-      <i data-lucide="moon" class="theme-icon-dark h-4 w-4"></i>
-    </button>
-  </nav>
+  </div>
 </header>

@@ -1,0 +1,155 @@
+{{/* Extracted architecture animations — WORK IN PROGRESS, not linked from the main page. */}}
+<section class="band wrap" id="architektury">
+  <div class="sec-head">
+    <span class="en" data-i18n data-pl="Co zbudujesz" data-en="What you will build">Co zbudujesz</span>
+    <h2 data-i18n data-pl="Architektury, które <span class='em'>zbudujesz</span>" data-en="Architectures you will <span class='em'>build</span>">Architektury, które <span class="em">zbudujesz</span></h2>
+    <p data-i18n data-pl="Cztery architektury rozłożone na trzy bloki laboratoriów — od perceptronu, przez sieci konwolucyjne, po mechanizm uwagi i wyjaśnialność decyzji."
+       data-en="Four architectures spread across the three lab blocks — from the perceptron, through convolutional networks, to attention and decision explainability.">Cztery architektury rozłożone na trzy bloki laboratoriów — od perceptronu, przez sieci konwolucyjne, po mechanizm uwagi i wyjaśnialność decyzji.</p>
+  </div>
+
+  <div class="arch">
+    <div class="arch-tabs" role="tablist">
+      <button role="tab" aria-selected="true"  data-tab="0"><span class="t-n">BLOK I</span><span class="t-t">MLP</span></button>
+      <button role="tab" aria-selected="false" data-tab="1"><span class="t-n">BLOK II</span><span class="t-t">CNN</span></button>
+      <button role="tab" aria-selected="false" data-tab="2"><span class="t-n">BLOK II</span><span class="t-t">AE · VAE · GAN</span></button>
+      <button role="tab" aria-selected="false" data-tab="3"><span class="t-n">BLOK II</span><span class="t-t">Deep RL</span></button>
+      <button role="tab" aria-selected="false" data-tab="4"><span class="t-n">BLOK III</span><span class="t-t">RNN · LSTM</span></button>
+      <button role="tab" aria-selected="false" data-tab="5"><span class="t-n">BLOK III</span><span class="t-t">Attention</span></button>
+      <button role="tab" aria-selected="false" data-tab="6"><span class="t-n">BLOK III</span><span class="t-t">Grad-CAM</span></button>
+    </div>
+    <div class="arch-stage">
+      <!-- MLP -->
+      <figure class="arch-panel on" data-panel="0">
+        <div class="fig"><svg class="anim-mlp" viewBox="0 0 480 180" fill="none" stroke="currentColor" stroke-width="1.3">
+          <g class="mlp-edges" opacity=".3">
+            <path d="M70 40 L210 30M70 40 L210 90M70 40 L210 150M70 90 L210 30M70 90 L210 90M70 90 L210 150M70 140 L210 30M70 140 L210 90M70 140 L210 150"/>
+            <path d="M210 30 L350 60M210 30 L350 120M210 90 L350 60M210 90 L350 120M210 150 L350 60M210 150 L350 120"/>
+            <path d="M350 60 L420 90M350 120 L420 90"/>
+          </g>
+          <g class="mlp-nodes" fill="var(--surface)"><circle cx="70" cy="40" r="9"/><circle cx="70" cy="90" r="9"/><circle cx="70" cy="140" r="9"/>
+            <circle cx="210" cy="30" r="9"/><circle cx="210" cy="90" r="9"/><circle cx="210" cy="150" r="9"/>
+            <circle cx="350" cy="60" r="9"/><circle cx="350" cy="120" r="9"/></g>
+          <circle class="mlp-out" cx="420" cy="90" r="11" fill="currentColor"/>
+        </svg></div>
+        <figcaption data-i18n data-pl="<b>Rys. 1 — MLP.</b> Wielowarstwowy perceptron z warstwami ukrytymi estymujący ryzyko na podstawie cech wejściowych. Trenowany propagacją wsteczną w ujęciu macierzowym."
+          data-en="<b>Fig. 1 — MLP.</b> A multilayer perceptron with hidden layers estimating risk from input features. Trained by backpropagation in matrix form."><b>Rys. 1 — MLP.</b> Wielowarstwowy perceptron z warstwami ukrytymi estymujący ryzyko na podstawie cech wejściowych. Trenowany propagacją wsteczną w ujęciu macierzowym.</figcaption>
+      </figure>
+      <!-- CNN -->
+      <figure class="arch-panel" data-panel="1">
+        <div class="fig"><svg class="anim-cnn" viewBox="0 0 480 180" fill="none" stroke="currentColor" stroke-width="1.3">
+          <rect x="40" y="50" width="80" height="80" rx="2"/>
+          <path d="M40 70h80M40 90h80M40 110h80M60 50v80M80 50v80M100 50v80" opacity=".35"/>
+          <rect class="cnn-kernel" x="42" y="52" width="20" height="20" rx="1" stroke-width="2"/>
+          <path class="cnn-flow" d="M130 90 L160 90" marker-end="url(#a)"/>
+          <rect x="165" y="60" width="60" height="60" rx="2" opacity=".6"/>
+          <rect x="172" y="67" width="46" height="46" rx="2"/>
+          <path class="cnn-flow" d="M235 90 L262 90"/>
+          <rect x="266" y="68" width="44" height="44" rx="2" opacity=".6"/>
+          <rect x="272" y="74" width="32" height="32" rx="2"/>
+          <path class="cnn-flow" d="M320 90 L350 90"/>
+          <g fill="var(--surface)"><rect x="355" y="55" width="14" height="70" rx="7"/></g>
+          <path d="M369 70 L408 75M369 90 L408 90M369 110 L408 105" opacity=".4"/>
+          <circle class="cnn-out" cx="416" cy="78" r="8" fill="currentColor"/><circle cx="416" cy="104" r="8" fill="var(--surface)"/>
+          <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+        </svg></div>
+        <figcaption data-i18n data-pl="<b>Rys. 2 — CNN.</b> Splot 3×3, max-pooling 2×2, spłaszczenie i warstwa w pełni połączona. Klasyfikacja Fashion-MNIST z wizualizacją filtrów i map aktywacji."
+          data-en="<b>Fig. 2 — CNN.</b> A 3×3 convolution, 2×2 max-pooling, flatten and a dense layer. Fashion-MNIST classification with filter and activation-map visualizations."><b>Rys. 2 — CNN.</b> Splot 3×3, max-pooling 2×2, spłaszczenie i warstwa w pełni połączona. Klasyfikacja Fashion-MNIST z wizualizacją filtrów i map aktywacji.</figcaption>
+      </figure>
+      <!-- Autoencoder / VAE / GAN -->
+      <figure class="arch-panel" data-panel="2">
+        <div class="fig"><svg class="anim-ae" viewBox="0 0 480 180" fill="none" stroke="currentColor" stroke-width="1.3">
+          <path d="M44 32 L210 74 L210 106 L44 148 Z" fill="currentColor" stroke="none" opacity=".12"/>
+          <path d="M44 32 L210 74 M44 148 L210 106"/>
+          <path d="M436 32 L270 74 L270 106 L436 148 Z" fill="currentColor" stroke="none" opacity=".12"/>
+          <path d="M436 32 L270 74 M436 148 L270 106"/>
+          <g stroke-linecap="round" opacity=".45"><path d="M44 50h14M44 74h14M44 98h14M44 122h14M44 146h14"/></g>
+          <g stroke-linecap="round" opacity=".45"><path d="M422 50h14M422 74h14M422 98h14M422 122h14M422 146h14"/></g>
+          <path class="ae-stream" d="M58 90 L210 90 M270 90 L422 90" opacity=".32"/>
+          <line x1="210" y1="90" x2="270" y2="90" opacity=".3"/>
+          <g class="ae-latent" fill="currentColor" stroke="none"><circle cx="240" cy="80" r="5"/><circle cx="240" cy="100" r="5"/></g>
+          <g font-family="var(--font-mono)" font-size="10.5" fill="var(--faint)" stroke="none" text-anchor="middle">
+            <text x="125" y="172">encoder</text><text x="240" y="172">z</text><text x="355" y="172">decoder</text>
+          </g>
+        </svg></div>
+        <figcaption data-i18n data-pl="<b>Rys. 3 — Autokoder / VAE / GAN.</b> Enkoder kompresuje wejście do reprezentacji ukrytej z, dekoder odtwarza dane. Próbkowanie przestrzeni z pozwala generować nowe przykłady."
+          data-en="<b>Fig. 3 — Autoencoder / VAE / GAN.</b> The encoder compresses the input into a latent code z; the decoder reconstructs the data. Sampling the latent space generates new examples."><b>Rys. 3 — Autokoder / VAE / GAN.</b> Enkoder kompresuje wejście do reprezentacji ukrytej z, dekoder odtwarza dane. Próbkowanie przestrzeni z pozwala generować nowe przykłady.</figcaption>
+      </figure>
+      <!-- Deep RL -->
+      <figure class="arch-panel" data-panel="3">
+        <div class="fig"><svg class="anim-rl" viewBox="0 0 480 180" fill="none" stroke="currentColor" stroke-width="1.3">
+          <defs><marker id="rlA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor" stroke="none"/></marker></defs>
+          <rect x="56" y="60" width="130" height="58" rx="10"/>
+          <rect x="294" y="60" width="130" height="58" rx="10"/>
+          <path class="rl-stream" d="M188 80 L286 80" marker-end="url(#rlA)"/>
+          <path class="rl-stream rl-stream-b" d="M292 98 L194 98" marker-end="url(#rlA)"/>
+          <g font-family="var(--font-mono)" font-size="12" fill="var(--muted)" stroke="none" text-anchor="middle">
+            <text x="121" y="93">Agent · π</text><text x="359" y="93">Środowisko</text>
+          </g>
+          <g font-family="var(--font-mono)" font-size="9.5" fill="var(--faint)" stroke="none" text-anchor="middle">
+            <text x="240" y="72">akcja</text><text x="240" y="114">stan · nagroda</text>
+          </g>
+        </svg></div>
+        <figcaption data-i18n data-pl="<b>Rys. 4 — Deep RL.</b> Agent obserwuje stan środowiska, wybiera akcję według polityki π i uczy się z nagrody. Pętla agent–środowisko to rdzeń uczenia ze wzmocnieniem (DQN, Actor-Critic)."
+          data-en="<b>Fig. 4 — Deep RL.</b> The agent observes the environment state, picks an action under policy π and learns from the reward. The agent–environment loop is the core of reinforcement learning (DQN, Actor-Critic)."><b>Rys. 4 — Deep RL.</b> Agent obserwuje stan środowiska, wybiera akcję według polityki π i uczy się z nagrody. Pętla agent–środowisko to rdzeń uczenia ze wzmocnieniem (DQN, Actor-Critic).</figcaption>
+      </figure>
+      <!-- RNN / LSTM -->
+      <figure class="arch-panel" data-panel="4">
+        <div class="fig"><svg class="anim-rnn" viewBox="0 0 480 180" fill="none" stroke="currentColor" stroke-width="1.3">
+          <defs><marker id="rnA" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor" stroke="none"/></marker></defs>
+          <line class="rnn-stream" x1="40" y1="90" x2="440" y2="90" opacity=".35"/>
+          <g opacity=".5" stroke-linecap="round">
+            <path d="M105 150 L105 121" marker-end="url(#rnA)"/><path d="M235 150 L235 121" marker-end="url(#rnA)"/><path d="M365 150 L365 121" marker-end="url(#rnA)"/>
+            <path d="M105 61 L105 36" marker-end="url(#rnA)"/><path d="M235 61 L235 36" marker-end="url(#rnA)"/><path d="M365 61 L365 36" marker-end="url(#rnA)"/>
+          </g>
+          <g fill="var(--surface)"><rect x="72" y="63" width="66" height="54" rx="9"/><rect x="202" y="63" width="66" height="54" rx="9"/><rect x="332" y="63" width="66" height="54" rx="9"/></g>
+          <g font-family="var(--font-mono)" font-size="12" fill="var(--muted)" stroke="none" text-anchor="middle"><text x="105" y="94">LSTM</text><text x="235" y="94">LSTM</text><text x="365" y="94">LSTM</text></g>
+          <g font-family="var(--font-mono)" font-size="10" fill="var(--faint)" stroke="none" text-anchor="middle">
+            <text x="105" y="166">x1</text><text x="235" y="166">x2</text><text x="365" y="166">x3</text>
+            <text x="105" y="30">y1</text><text x="235" y="30">y2</text><text x="365" y="30">y3</text>
+          </g>
+        </svg></div>
+        <figcaption data-i18n data-pl="<b>Rys. 5 — RNN / LSTM.</b> Sieć rekurencyjna przetwarza sekwencję krok po kroku, przekazując stan ukryty między komórkami. LSTM i GRU radzą sobie z długimi zależnościami."
+          data-en="<b>Fig. 5 — RNN / LSTM.</b> A recurrent network processes a sequence step by step, passing the hidden state between cells. LSTM and GRU handle long-range dependencies."><b>Rys. 5 — RNN / LSTM.</b> Sieć rekurencyjna przetwarza sekwencję krok po kroku, przekazując stan ukryty między komórkami. LSTM i GRU radzą sobie z długimi zależnościami.</figcaption>
+      </figure>
+      <!-- Attention -->
+      <figure class="arch-panel" data-panel="5">
+        <div class="fig"><svg class="anim-attn" viewBox="0 0 480 180" fill="none" stroke="currentColor" stroke-width="1.3">
+          <!-- key/value tokens -->
+          <g font-family="var(--font-mono)" font-size="11" fill="var(--muted)" stroke="none" text-anchor="middle">
+            <text x="60" y="28">Uczenie</text><text x="144" y="28">jest</text><text x="228" y="28">głębokie</text><text x="312" y="28">i</text><text x="396" y="28">ważne</text>
+          </g>
+          <!-- base edges (every token attends to the query) -->
+          <g class="attn-base" opacity=".16">
+            <path id="ae0" d="M60 50 L228 138"/><path id="ae1" d="M144 50 L228 138"/><path id="ae2" d="M228 50 L228 138"/><path id="ae3" d="M312 50 L228 138"/><path id="ae4" d="M396 50 L228 138"/>
+          </g>
+          <!-- weighted overlay: each edge flashes in turn (shifting attention) -->
+          <g class="attn-weights" fill="none">
+            <use href="#ae0" class="aw" style="--i:0"/><use href="#ae1" class="aw" style="--i:1"/><use href="#ae2" class="aw" style="--i:2"/><use href="#ae3" class="aw" style="--i:3"/><use href="#ae4" class="aw" style="--i:4"/>
+          </g>
+          <!-- key nodes -->
+          <g fill="var(--surface)"><circle cx="60" cy="42" r="6"/><circle cx="144" cy="42" r="6"/><circle cx="228" cy="42" r="6"/><circle cx="312" cy="42" r="6"/><circle cx="396" cy="42" r="6"/></g>
+          <!-- focus ring sweeping the attended key -->
+          <circle class="attn-focus" cx="60" cy="42" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+          <!-- query token -->
+          <circle class="attn-query" cx="228" cy="150" r="10" fill="currentColor"/>
+          <text x="228" y="176" font-family="var(--font-mono)" font-size="10" fill="var(--faint)" stroke="none" text-anchor="middle">query token</text>
+        </svg></div>
+        <figcaption data-i18n data-pl="<b>Rys. 6 — Self-attention.</b> Każdy token dynamicznie waży pozostałe tokeny sekwencji. Grubość połączeń odpowiada wagom uwagi — fundament Transformera."
+          data-en="<b>Fig. 6 — Self-attention.</b> Each token dynamically weights every other token in the sequence. Edge thickness encodes the attention weights — the foundation of the Transformer."><b>Rys. 6 — Self-attention.</b> Każdy token dynamicznie waży pozostałe tokeny sekwencji. Grubość połączeń odpowiada wagom uwagi — fundament Transformera.</figcaption>
+      </figure>
+      <!-- Grad-CAM -->
+      <figure class="arch-panel" data-panel="6">
+        <div class="fig"><svg class="anim-cam" viewBox="0 0 480 180" fill="none" stroke="currentColor" stroke-width="1.3">
+          <rect x="150" y="30" width="180" height="120" rx="4"/>
+          <defs><radialGradient id="cam" cx="0.42" cy="0.55" r="0.5"><stop offset="0" stop-color="currentColor" stop-opacity="0.55"/><stop offset="0.6" stop-color="currentColor" stop-opacity="0.15"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></radialGradient></defs>
+          <rect class="cam-glow" x="150" y="30" width="180" height="120" rx="4" fill="url(#cam)" stroke="none"/>
+          <path d="M205 120 q15 -55 35 -55 q22 0 18 30 q20 -8 24 6 q12 -3 10 14 l2 25" opacity=".55"/>
+          <ellipse class="cam-ring" cx="225" cy="78" rx="26" ry="20" opacity=".7"/>
+          <path d="M150 60h180M150 90h180M150 120h180M195 30v120M240 30v120M285 30v120" opacity=".12"/>
+        </svg></div>
+        <figcaption data-i18n data-pl="<b>Rys. 7 — Grad-CAM.</b> Mapa cieplna gradientów pokazuje, które regiony obrazu najsilniej wpłynęły na decyzję klasyfikatora. Narzędzie wyjaśnialności (XAI)."
+          data-en="<b>Fig. 7 — Grad-CAM.</b> A gradient heatmap shows which image regions most influenced the classifier's decision. An explainability (XAI) tool."><b>Rys. 7 — Grad-CAM.</b> Mapa cieplna gradientów pokazuje, które regiony obrazu najsilniej wpłynęły na decyzję klasyfikatora. Narzędzie wyjaśnialności (XAI).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
