@@ -4,7 +4,7 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <span class="eyebrow" data-i18n data-pl="Studia inżynierskie · kierunek Sztuczna Inteligencja" data-en="BEng programme · Artificial Intelligence">Studia inżynierskie · kierunek Sztuczna Inteligencja</span>
+      <span class="eyebrow" data-i18n data-pl="Studia I stopnia · Sztuczna Inteligencja" data-en="BEng programme · Artificial Intelligence">Studia I stopnia · Sztuczna Inteligencja</span>
       <h1 data-i18n data-pl="Uczenie <span class='em'>Głębokie</span>" data-en="Deep <span class='em'>Learning</span>">Uczenie <span class="em">Głębokie</span></h1>
       <p class="lead" data-i18n
          data-pl="Kurs wprowadza w podstawy głębokiego uczenia. Obejmuje kluczowe architektury sieci, sposoby ich trenowania oraz techniki doskonalenia tego procesu. Teorię uzupełniają praktyczne laboratoria w Pythonie i PyTorchu."
@@ -55,8 +55,8 @@
   <div class="sec-head">
     <span class="en" data-i18n data-pl="Wykłady · 30 h · 4 bloki" data-en="Lectures · 30 h · 4 blocks">Wykłady · 30 h · 4 bloki</span>
     <h2 data-i18n data-pl="Program <span class='em'>wykładów</span>" data-en="Lecture <span class='em'>syllabus</span>">Program <span class="em">wykładów</span></h2>
-    <p data-i18n data-pl="Cztery bloki: podstawy sieci neuronowych, sieci konwolucyjne i modele generatywne, modele sekwencyjne i Transformery oraz tematy zaawansowane. Każde zagadnienie zaczynamy od intuicji, a kończymy na zapisie macierzowym i algorytmie."
-       data-en="Four blocks: neural network foundations, convolutional networks and generative models, sequence models and Transformers, and advanced topics. Each topic starts with intuition and ends with the matrix formulation and the algorithm.">Cztery bloki: podstawy sieci neuronowych, sieci konwolucyjne i modele generatywne, modele sekwencyjne i Transformery oraz tematy zaawansowane. Każde zagadnienie zaczynamy od intuicji, a kończymy na zapisie macierzowym i algorytmie.</p>
+    <p data-i18n data-pl="Cztery bloki tematyczne prowadzą od sieci w pełni połączonych i propagacji wstecznej, przez sieci konwolucyjne i rekurencyjne, po Transformery, uczenie ze wzmocnieniem i interpretację modeli. Każde zagadnienie omawiamy najpierw intuicyjnie, a następnie formalnie."
+       data-en="Four thematic blocks lead from fully connected networks and backpropagation, through convolutional and recurrent networks, to Transformers, reinforcement learning and model interpretation. Each topic is covered first intuitively, then formally.">Cztery bloki tematyczne prowadzą od sieci w pełni połączonych i propagacji wstecznej, przez sieci konwolucyjne i rekurencyjne, po Transformery, uczenie ze wzmocnieniem i interpretację modeli. Każde zagadnienie omawiamy najpierw intuicyjnie, a następnie formalnie.</p>
   </div>
   <div class="curric">
     {{ range .Site.Data.lectures.blocks }}
@@ -87,8 +87,8 @@
   <div class="sec-head">
     <span class="en" data-i18n data-pl="Laboratoria · 15 × 1,5 h · 3 bloki" data-en="Labs · 15 × 1.5 h · 3 blocks">Laboratoria · 15 × 1,5 h · 3 bloki</span>
     <h2 data-i18n data-pl="Program <span class='em'>laboratoriów</span>" data-en="Lab <span class='em'>syllabus</span>">Program <span class="em">laboratoriów</span></h2>
-    <p data-i18n data-pl="Piętnaście spotkań, każde kończy się działającym kodem. Zaczynasz od sieci napisanej od zera w NumPy i przenosisz ją do PyTorch. Potem trenujesz sieci konwolucyjne, modele generatywne, agentów uczenia ze wzmocnieniem i Transformery. Na koniec sprawdzasz, na co model naprawdę patrzy (Grad-CAM, SHAP) i jak łatwo go oszukać (FGSM, PGD)."
-       data-en="Fifteen sessions, each ending with working code. You start with a network written from scratch in NumPy and port it to PyTorch. Then you train convolutional networks, generative models, reinforcement learning agents and Transformers. Finally you check what the model really looks at (Grad-CAM, SHAP) and how easily it can be fooled (FGSM, PGD).">Piętnaście spotkań, każde kończy się działającym kodem. Zaczynasz od sieci napisanej od zera w NumPy i przenosisz ją do PyTorch. Potem trenujesz sieci konwolucyjne, modele generatywne, agentów uczenia ze wzmocnieniem i Transformery. Na koniec sprawdzasz, na co model naprawdę patrzy (Grad-CAM, SHAP) i jak łatwo go oszukać (FGSM, PGD).</p>
+    <p data-i18n data-pl="Piętnaście spotkań laboratoryjnych. Zaczynamy od sieci neuronowej napisanej od zera w NumPy, którą następnie przenosimy do PyTorcha. Kolejne spotkania obejmują sieci konwolucyjne, modele generatywne, uczenie ze wzmocnieniem i Transformery, a ostatnie poświęcamy wyjaśnialności modeli i atakom adwersarialnym."
+       data-en="Fifteen lab sessions. We start with a neural network written from scratch in NumPy and then port it to PyTorch. Subsequent sessions cover convolutional networks, generative models, reinforcement learning and Transformers; the final ones are devoted to model explainability and adversarial attacks.">Piętnaście spotkań laboratoryjnych. Zaczynamy od sieci neuronowej napisanej od zera w NumPy, którą następnie przenosimy do PyTorcha. Kolejne spotkania obejmują sieci konwolucyjne, modele generatywne, uczenie ze wzmocnieniem i Transformery, a ostatnie poświęcamy wyjaśnialności modeli i atakom adwersarialnym.</p>
   </div>
   <div class="curric">
     {{ range .Site.Data.labs.blocks }}
@@ -230,7 +230,7 @@
       <span class="num">&#8203;</span>
       <span>
         <span class="ti" data-i18n data-pl="Zasoby" data-en="Resources">Zasoby</span>
-        <span class="au" data-i18n data-pl="Materiały dodatkowe do wykładów i laboratoriów" data-en="Supplementary material for lectures and labs">Materiały dodatkowe do wykładów i laboratoriów</span>
+        <span class="au" data-i18n data-pl="Materiały uzupełniające do wykładów i laboratoriów" data-en="Supplementary material for lectures and labs">Materiały uzupełniające do wykładów i laboratoriów</span>
         <span class="xl">
           <a href="https://courses.d2l.ai/berkeley-stat-157/units/attention.html" target="_blank" rel="noopener">D2L · Berkeley STAT 157 — Attention</a>
         </span>

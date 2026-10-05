@@ -12,16 +12,16 @@ blocks:
         details: Operacje na macierzach, broadcasting, wektoryzacja
       - nr: "2"
         topic: Sieć neuronowa w NumPy od zera
-        details: Przebieg w przód i wstecz zaimplementowane bez bibliotek DL
+        details: Implementacja przebiegu w przód i wstecz
       - nr: "3"
         topic: Sieć w NumPy — ciąg dalszy
         details: Regularyzacja, dropout, inicjalizacja wag
       - nr: "4"
-        topic: Ta sama sieć w PyTorch
-        details: Przejście na PyTorch — autograd, moduły, DataLoader
+        topic: Ta sama sieć w PyTorchu
+        details: Przejście na PyTorch — autograd, nn.Module, DataLoader
       - nr: "5"
         topic: Dobre praktyki i śledzenie eksperymentów
-        details: Weights & Biases lub MLflow, porównywanie przebiegów, reprodukowalność
+        details: Weights & Biases lub MLflow, porównywanie eksperymentów, reprodukowalność
 
   - roman: II
     title: Sieci konwolucyjne, modele generatywne i Deep RL
@@ -35,7 +35,7 @@ blocks:
         topic: Sieci konwolucyjne
         details: Splot 2D i 3D, wizualizacja filtrów i map aktywacji
       - nr: "7"
-        topic: Sieci konwolucyjne — regularyzacja
+        topic: Sieci konwolucyjne — regularyzacja i uczenie transferowe
         details: Augmentacja danych, uczenie transferowe, wczesne zatrzymanie
       - nr: "8"
         topic: Autokoder, VAE, GAN
@@ -48,7 +48,7 @@ blocks:
         details: Actor-Critic, zastosowania
 
   - roman: III
-    title: Sieci sekwencyjne, Transformery, wyjaśnialność i ataki adwersarialne
+    title: Modele sekwencyjne, Transformery, wyjaśnialność i ataki adwersarialne
     title_en: Sequence models, Transformers, explainability & adversarial attacks
     range: Lab 11–15
     accent: teal
@@ -63,10 +63,10 @@ blocks:
         details: Self-attention, cross-attention, wizualizacja wag uwagi
       - nr: "13"
         topic: Transformery
-        details: Architektura Transformera, kodowanie pozycyjne, implementacja
+        details: Architektura, kodowanie pozycyjne, implementacja
       - nr: "14"
         topic: Wyjaśnialność i bezpieczeństwo
-        details: "Grad-CAM, SHAP, LIME; bezpieczeństwo modeli"
+        details: "XAI: Grad-CAM, SHAP, LIME. Bezpieczeństwo modeli"
       - nr: "15"
         topic: Ataki adwersarialne
         details: FGSM, PGD, obrona przed atakami
