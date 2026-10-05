@@ -15,5 +15,7 @@ minify:
   disableHTML: true
 
 params:
+  # Sekcja „Warsztat inżyniera ML” — tymczasowo ukryta; ustaw true, by przywrócić.
+  showTools: false
   description: Kurs inżynierski „Uczenie Głębokie" — Politechnika Wrocławska
   github: https://github.com/

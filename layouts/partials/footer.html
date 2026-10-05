@@ -18,7 +18,7 @@
         <span class="ttl" data-i18n data-pl="Kurs" data-en="Course">Kurs</span>
         <a href="#wyklady" data-i18n data-pl="Wykłady" data-en="Lectures">Wykłady</a>
         <a href="#laboratoria" data-i18n data-pl="Laboratoria" data-en="Labs">Laboratoria</a>
-        <a href="#narzedzia" data-i18n data-pl="Narzędzia" data-en="Tools">Narzędzia</a>
+        {{ if .Site.Params.showTools }}<a href="#narzedzia" data-i18n data-pl="Narzędzia" data-en="Tools">Narzędzia</a>{{ end }}
         <a href="#efekty" data-i18n data-pl="Efekty kształcenia" data-en="Outcomes">Efekty kształcenia</a>
       </nav>
 

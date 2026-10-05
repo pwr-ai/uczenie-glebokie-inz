@@ -110,6 +110,7 @@
   </div>
 </section>
 
+{{ if .Site.Params.showTools }}
 {{/* ============ NARZĘDZIA ============ */}}
 <section class="band wrap" id="narzedzia">
   <div class="sec-head">
@@ -144,6 +145,7 @@
     {{ end }}
   </div>
 </section>
+{{ end }}
 
 {{/* ============ ZESPÓŁ ============ */}}
 <section class="band wrap" id="zespol">

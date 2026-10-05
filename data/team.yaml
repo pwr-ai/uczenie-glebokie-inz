@@ -35,18 +35,6 @@ members:
     photo: images/team/piotr-zielinski.jpg
     link: https://ai.pwr.edu.pl/people/piotr-zielinski
 
-  - name: dr inż. Kamil Tagowski
-    role_pl: Ekspert merytoryczny
-    role_en: Subject-matter expert
-    affiliation: Katedra Sztucznej Inteligencji · PWr
-    focus_pl: Graph representation learning, polski NLP, systemy dialogowe i QA, SI w finansach i podatkach.
-    focus_en: Graph representation learning, Polish NLP, dialogue and QA systems, AI in finance and taxation.
-    email: kamil.tagowski@pwr.edu.pl
-    initials: KT
-    accent: indigo
-    photo: images/team/kamil-tagowski.jpg
-    link: https://ai.pwr.edu.pl/people/kamil-tagowski
-
   - name: mgr inż. Joanna Szołomicka
     role_pl: Laboratoria
     role_en: Labs
@@ -69,3 +57,15 @@ members:
     initials: FA
     accent: teal
     link: https://ai.pwr.edu.pl/people/filip-adamiok
+
+  - name: dr inż. Kamil Tagowski
+    role_pl: Ekspert merytoryczny
+    role_en: Subject-matter expert
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus_pl: Graph representation learning, polski NLP, systemy dialogowe i QA, SI w finansach i podatkach.
+    focus_en: Graph representation learning, Polish NLP, dialogue and QA systems, AI in finance and taxation.
+    email: kamil.tagowski@pwr.edu.pl
+    initials: KT
+    accent: indigo
+    photo: images/team/kamil-tagowski.jpg
+    link: https://ai.pwr.edu.pl/people/kamil-tagowski
