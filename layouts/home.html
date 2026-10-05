@@ -210,16 +210,30 @@
   </div>
   <div class="refs">
     {{ range $i, $r := (slice
-      (dict "t" "Deep Learning" "a" "Goodfellow, Bengio, Courville · MIT 2016" "u" "https://www.deeplearningbook.org/")
-      (dict "t" "Neural Networks &amp; Deep Learning" "a" "Michael Nielsen · 2015" "u" "http://neuralnetworksanddeeplearning.com/")
-      (dict "t" "Attention Is All You Need" "a" "Vaswani et al. · NeurIPS 2017" "u" "https://arxiv.org/abs/1706.03762")
-      (dict "t" "Pattern Recognition and Machine Learning" "a" "Christopher M. Bishop · Springer 2006" "u" "https://www.microsoft.com/en-us/research/people/cmbishop/prml-book/")
+      (dict "t" "Deep Learning" "a" "Ian Goodfellow, Yoshua Bengio, Aaron Courville · MIT Press 2016" "u" "https://www.deeplearningbook.org/")
+      (dict "t" "Dive into Deep Learning" "a" "Aston Zhang, Zachary C. Lipton, Mu Li, Alexander J. Smola · Cambridge University Press 2021" "u" "https://d2l.ai/#jupyter"
+            "x" (slice (dict "l" "GitHub · README" "u" "https://github.com/d2l-ai/d2l-en/blob/master/README.md")))
+      (dict "t" "Deep Learning: Foundations and Concepts" "a" "Christopher M. Bishop, Hugh Bishop · Springer 2023 · wersja online bez opłat" "u" "https://www.bishopbook.com/")
     ) }}
-      <a class="ref" href="{{ $r.u }}" target="_blank" rel="noopener">
+      <div class="ref">
         <span class="num">{{ printf "%02d" (add $i 1) }}</span>
-        <span><span class="ti">{{ $r.t | safeHTML }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="au">{{ $r.a | safeHTML }}</span></span>
-      </a>
+        <span>
+          <a class="ti" href="{{ $r.u }}" target="_blank" rel="noopener">{{ $r.t | safeHTML }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <span class="au">{{ $r.a | safeHTML }}</span>
+          {{ with $r.x }}<span class="xl">{{ range . }}<a href="{{ .u }}" target="_blank" rel="noopener">{{ .l }}</a>{{ end }}</span>{{ end }}
+        </span>
+      </div>
     {{ end }}
+    <div class="ref ref-res">
+      <span class="num">&#8203;</span>
+      <span>
+        <span class="ti" data-i18n data-pl="Zasoby" data-en="Resources">Zasoby</span>
+        <span class="au" data-i18n data-pl="Materiały uzupełniające do wykładów i laboratoriów" data-en="Supplementary material for lectures and labs">Materiały uzupełniające do wykładów i laboratoriów</span>
+        <span class="xl">
+          <a href="https://courses.d2l.ai/berkeley-stat-157/units/attention.html" target="_blank" rel="noopener">D2L · Berkeley STAT 157 — Attention</a>
+        </span>
+      </span>
+    </div>
   </div>
 </section>
 

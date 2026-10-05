@@ -46,3 +46,26 @@ members:
     accent: indigo
     photo: images/team/kamil-tagowski.jpg
     link: https://ai.pwr.edu.pl/people/kamil-tagowski
+
+  - name: mgr inż. Joanna Szołomicka
+    role_pl: Laboratoria
+    role_en: Labs
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus_pl: Few-shot learning i segmentacja obrazów histopatologicznych, uczenie multimodalne w diagnostyce medycznej, wielojęzyczna analiza sentymentu i modele neuro-symboliczne.
+    focus_en: Few-shot learning and segmentation of histopathology images, multimodal learning for medical diagnostics, multilingual sentiment analysis and neuro-symbolic models.
+    email: joanna.szolomicka@pwr.edu.pl
+    initials: JS
+    accent: garnet
+    photo: images/team/joanna-szolomicka.jpg
+    link: https://ai.pwr.edu.pl/people/joanna-szolomicka
+
+  - name: mgr inż. Filip Adamiok
+    role_pl: Laboratoria
+    role_en: Labs
+    affiliation: Katedra Sztucznej Inteligencji · PWr
+    focus_pl: Doktorant Katedry Sztucznej Inteligencji PWr, deep learning.
+    focus_en: PhD candidate at the Department of Artificial Intelligence, deep learning.
+    email: filip.adamiok@pwr.edu.pl
+    initials: FA
+    accent: teal
+    link: https://ai.pwr.edu.pl/people/filip-adamiok
