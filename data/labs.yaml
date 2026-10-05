@@ -17,8 +17,8 @@ blocks:
         topic: Sieć w NumPy — ciąg dalszy
         details: Regularyzacja, dropout, inicjalizacja wag
       - nr: "4"
-        topic: Ta sama sieć w PyTorchu
-        details: Przejście na PyTorch — autograd, nn.Module, DataLoader
+        topic: Sieć neuronowa w PyTorch
+        details: Autograd, nn.Module, DataLoader
       - nr: "5"
         topic: Dobre praktyki i śledzenie eksperymentów
         details: Weights & Biases lub MLflow, porównywanie eksperymentów, reprodukowalność
