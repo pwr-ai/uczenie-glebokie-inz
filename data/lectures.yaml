@@ -4,8 +4,8 @@ blocks:
     title_en: Neural network foundations
     hours: "8 h"
     accent: indigo
-    summary_pl: "Jak zbudowana jest sieć w pełni połączona i jak działa propagacja wsteczna, od pojedynczego neuronu po zapis macierzowy. Druga część bloku wyjaśnia, dlaczego sieć się przeucza albo nie zbiega i jak temu zaradzić regularyzacją, doborem optymalizatora i strojeniem hiperparametrów."
-    summary_en: "How a fully connected network is built and how backpropagation works, from a single neuron to the matrix formulation. The second part of the block explains why a network overfits or fails to converge, and how to fix it with regularisation, the choice of optimiser and hyperparameter tuning."
+    summary_pl: "Jak zbudowana jest sieć w pełni połączona i jak działa propagacja wsteczna, najpierw dla pojedynczego neuronu, potem w zapisie macierzowym. Druga część bloku wyjaśnia, dlaczego sieć się przeucza albo nie zbiega i jak temu zaradzić regularyzacją, doborem optymalizatora i strojeniem hiperparametrów."
+    summary_en: "How a fully connected network is built and how backpropagation works, first for a single neuron, then in matrix form. The second part of the block explains why a network overfits or fails to converge, and how to fix it with regularisation, the choice of optimiser and hyperparameter tuning."
     items:
       - nr: "1"
         topic: Płytka sieć MLP i uczenie metodą propagacji wstecznej
@@ -42,8 +42,8 @@ blocks:
     title_en: Sequence models, attention & Transformers
     hours: "4 h"
     accent: ochre
-    summary_pl: "Rozwój modeli sekwencyjnych: od sieci RNN, LSTM i GRU oraz seq2seq po architekturę Transformera, w której rekurencję zastępują mechanizm uwagi i kodowanie pozycyjne."
-    summary_en: "The evolution of sequence models: from RNN, LSTM and GRU networks and seq2seq to the Transformer architecture, where attention and positional encoding replace recurrence."
+    summary_pl: "Sieci rekurencyjne RNN, LSTM i GRU, modele seq2seq oraz architektura Transformera, w której rekurencję zastępują mechanizm uwagi i kodowanie pozycyjne."
+    summary_en: "RNN, LSTM and GRU recurrent networks, seq2seq models, and the Transformer architecture, where attention and positional encoding replace recurrence."
     items:
       - nr: "8"
         topic: Sieci rekurencyjne i ich zastosowania (NLP, mowa) — LSTM, GRU, sieci dwukierunkowe, seq2seq
