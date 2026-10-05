@@ -4,8 +4,8 @@ blocks:
     title_en: Neural network foundations
     hours: "8 h"
     accent: indigo
-    summary_pl: "Perceptron wielowarstwowy i algorytm propagacji wstecznej, również w ujęciu macierzowym. Dalej techniki poprawiające uczenie i zdolność uogólniania sieci: regularyzacja, optymalizacja i strojenie hiperparametrów."
-    summary_en: "The multilayer perceptron and the backpropagation algorithm, including its matrix formulation. Then techniques that improve training and generalisation: regularisation, optimisation and hyperparameter tuning."
+    summary_pl: "Jak zbudowana jest sieć w pełni połączona i jak działa propagacja wsteczna, od pojedynczego neuronu po zapis macierzowy. Druga część bloku wyjaśnia, dlaczego sieć się przeucza albo nie zbiega i jak temu zaradzić regularyzacją, doborem optymalizatora i strojeniem hiperparametrów."
+    summary_en: "How a fully connected network is built and how backpropagation works, from a single neuron to the matrix formulation. The second part of the block explains why a network overfits or fails to converge, and how to fix it with regularisation, the choice of optimiser and hyperparameter tuning."
     items:
       - nr: "1"
         topic: Płytka sieć MLP i uczenie metodą propagacji wstecznej
