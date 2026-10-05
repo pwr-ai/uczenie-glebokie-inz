@@ -1,7 +1,7 @@
 blocks:
   - roman: I
-    title: Podstawy, PyTorch i dobre praktyki
-    title_en: Foundations, PyTorch & good practice
+    title: Podstawy i PyTorch
+    title_en: Foundations & PyTorch
     range: Lab 1–5
     accent: indigo
     lead_name: dr inż. Kamil Tagowski
@@ -24,8 +24,8 @@ blocks:
         details: Weights & Biases lub MLflow, porównywanie eksperymentów, reprodukowalność
 
   - roman: II
-    title: Sieci konwolucyjne, modele generatywne i Deep RL
-    title_en: ConvNets, generative models & Deep RL
+    title: Obrazy, generowanie i Deep RL
+    title_en: Images, generation & Deep RL
     range: Lab 6–10
     accent: plum
     lead_name: dr inż. Piotr Zieliński
@@ -48,8 +48,8 @@ blocks:
         details: Actor-Critic, zastosowania
 
   - roman: III
-    title: Modele sekwencyjne, Transformery, wyjaśnialność i ataki adwersarialne
-    title_en: Sequence models, Transformers, explainability & adversarial attacks
+    title: Sekwencje, wyjaśnialność i ataki
+    title_en: Sequences, explainability & attacks
     range: Lab 11–15
     accent: teal
     lead_name: mgr inż. Jan Jakubik
