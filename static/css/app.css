@@ -57,18 +57,6 @@ h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-0.02em;
 }
 .eyebrow::before{content:"";width:24px;height:1px;background:var(--accent);opacity:.55}
 
-/* ---------- build banner ---------- */
-.build-banner{
-  position:relative;z-index:60;
-  background:color-mix(in oklch,var(--c-amber) 9%,var(--paper));
-  border-bottom:1px solid color-mix(in oklch,var(--c-amber) 32%,var(--line));
-}
-.build-banner .wrap{display:flex;align-items:center;gap:10px;padding-block:8px;font-size:12.5px;color:color-mix(in oklch,var(--c-amber) 55%,var(--ink))}
-.build-banner .dot{width:16px;height:16px;flex:none;color:var(--c-amber)}
-.build-banner b{font-weight:600}
-.build-banner .more{color:var(--muted)}
-@media (max-width:560px){.build-banner .more{display:none}}
-
 /* ---------- header ---------- */
 header.site{
   position:sticky;top:0;z-index:50;
