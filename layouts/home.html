@@ -4,12 +4,12 @@
 <section class="hero">
   <div class="wrap">
     <div>
-      <span class="eyebrow" data-i18n data-pl="Kurs inżynierski · Sztuczna Inteligencja" data-en="BEng course · Artificial Intelligence">Kurs inżynierski · Sztuczna Inteligencja</span>
+      <span class="eyebrow" data-i18n data-pl="Studia inżynierskie · kierunek Sztuczna Inteligencja" data-en="BEng programme · Artificial Intelligence">Studia inżynierskie · kierunek Sztuczna Inteligencja</span>
       <h1 data-i18n data-pl="Uczenie <span class='em'>Głębokie</span>" data-en="Deep <span class='em'>Learning</span>">Uczenie <span class="em">Głębokie</span></h1>
       <p class="lead" data-i18n
-         data-pl="Kurs wprowadza w podstawy głębokiego uczenia. Obejmuje kluczowe architektury sieci, sposoby ich trenowania oraz techniki doskonalenia tego procesu. Teorię uzupełniają praktyczne laboratoria w Pythonie i PyTorchu."
-         data-en="The course introduces the foundations of deep learning. It covers the key network architectures, how to train them, and techniques for refining that process. The theory is complemented by hands-on labs in Python and PyTorch.">
-        Kurs wprowadza w podstawy głębokiego uczenia. Obejmuje kluczowe architektury sieci, sposoby ich trenowania oraz techniki doskonalenia tego procesu. Teorię uzupełniają praktyczne laboratoria w Pythonie i PyTorchu.
+         data-pl="Od perceptronu wielowarstwowego i propagacji wstecznej, przez sieci konwolucyjne i rekurencyjne, po Transformery i uczenie ze wzmocnieniem. Na wykładach poznajesz, jak te modele działają, a na laboratoriach sam je implementujesz: najpierw w NumPy, potem w PyTorch."
+         data-en="From the multilayer perceptron and backpropagation, through convolutional and recurrent networks, to Transformers and reinforcement learning. Lectures explain how these models work; in the labs you implement them yourself, first in NumPy, then in PyTorch.">
+        Od perceptronu wielowarstwowego i propagacji wstecznej, przez sieci konwolucyjne i rekurencyjne, po Transformery i uczenie ze wzmocnieniem. Na wykładach poznajesz, jak te modele działają, a na laboratoriach sam je implementujesz: najpierw w NumPy, potem w PyTorch.
       </p>
       <div class="cta">
         <a class="btn btn-primary" href="#wyklady">
@@ -55,8 +55,8 @@
   <div class="sec-head">
     <span class="en" data-i18n data-pl="Wykłady · 30 h · 4 bloki" data-en="Lectures · 30 h · 4 blocks">Wykłady · 30 h · 4 bloki</span>
     <h2 data-i18n data-pl="Program <span class='em'>wykładów</span>" data-en="Lecture <span class='em'>syllabus</span>">Program <span class="em">wykładów</span></h2>
-    <p data-i18n data-pl="W czterech blokach tematycznych przejdziesz od podstaw sieci w pełni połączonych do bardziej zaawansowanych metod głębokiego uczenia. Każde zagadnienie poznasz najpierw intuicyjnie, a następnie od strony formalnej."
-       data-en="Across four thematic blocks you will move from the fundamentals of fully connected networks to more advanced deep learning methods. You will meet each topic first intuitively, then formally.">W czterech blokach tematycznych przejdziesz od podstaw sieci w pełni połączonych do bardziej zaawansowanych metod głębokiego uczenia. Każde zagadnienie poznasz najpierw intuicyjnie, a następnie od strony formalnej.</p>
+    <p data-i18n data-pl="Cztery bloki: podstawy sieci neuronowych, sieci konwolucyjne i modele generatywne, modele sekwencyjne i Transformery oraz tematy zaawansowane. Każde zagadnienie zaczynamy od intuicji, a kończymy na zapisie macierzowym i algorytmie."
+       data-en="Four blocks: neural network foundations, convolutional networks and generative models, sequence models and Transformers, and advanced topics. Each topic starts with intuition and ends with the matrix formulation and the algorithm.">Cztery bloki: podstawy sieci neuronowych, sieci konwolucyjne i modele generatywne, modele sekwencyjne i Transformery oraz tematy zaawansowane. Każde zagadnienie zaczynamy od intuicji, a kończymy na zapisie macierzowym i algorytmie.</p>
   </div>
   <div class="curric">
     {{ range .Site.Data.lectures.blocks }}
@@ -87,8 +87,8 @@
   <div class="sec-head">
     <span class="en" data-i18n data-pl="Laboratoria · 15 × 1,5 h · 3 bloki" data-en="Labs · 15 × 1.5 h · 3 blocks">Laboratoria · 15 × 1,5 h · 3 bloki</span>
     <h2 data-i18n data-pl="Program <span class='em'>laboratoriów</span>" data-en="Lab <span class='em'>syllabus</span>">Program <span class="em">laboratoriów</span></h2>
-    <p data-i18n data-pl="Podczas piętnastu praktycznych spotkań samodzielnie zaimplementujesz podstawowe sieci neuronowe w NumPy, zbudujesz kompletny pipeline uczenia w PyTorch oraz poznasz modele generatywne, agentów Deep RL, metody wyjaśnialności i ataki adwersarialne."
-       data-en="Over fifteen hands-on sessions you will implement basic neural networks from scratch in NumPy, build a complete training pipeline in PyTorch, and explore generative models, Deep RL agents, explainability methods, and adversarial attacks.">Podczas piętnastu praktycznych spotkań samodzielnie zaimplementujesz podstawowe sieci neuronowe w NumPy, zbudujesz kompletny pipeline uczenia w PyTorch oraz poznasz modele generatywne, agentów Deep RL, metody wyjaśnialności i ataki adwersarialne.</p>
+    <p data-i18n data-pl="Piętnaście spotkań, każde kończy się działającym kodem. Zaczynasz od sieci napisanej od zera w NumPy i przenosisz ją do PyTorch. Potem trenujesz sieci konwolucyjne, modele generatywne, agentów uczenia ze wzmocnieniem i Transformery. Na koniec sprawdzasz, na co model naprawdę patrzy (Grad-CAM, SHAP) i jak łatwo go oszukać (FGSM, PGD)."
+       data-en="Fifteen sessions, each ending with working code. You start with a network written from scratch in NumPy and port it to PyTorch. Then you train convolutional networks, generative models, reinforcement learning agents and Transformers. Finally you check what the model really looks at (Grad-CAM, SHAP) and how easily it can be fooled (FGSM, PGD).">Piętnaście spotkań, każde kończy się działającym kodem. Zaczynasz od sieci napisanej od zera w NumPy i przenosisz ją do PyTorch. Potem trenujesz sieci konwolucyjne, modele generatywne, agentów uczenia ze wzmocnieniem i Transformery. Na koniec sprawdzasz, na co model naprawdę patrzy (Grad-CAM, SHAP) i jak łatwo go oszukać (FGSM, PGD).</p>
   </div>
   <div class="curric">
     {{ range .Site.Data.labs.blocks }}
@@ -152,8 +152,8 @@
   <div class="sec-head">
     <span class="en" data-i18n data-pl="Zespół dydaktyczny" data-en="Teaching team">Zespół dydaktyczny</span>
     <h2 data-i18n data-pl="Zespół <span class='em'>kursu</span>" data-en="Course <span class='em'>team</span>">Zespół <span class="em">kursu</span></h2>
-    <p data-i18n data-pl="Pracownicy naukowo-dydaktyczni Katedry Sztucznej Inteligencji Politechniki Wrocławskiej."
-       data-en="Research and teaching staff of the Department of Artificial Intelligence, Wrocław University of Science and Technology.">Pracownicy naukowo-dydaktyczni Katedry Sztucznej Inteligencji Politechniki Wrocławskiej.</p>
+    <p data-i18n data-pl="Kurs prowadzą pracownicy i doktoranci Katedry Sztucznej Inteligencji Politechniki Wrocławskiej."
+       data-en="The course is taught by staff and doctoral candidates of the Department of Artificial Intelligence, Wrocław University of Science and Technology.">Kurs prowadzą pracownicy i doktoranci Katedry Sztucznej Inteligencji Politechniki Wrocławskiej.</p>
   </div>
   <div class="team">
     {{ range .Site.Data.team.members }}
@@ -169,7 +169,7 @@
         <div class="aff">{{ .affiliation }}</div>
         <div class="links">
           <a href="mailto:{{ .email }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg> mail</a>
-          <a href="{{ .link }}" target="_blank" rel="noopener"><span data-i18n data-pl="profil AI PWr" data-en="AI PWr profile">profil AI PWr</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="{{ .link }}" target="_blank" rel="noopener"><span data-i18n data-pl="profil w Katedrze SI" data-en="department profile">profil w Katedrze SI</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 4h6v6M20 4l-9 9M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </article>
     {{ end }}
@@ -215,7 +215,7 @@
       (dict "t" "Deep Learning" "a" "Ian Goodfellow, Yoshua Bengio, Aaron Courville · MIT Press 2016" "u" "https://www.deeplearningbook.org/")
       (dict "t" "Dive into Deep Learning" "a" "Aston Zhang, Zachary C. Lipton, Mu Li, Alexander J. Smola · Cambridge University Press 2021" "u" "https://d2l.ai/#jupyter"
             "x" (slice (dict "l" "GitHub · README" "u" "https://github.com/d2l-ai/d2l-en/blob/master/README.md")))
-      (dict "t" "Deep Learning: Foundations and Concepts" "a" "Christopher M. Bishop, Hugh Bishop · Springer 2023 · wersja online bez opłat" "u" "https://www.bishopbook.com/")
+      (dict "t" "Deep Learning: Foundations and Concepts" "a" "Christopher M. Bishop, Hugh Bishop · Springer 2023 · bezpłatna wersja online" "u" "https://www.bishopbook.com/")
     ) }}
       <div class="ref">
         <span class="num">{{ printf "%02d" (add $i 1) }}</span>
@@ -230,7 +230,7 @@
       <span class="num">&#8203;</span>
       <span>
         <span class="ti" data-i18n data-pl="Zasoby" data-en="Resources">Zasoby</span>
-        <span class="au" data-i18n data-pl="Materiały uzupełniające do wykładów i laboratoriów" data-en="Supplementary material for lectures and labs">Materiały uzupełniające do wykładów i laboratoriów</span>
+        <span class="au" data-i18n data-pl="Materiały dodatkowe do wykładów i laboratoriów" data-en="Supplementary material for lectures and labs">Materiały dodatkowe do wykładów i laboratoriów</span>
         <span class="xl">
           <a href="https://courses.d2l.ai/berkeley-stat-157/units/attention.html" target="_blank" rel="noopener">D2L · Berkeley STAT 157 — Attention</a>
         </span>

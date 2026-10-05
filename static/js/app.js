@@ -100,5 +100,8 @@ document.querySelectorAll("[data-set-lang]").forEach((b) =>
   b.addEventListener("click", () => applyLang(b.dataset.setLang))
 );
 let saved = "pl";
-try { saved = localStorage.getItem("ug:lang") || "pl"; } catch (_) {}
+// Bez przełącznika języka strona jest zawsze po polsku — ignorujemy zapisany wybór.
+if (document.querySelector("[data-set-lang]")) {
+  try { saved = localStorage.getItem("ug:lang") || "pl"; } catch (_) {}
+}
 applyLang(saved);

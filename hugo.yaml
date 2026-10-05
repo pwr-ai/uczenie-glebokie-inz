@@ -17,5 +17,7 @@ minify:
 params:
   # Sekcja „Warsztat inżyniera ML” — tymczasowo ukryta; ustaw true, by przywrócić.
   showTools: false
-  description: Kurs inżynierski „Uczenie Głębokie" — Politechnika Wrocławska
+  # Przełącznik PL/EN — tymczasowo wyłączony; ustaw true, by przywrócić wersję angielską.
+  enableEnglish: false
+  description: Uczenie Głębokie — kurs na kierunku Sztuczna Inteligencja, Politechnika Wrocławska. Program wykładów i laboratoriów, zespół, literatura.
   github: https://github.com/

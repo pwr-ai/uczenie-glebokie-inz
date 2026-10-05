@@ -4,17 +4,17 @@ blocks:
     title_en: Neural network foundations
     hours: "8 h"
     accent: indigo
-    summary_pl: "Zbudujesz prostą sieć MLP i poznasz najważniejsze techniki potrzebne do jej skutecznego trenowania, oceny i ulepszania."
-    summary_en: "You will build a simple MLP and learn the key techniques for training, evaluating, and improving it effectively."
+    summary_pl: "Perceptron wielowarstwowy i propagacja wsteczna: najpierw krok po kroku, potem w zapisie macierzowym. Dalej regularyzacja, optymalizatory i strojenie hiperparametrów, czyli to, od czego zależy, czy sieć faktycznie się uczy i uogólnia."
+    summary_en: "The multilayer perceptron and backpropagation, first step by step, then in matrix form. Then regularisation, optimisers and hyperparameter tuning: what decides whether a network actually learns and generalises."
     items:
       - nr: "1"
-        topic: Płytka sieć MLP. Uczenie metodą propagacji wstecznej
+        topic: Płytka sieć MLP i uczenie metodą propagacji wstecznej
         hours: "2 h"
       - nr: "2"
         topic: Algorytm propagacji wstecznej w ujęciu macierzowym
         hours: "2 h"
       - nr: "3–4"
-        topic: Techniki poprawiające uczenie i uogólnianie (regularyzacja, optymalizacja, hiperparametry)
+        topic: Techniki poprawiające uczenie i uogólnianie — regularyzacja, optymalizacja, strojenie hiperparametrów
         hours: "4 h"
     tags: [MLP, Backprop, SGD, Adam, Dropout, BatchNorm]
 
@@ -23,14 +23,14 @@ blocks:
     title_en: Convolutional networks & generative models
     hours: "6 h"
     accent: plum
-    summary_pl: "Nauczysz się budować konwolucyjne sieci neuronowe do analizy obrazów, stosować uczenie transferowe, wykorzystywać autokodery do uczenia reprezentacji oraz pracować z modelami generatywnymi, takimi jak VAE i sieci GAN."
-    summary_en: "You will learn to build convolutional neural networks for image analysis, apply transfer learning, use autoencoders for representation learning, and work with generative models such as VAE and GAN networks."
+    summary_pl: "Sieci konwolucyjne: splot, pooling, klasyczne architektury i uczenie transferowe. Następnie autokodery i reprezentacja ukryta, a na ich bazie modele generatywne: VAE i GAN."
+    summary_en: "Convolutional networks: convolution, pooling, classic architectures and transfer learning. Then autoencoders and latent representations, and on top of them generative models: VAE and GAN."
     items:
       - nr: "5"
-        topic: Sieci konwolucyjne — architektura, transfer wiedzy, znane sieci
+        topic: Sieci konwolucyjne — architektura, uczenie transferowe, przegląd znanych architektur
         hours: "2 h"
       - nr: "6"
-        topic: Autokoder, reprezentacja ukryta, uczenie nienadzorowane
+        topic: Autokoder, reprezentacja ukryta i uczenie nienadzorowane
         hours: "2 h"
       - nr: "7"
         topic: Wprowadzenie do sieci generatywnych (VAE, GAN)
@@ -38,18 +38,18 @@ blocks:
     tags: [CNN, ResNet, Transfer Learning, Autoencoder, VAE, GAN]
 
   - roman: III
-    title: Sekwencje, uwaga i Transformery
-    title_en: Sequences, attention & Transformers
+    title: Sieci sekwencyjne, mechanizm uwagi i Transformery
+    title_en: Sequence models, attention & Transformers
     hours: "4 h"
     accent: ochre
-    summary_pl: "Prześledzisz rozwój modeli sekwencyjnych: od sieci RNN, LSTM i GRU aż po architekturę Transformera, w której rekurencję zastępują mechanizm uwagi i kodowanie pozycyjne."
-    summary_en: "You will trace the evolution of sequence models: from RNN, LSTM, and GRU networks to the Transformer architecture, where attention and positional encoding replace recurrence."
+    summary_pl: "Modele sekwencyjne od RNN, LSTM i GRU oraz seq2seq po Transformer, w którym rekurencję zastępują mechanizm uwagi i kodowanie pozycyjne."
+    summary_en: "Sequence models from RNN, LSTM, GRU and seq2seq to the Transformer, where attention and positional encoding replace recurrence."
     items:
       - nr: "8"
-        topic: Sieci rekurencyjne (NLP, mowa). LSTM, GRU, seq2seq
+        topic: Sieci rekurencyjne i ich zastosowania (NLP, mowa) — LSTM, GRU, sieci dwukierunkowe, seq2seq
         hours: "2 h"
       - nr: "9–10"
-        topic: Mechanizm uwagi i Transformer — architektura, kodowanie kolejności
+        topic: Mechanizm uwagi i Transformer — architektura, zasada działania, kodowanie pozycyjne
         hours: "4 h"
     tags: [RNN, LSTM, Attention, Self-Attention, Transformer, BERT, GPT]
 
@@ -58,16 +58,16 @@ blocks:
     title_en: Advanced topics
     hours: "12 h"
     accent: forest
-    summary_pl: "Poznasz zastosowania głębokiego uczenia ze wzmocnieniem, metody wyjaśniania decyzji modeli oraz techniki wykrywania i segmentacji obiektów na obrazach."
-    summary_en: "You will learn the applications of deep reinforcement learning, methods for explaining model decisions, and techniques for detecting and segmenting objects in images."
+    summary_pl: "Trzy tematy wykraczające poza podstawy: uczenie ze wzmocnieniem z głębokimi sieciami (DQN, gradient polityki), interpretacja decyzji sieci oraz detekcja i segmentacja obiektów na obrazach."
+    summary_en: "Three topics beyond the basics: reinforcement learning with deep networks (DQN, policy gradient), interpreting network decisions, and object detection and segmentation in images."
     items:
       - nr: "11–12"
-        topic: Uczenie ze wzmocnieniem z sieciami głębokimi
+        topic: Uczenie ze wzmocnieniem z użyciem sieci głębokich
         hours: "4 h"
       - nr: "13"
         topic: Metody interpretacji sieci neuronowych
         hours: "2 h"
       - nr: "14–15"
-        topic: Detekcja i segmentacja obrazów
+        topic: Zastosowania sieci konwolucyjnych — detekcja i segmentacja
         hours: "4 h"
     tags: [Deep RL, DQN, Policy Gradient, Grad-CAM, YOLO, U-Net]

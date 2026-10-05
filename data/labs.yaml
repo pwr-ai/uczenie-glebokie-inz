@@ -1,7 +1,7 @@
 blocks:
   - roman: I
-    title: Podstawy, narzędzia i produkcja
-    title_en: Foundations, tooling & production
+    title: Podstawy, PyTorch i dobre praktyki
+    title_en: Foundations, PyTorch & good practice
     range: Lab 1–5
     accent: indigo
     lead_name: dr inż. Kamil Tagowski
@@ -11,17 +11,17 @@ blocks:
         topic: NumPy — operacje macierzowe
         details: Operacje na macierzach, broadcasting, wektoryzacja
       - nr: "2"
-        topic: Wprowadzenie NN (NumPy)
-        details: Implementacja przebiegu w przód i wstecz od zera
+        topic: Sieć neuronowa w NumPy od zera
+        details: Przebieg w przód i wstecz zaimplementowane bez bibliotek DL
       - nr: "3"
-        topic: NN w NumPy — cd.
+        topic: Sieć w NumPy — ciąg dalszy
         details: Regularyzacja, dropout, inicjalizacja wag
       - nr: "4"
-        topic: NN w PyTorch
-        details: Ten sam model — autograd, DataLoader
+        topic: Ta sama sieć w PyTorch
+        details: Przejście na PyTorch — autograd, moduły, DataLoader
       - nr: "5"
-        topic: Best practices i produkcja
-        details: Tracking (WandB/MLflow), porównywanie eksperymentów, reprodukowalność
+        topic: Dobre praktyki i śledzenie eksperymentów
+        details: Weights & Biases lub MLflow, porównywanie przebiegów, reprodukowalność
 
   - roman: II
     title: Sieci konwolucyjne, modele generatywne i Deep RL
@@ -33,9 +33,9 @@ blocks:
     items:
       - nr: "6"
         topic: Sieci konwolucyjne
-        details: Wizualizacje filtrów, splot 2D i 3D, aktywacje
+        details: Splot 2D i 3D, wizualizacja filtrów i map aktywacji
       - nr: "7"
-        topic: CNN + regularyzacja
+        topic: Sieci konwolucyjne — regularyzacja
         details: Augmentacja danych, uczenie transferowe, wczesne zatrzymanie
       - nr: "8"
         topic: Autokoder, VAE, GAN
@@ -44,12 +44,12 @@ blocks:
         topic: Deep RL — podstawy
         details: Gradient polityki, DQN
       - nr: "10"
-        topic: Deep RL — cd.
+        topic: Deep RL — ciąg dalszy
         details: Actor-Critic, zastosowania
 
   - roman: III
-    title: Sekwencje, Transformery, wyjaśnialność i ataki adwersarialne
-    title_en: Sequences, Transformers, explainability & adversarial attacks
+    title: Sieci sekwencyjne, Transformery, wyjaśnialność i ataki adwersarialne
+    title_en: Sequence models, Transformers, explainability & adversarial attacks
     range: Lab 11–15
     accent: teal
     lead_name: mgr inż. Jan Jakubik
@@ -60,13 +60,13 @@ blocks:
         details: RNN, LSTM, GRU — implementacja i zastosowania
       - nr: "12"
         topic: Mechanizm uwagi
-        details: Self-attention, cross-attention, wizualizacja wag
+        details: Self-attention, cross-attention, wizualizacja wag uwagi
       - nr: "13"
         topic: Transformery
-        details: Architektura, kodowanie pozycyjne, implementacja
+        details: Architektura Transformera, kodowanie pozycyjne, implementacja
       - nr: "14"
         topic: Wyjaśnialność i bezpieczeństwo
-        details: "XAI: Grad-CAM, SHAP, LIME. Bezpieczeństwo modeli"
+        details: "Grad-CAM, SHAP, LIME; bezpieczeństwo modeli"
       - nr: "15"
         topic: Ataki adwersarialne
         details: FGSM, PGD, obrona przed atakami
